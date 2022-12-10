@@ -1,26 +1,72 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Text styling-paragraph */
+
+p.Large {
+    @apply text-[1.1875rem] leading-6 tracking-[10%]
+}
+p.Regular {
+    @apply text-[.9375rem] leading-[1.1875rem] tracking-[0%]
+}
+p.Small {
+    @apply text-xs leading-[.875rem]  tracking-[10%]
+}
+p.Caption {
+    @apply text-xs leading-4  tracking-[0%]
+
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+/* Text styling-header */
+
+h1{
+    @apply text-8xl leading-[90%] tracking-[-5%];
 }
 
-* {
-  box-sizing: border-box;
+h2{
+    @apply text-7xl;
+    
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
+h3{
+    @apply text-[3.5rem] leading-[4rem] tracking-[-5%];
+    
+}
+
+h4{
+    @apply text-[2rem] leading-[2.625rem] tracking-[-4%];
+    
+}
+
+h5{
+    @apply text-2xl leading-7 tracking-[-2%];
+    
+}
+
+/* Button style */
+
+button{
+    @apply  flex gap-2 items-center px-9 py-2 transition-colors duration-75;
+}
+
+button:disabled{
+    @apply opacity-30;
+}
+
+.TeritaryBtn{
+    @apply  hover:border-opal ;
+}
+
+.PrimaryBtn,
+.OutlinedBtn{
+    @apply text-stormy rounded-lg hover:bg-opal hover:text-white
+}
+
+.PrimaryBtn{
+    @apply bg-linen 
+}
+
+.OutlinedBtn{
+    @apply border-[1px] border-oyster;
 }
