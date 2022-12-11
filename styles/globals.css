@@ -35,7 +35,7 @@ h3{
 }
 
 h4{
-    @apply text-[2rem] leading-[2.625rem] tracking-[-4%];
+    @apply  text-4xl leading-[2.625rem] tracking-[-4%];
     
 }
 
@@ -47,7 +47,7 @@ h5{
 /* Button style */
 
 button{
-    @apply  flex gap-2 items-center px-9 py-2 transition-colors duration-75;
+    @apply uppercase flex gap-2 items-center px-9 py-2 transition-colors duration-75;
 }
 
 button:disabled{
@@ -55,7 +55,7 @@ button:disabled{
 }
 
 .TeritaryBtn{
-    @apply  hover:border-opal ;
+    @apply border-b-2 border-[#0000]  hover:border-opal ;
 }
 
 .PrimaryBtn,
