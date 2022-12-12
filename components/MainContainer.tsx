@@ -5,18 +5,33 @@ import Head from 'next/head';
 import { ReactNode } from 'react';
 import Navbar from './Navbar';
 
-interface MainContainerProps {
-	title: string;
-	children: ReactNode;
+export enum textColor {
+	'light' = 'text-white',
+	'dark' = 'text-opal',
 }
 
-const MainContainer: NextPage<MainContainerProps> = ({ children, title }) => {
+interface MainContainerProps {
+	title: string;
+    children: ReactNode;
+    color?: textColor;
+    
+}
+
+const MainContainer: NextPage<MainContainerProps> = ({
+	children,
+	title,
+	color = textColor.dark,
+}) => {
 	return (
 		<div>
 			<Head>
 				<title>{title}</title>
-            </Head>
-            <Navbar/>
+			</Head>
+			<div className='text-white text-opal' />
+			<div className={color}>
+				<Navbar />
+			</div>
+
 			{children}
 		</div>
 	);

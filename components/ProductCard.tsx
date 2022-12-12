@@ -8,8 +8,8 @@ interface ProductCardProps {
 const ProductCard: NextPage<ProductCardProps> = ({ title, price }) => {
 	return (
 		<>
-			<div className=' w-full min-h-[330px] bg-opal'></div>
-			<div className='flex justify-between py-3 text-opal'>
+			<div className=' w-full min-h-[330px] bg-stormy '></div>
+			<div className='flex justify-between py-3 '>
 				<p className='Small uppercase'>{title}</p>
 				<p className='Small'>${price}</p>
 			</div>

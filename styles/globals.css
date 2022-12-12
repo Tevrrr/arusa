@@ -5,16 +5,16 @@
 /* Text styling-paragraph */
 
 p.Large {
-    @apply text-[1.1875rem] leading-6 tracking-[10%]
+    @apply text-[1.1875rem] leading-6 tracking-widest
 }
 p.Regular {
-    @apply text-[.9375rem] leading-[1.1875rem] tracking-[0%]
+    @apply text-[.9375rem] leading-[1.1875rem] tracking-[0]
 }
 p.Small {
-    @apply text-xs leading-[.875rem]  tracking-[10%]
+    @apply text-xs leading-[.875rem] tracking-widest;
 }
 p.Caption {
-    @apply text-xs leading-4  tracking-[0%]
+    @apply text-xs leading-4  tracking-[0]
 
 }
 
@@ -55,7 +55,7 @@ button:disabled{
 }
 
 .TeritaryBtn{
-    @apply border-b-2 border-[#0000]  hover:border-opal ;
+    @apply hover:border-b mb-[1px] hover:mb-0 ;
 }
 
 .PrimaryBtn,
@@ -68,5 +68,8 @@ button:disabled{
 }
 
 .OutlinedBtn{
-    @apply border-[1px] border-oyster;
+    @apply border border-oyster;
+}
+.writing-lr{
+    writing-mode:vertical-lr;
 }
