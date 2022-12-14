@@ -3,6 +3,7 @@
 import CardProduct from '../components/ProductCard';
 import MainContainer, { textColor } from '../components/MainContainer';
 import ProductCard from '../components/ProductCard';
+import ArticleCard from '../components/ArticleСard';
 
 export default function Home() {
 	return (
@@ -20,6 +21,7 @@ export default function Home() {
 					<p className='Small'>Shop all</p>
 				</button>
 			</header>
+
 			<div className='flex flex-col gap-10 justify-center items-center py-48 px-4 text-stormy'>
 				<h2 className=' max-w-2xl text-center '>
 					Creating
@@ -42,6 +44,7 @@ export default function Home() {
 					<p className='Small'>Read about us</p>
 				</button>
 			</div>
+
 			<h4 className=' border-y-2 border-oyster py-6 text-stormy text-center'>
 				Enjoy our feature products
 			</h4>
@@ -61,12 +64,13 @@ export default function Home() {
 					</div>
 				</div>
 			</div>
+
 			<div className=' flex justify-center border-y-2 border-oyster py-4'>
 				<button className='TeritaryBtn'>
 					<p className='Small text-stormy'>Shop all</p>
 				</button>
 			</div>
-			<div className='mt-5 bg-opal flex text-white'>
+			<div className='mt-5 bg-opal flex cloudy-white'>
 				<div className=' w-1/2 flex justify-center pt-56 pb-40'>
 					<div className=' max-w-[25.5rem]'>
 						<h4>Native light chair</h4>
@@ -89,6 +93,7 @@ export default function Home() {
 				</div>
 				<div className=' w-1/2 bg-linen'></div>
 			</div>
+
 			<div className='flex flex-col gap-12 bg-stormy px-24 py-[7.5rem]'>
 				<div className=' flex justify-start'>
 					<div className=' pb-2 bg-white p-5 w-64 text-opal'>
@@ -101,9 +106,11 @@ export default function Home() {
 					</div>
 				</div>
 			</div>
-			<div className='flex bg-opal text-white'>
-				<div className=' flex flex-row px-4 py-7 border-r'>
+
+			<div className='flex bg-opal text-cloudy'>
+				<div className=' flex flex-col items-center w-16 py-7 border-r'>
 					<div className=' grow'></div>
+
 					<h5 className=' writing-lr rotate-180 uppercase'>
 						Lookbook
 					</h5>
@@ -146,7 +153,8 @@ export default function Home() {
 					</div>
 				</div>
 			</div>
-			<div className='flex flex-col text-white bg-opal border-white pb-14'>
+
+			<div className='flex flex-col text-cloudy bg-opal border-white pb-14'>
 				<h4 className='text-center py-6 border-y'>
 					Enjoy our feature products
 				</h4>
@@ -182,11 +190,12 @@ export default function Home() {
 					</button>
 				</div>
 			</div>
-			<div className='flex flex-col items-center gap-9 text-center pt-40 text-stormy'>
+
+			<div className='flex flex-col items-center gap-9 text-center pt-40 text-stormy border-oyster border-l pb-20 ml-16'>
 				<h2>Every detail matter</h2>
 				<p className='Small uppercase'>
-					
-                    We are specialized in adornments, that bring charm to any environment.
+					We are specialized in adornments, that bring charm to any
+					environment.
 				</p>
 				<p className='Regular max-w-lg px-2'>
 					There are multiples of high quality pieces, with styles that
@@ -197,6 +206,81 @@ export default function Home() {
 					more compact dimensions, composing sophisticated and
 					exclusive environments.
 				</p>
+			</div>
+			<div className='flex text-stormy border-t border-oyster'>
+				<div className=' flex flex-col items-center w-16 box-content py-7 border-r border-oyster'>
+					<div className=' grow'></div>
+
+					<h5 className=' writing-lr rotate-180 uppercase'>
+						Details
+					</h5>
+				</div>
+				<div className=' px-4 py-3 border-r border-oyster grow'>
+					<div className=' h-[42rem] bg-stormy'></div>
+				</div>
+				<div className='w-full max-w-sm flex flex-col justify-between  px-4 py-3'>
+					<div className=' h-64 bg-stormy'></div>
+					<div className=' h-96 bg-stormy'></div>
+				</div>
+			</div>
+
+			<div className='flex justify-center items-center h-[41.5rem] bg-smoke'>
+				<div className=' h-[31rem] w-96 bg-stormy'></div>
+			</div>
+
+			<h4 className='text-center py-6 border-y border-oyster'>
+				Enjoy our articles
+			</h4>
+			<div className=' flex'>
+				<div className=' flex flex-col items-center w-16 box-content py-7 border-r border-oyster'>
+					<div className=' grow'></div>
+
+					<h5 className=' writing-lr rotate-180 uppercase'>
+						Details
+					</h5>
+				</div>
+				<div className='flex grow justify-between gap-8 p-8 pb-7 pr-2'>
+					<div className=' flex flex-col gap-14 w-1/2 '>
+						<h3>Manhattan Pià-terre for a new Chicago apartment</h3>
+						<p className='Regular'>
+							Interior designer Sarah Vaile remembers eyeing a New
+							York City apartment—one with bold colors and a
+							personality as distinct as its chic owner—in a 2014
+							issue of House Beautiful, and tucking it away for
+							future design inspiration. Years later, in a
+							serendipitous turn of events, the woman she&apos;d
+							seen in the magazine—a stylish figure now in her
+							30s—just moved to Chicago.
+						</p>
+						<p className='Small uppercase'>
+							<a href=''>Read article</a>
+						</p>
+					</div>
+					<div className=' w-1/2'>
+						<div className='h-[35rem] bg-stormy'></div>
+					</div>
+				</div>
+			</div>
+			<div className=' flex justify-center border-y border-oyster py-6'>
+				<button className='TeritaryBtn'>
+					<p className='Small'>See all articles</p>
+				</button>
+			</div>
+			<div className='flex border-b border-oyster'>
+				<ArticleCard
+					title="Inside a playful, bohemian beach house on Martha's Vineyard"
+					text="I would follow Jessica to the end of the Earth,” Johanna Hynes says, referring to her designer, Jessica Stambaugh. The Nashville-based principal of JS Interiors designed Hynes’ Boston wellness studio, Asana Charlestown, her family’s townhouse—and most recently, their beach chalet in Katama on Martha's Vineyard."
+				/>
+
+				<ArticleCard
+					title="Inside a playful, bohemian beach house on Martha's Vineyard"
+					text="I would follow Jessica to the end of the Earth,” Johanna Hynes says, referring to her designer, Jessica Stambaugh. The Nashville-based principal of JS Interiors designed Hynes’ Boston wellness studio, Asana Charlestown, her family’s townhouse—and most recently, their beach chalet in Katama on Martha's Vineyard."
+				/>
+
+				<ArticleCard
+					title="Inside a playful, bohemian beach house on Martha's Vineyard"
+					text="I would follow Jessica to the end of the Earth,” Johanna Hynes says, referring to her designer, Jessica Stambaugh. The Nashville-based principal of JS Interiors designed Hynes’ Boston wellness studio, Asana Charlestown, her family’s townhouse—and most recently, their beach chalet in Katama on Martha's Vineyard."
+				/>
 			</div>
 		</MainContainer>
 	);
