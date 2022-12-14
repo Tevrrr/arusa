@@ -70,7 +70,7 @@ export default function Home() {
 					<p className='Small text-stormy'>Shop all</p>
 				</button>
 			</div>
-			<div className='mt-5 bg-opal flex cloudy-white'>
+			<div className='mt-5 bg-opal flex text-cloudy'>
 				<div className=' w-1/2 flex justify-center pt-56 pb-40'>
 					<div className=' max-w-[25.5rem]'>
 						<h4>Native light chair</h4>
