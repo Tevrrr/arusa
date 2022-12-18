@@ -4,11 +4,16 @@ import CardProduct from '../components/ProductCard';
 import MainContainer, { textColor } from '../components/MainContainer';
 import ProductCard from '../components/ProductCard';
 import ArticleCard from '../components/ArticleСard';
+import Image from 'next/image';
+// <Image alt='' src='/../public/mainBg1.png' fill/>
 
 export default function Home() {
 	return (
 		<MainContainer title='Home' color={textColor.light}>
-			<header className=' w-full h-screen bg-opal text-white flex flex-col gap-10 justify-center items-center'>
+			<header className=' relative w-full h-screen text-white flex flex-col gap-10 justify-center items-center'>
+				<div className='absolute w-full h-screen bg-opal -z-10'>
+					<Image alt='' src='/../public/Header.png' fill />
+				</div>
 				<h1 className='hidden md:block max-w-4xl text-center '>
 					Seamless
 					<span className=' italic font-thin'> furniture </span>
@@ -22,7 +27,25 @@ export default function Home() {
 				</button>
 			</header>
 
-			<div className='flex flex-col gap-10 justify-center items-center py-48 px-4 text-stormy'>
+			<div className=' relative flex flex-col gap-10 justify-center items-center pt-80 pb-96 py-48 px-4 text-stormy'>
+				<div className=' top-5 absolute w-80 h-64'>
+					<Image alt='' src='/../public/mainBg1.png' fill />
+				</div>
+				<div className=' top-[20%] right-[15%] absolute w-44 h-32'>
+					<Image alt='' src='/../public/mainBg2.png' fill />
+				</div>
+				<div className=' right-0 top-[40%] absolute w-52 h-52'>
+					<Image alt='' src='/../public/mainBg3.png' fill />
+				</div>
+				<div className=' left-[60%] bottom-36 absolute w-96 h-72'>
+					<Image alt='' src='/../public/mainBg4.png' fill />
+				</div>
+				<div className=' left-0 top-[45%] absolute w-[26rem] h-72'>
+					<Image alt='' src='/../public/mainBg5.png' fill />
+				</div>
+				<div className=' left-5 top-[20%] absolute w-56 h-48'>
+					<Image alt='' src='/../public/mainBg6.png' fill />
+				</div>
 				<h2 className=' max-w-2xl text-center '>
 					Creating
 					<span className=' italic font-extralight'>
@@ -91,10 +114,15 @@ export default function Home() {
 						</p>
 					</div>
 				</div>
-				<div className=' w-1/2 bg-linen'></div>
+				<div className=' relative w-1/2 bg-linen'>
+					<Image alt='' src='/../public/lightChair.png' fill />
+				</div>
 			</div>
 
-			<div className='flex flex-col gap-12 bg-stormy px-24 py-[7.5rem]'>
+			<div className=' relative flex flex-col gap-12  px-24 py-[7.5rem]'>
+				<div className=' top-0 left-0 -z-10 absolute w-full h-full'>
+					<Image alt='' src='/../public/cardBlockBg.png' fill />
+				</div>
 				<div className=' flex justify-start'>
 					<div className=' pb-2 bg-white p-5 w-64 text-opal'>
 						<ProductCard title='iglenix vase' price='2.299' />
@@ -216,16 +244,28 @@ export default function Home() {
 					</h5>
 				</div>
 				<div className=' px-4 py-3 border-r border-oyster grow'>
-					<div className=' h-[42rem] bg-stormy'></div>
+					<div className=' relative h-[42rem] '>
+						<Image alt='' src='/../public/detailsMain.png' fill />
+					</div>
 				</div>
 				<div className='w-full max-w-sm flex flex-col justify-between  px-4 py-3'>
-					<div className=' h-64 bg-stormy'></div>
-					<div className=' h-96 bg-stormy'></div>
+					<div className=' relative h-64 '>
+						<Image alt='' src='/../public/details1.png' fill />
+					</div>
+					<div className=' relative h-96 '>
+						<Image alt='' src='/../public/details2.png' fill />
+					</div>
 				</div>
 			</div>
 
-			<div className='flex justify-center items-center h-[41.5rem] bg-smoke'>
-				<div className=' h-[31rem] w-96 bg-stormy'></div>
+			<div className=' relative flex justify-center items-center h-[41.5rem] '>
+				<div className=' absolute -z-10 w-full h-full'>
+					<Image alt='' src='/../public/afterDetailsBg.png' fill />
+				</div>
+
+				<div className=' relative h-[31rem] w-96 '>
+					<Image alt='' src='/../public/afterDetailsContent.png' fill />
+				</div>
 			</div>
 
 			<h4 className='text-center py-6 border-y border-oyster'>
