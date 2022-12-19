@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body{
+    @apply max-w-[100vw] overflow-x-hidden
+}
+
 /* Text styling-paragraph */
 
 p.Large {
