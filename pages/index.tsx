@@ -19,14 +19,12 @@ export default function Home() {
 						className=' object-cover'
 					/>
 				</div>
-				<h1 className='hidden md:block max-w-4xl text-center '>
+				<h1 className=' max-w-sm md:max-w-4xl text-center '>
 					Seamless
-					<span className=' italic font-thin'> furniture </span>
+					<span className=' md:italic md:font-thin'> furniture </span>
 					with natural fabrics
 				</h1>
-				<h4 className=' font-normal md:hidden max-w-xs text-center '>
-					Seamless furniture with natural fabrics
-				</h4>
+
 				<button className='PrimaryBtn'>
 					<p className='Small'>Shop all</p>
 				</button>
@@ -81,18 +79,15 @@ export default function Home() {
 						className=' object-cover'
 					/>
 				</div>
-				<h2 className='hidden md:block max-w-2xl text-center '>
+				<h2 className=' max-w-xs md:max-w-2xl text-center '>
 					Creating
-					<span className=' italic font-extralight'>
+					<span className=' md:italic md:font-extralight'>
 						{' '}
 						perfect{' '}
 					</span>{' '}
 					<br />
 					lines and imposing presence
 				</h2>
-				<h4 className=' font-normal md:hidden max-w-xs text-center '>
-					Creating perfect lines and imposing presence
-				</h4>
 				<p className='Regular max-w-lg text-center'>
 					Developed the concept of exclusivity, a Arusa features
 					timeless furniture, with natural fabrics, curved lines,
@@ -164,14 +159,18 @@ export default function Home() {
 					/>
 				</div>
 				<div className=' hidden md:flex justify-start'>
-					<div className=' pb-2 bg-white p-5 text-opal'>
-						<ProductCard title='iglenix vase' price='2.299' />
-					</div>
+					<ProductCard
+						className='!max-w-[250px] pb-2 bg-white p-5 text-opal'
+						title='iglenix vase'
+						price='2.299'
+					/>
 				</div>
 				<div className=' hidden md:flex justify-end'>
-					<div className=' bg-white p-5 text-opal'>
-						<ProductCard title='atajux lamp' price='2.399' />
-					</div>
+					<ProductCard
+						className='!max-w-[250px] bg-white p-5 text-opal'
+						title='atajux lamp'
+						price='2.399'
+					/>
 				</div>
 			</div>
 
@@ -193,7 +192,7 @@ export default function Home() {
 						sophisticated and exclusive environments.
 					</p>
 				</div>
-				<div className='flex flex-col-reverse md:flex-col max-w-[39rem] w-full md:my-5 md:border-b'>
+				<div className='flex flex-col-reverse md:flex-col md:max-w-[39rem] w-full md:my-5 md:border-b'>
 					<div className=' hidden md:flex justify-between uppercase py-2 px-5 border-t'>
 						<p className='Small'>Item</p>
 						<p className='Small'>Description</p>
@@ -228,30 +227,46 @@ export default function Home() {
 				</h4>
 				<div className=' flex justify-center'>
 					<div className=' bg-oyster md:bg-opal max-w-screen-xl w-full flex flex-wrap md:p-4 gap-[1px] md:gap-7 justify-between'>
-						<div className=' grow bg-opal'>
-							<ProductCard title='iglenix vase' price='2.299' />
-						</div>
-						<div className=' grow bg-opal'>
-							<ProductCard title='iglenix vase' price='2.299' />
-						</div>
-						<div className=' grow bg-opal'>
-							<ProductCard title='iglenix vase' price='2.299' />
-						</div>
-						<div className=' grow bg-opal'>
-							<ProductCard title='iglenix vase' price='2.299' />
-						</div>
-						<div className=' grow bg-opal'>
-							<ProductCard title='iglenix vase' price='2.299' />
-						</div>
-						<div className=' grow bg-opal'>
-							<ProductCard title='iglenix vase' price='2.299' />
-						</div>
-						<div className=' grow bg-opal'>
-							<ProductCard title='iglenix vase' price='2.299' />
-						</div>
-						<div className=' grow bg-opal'>
-							<ProductCard title='iglenix vase' price='2.299' />
-						</div>
+						<ProductCard
+							className=' md:odd:br break-a bg-opal '
+							title='iglenix vase'
+							price='2.299'
+						/>
+						<ProductCard
+							className='bg-opal '
+							title='iglenix vase'
+							price='2.299'
+						/>
+						<ProductCard
+							className='bg-opal '
+							title='iglenix vase'
+							price='2.299'
+						/>
+						<ProductCard
+							className='bg-opal'
+							title='iglenix vase'
+							price='2.299'
+						/>
+						<ProductCard
+							className='bg-opal'
+							title='iglenix vase'
+							price='2.299'
+						/>
+						<ProductCard
+							className='bg-opal'
+							title='iglenix vase'
+							price='2.299'
+						/>
+						<ProductCard
+							className='bg-opal'
+							title='iglenix vase'
+							price='2.299'
+						/>
+						<ProductCard
+							className='bg-opal'
+							title='iglenix vase'
+							price='2.299'
+						/>
 					</div>
 				</div>
 
@@ -340,11 +355,11 @@ export default function Home() {
 				Enjoy our articles
 			</h4>
 			<div className=' flex '>
-				<div className=' hidden md:flex flex-col items-center w-16 box-content py-7 border-r border-oyster'>
+				<div className=' hidden md:flex flex-col items-center box-content px-5 py-7 border-r border-oyster'>
 					<div className=' grow'></div>
 
 					<h5 className=' writing-lr rotate-180 uppercase'>
-						Details
+						Reader stories
 					</h5>
 				</div>
 				<div className='flex flex-col md:flex-row grow justify-between gap-8 p-8 pb-7 pr-2'>

@@ -4,11 +4,17 @@ import Image from 'next/image';
 interface ProductCardProps {
 	title: string;
 	price: string;
+	className?: string;
 };
-
-const ProductCard: NextPage<ProductCardProps> = ({ title, price }) => {
+//  
+const ProductCard: NextPage<ProductCardProps> = ({
+	title,
+	price,
+	className = '',
+}) => {
 	return (
-		<div className='grow p-2 min-w-[150px] md:min-w-[330px] max-w-[180px] md:max-w-[330px]'>
+		<div
+			className={`w-full p-2 min-w-[150px] max-w-[180px] md:max-w-[330px] ${className}`}>
 			<div className=' relative w-full min-h-[150px] md:min-h-[330px] bg-stormy '>
 				<Image
 					alt=''

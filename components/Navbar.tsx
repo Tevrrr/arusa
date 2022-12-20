@@ -7,7 +7,7 @@ interface NavbarProps {}
 const Navbar: NextPage<NavbarProps> = () => {
 	return (
 		<nav className=' z-50 absolute top-0 w-full flex justify-center '>
-			<div className=' flex justify-between items-center max-w-screen-xl w-full px-1 md:px-[4.5rem] py-4  text-sm'>
+			<div className=' flex justify-between items-center max-w-screen-xl w-full px-1 md:px-[4.5rem] py-1  text-sm'>
 				<button className='TeritaryBtn px-2'>
 					<VscMenu className=' text-2xl pb-1' />
 					<p className='Small'>Shop</p>

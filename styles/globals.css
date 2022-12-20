@@ -25,11 +25,11 @@ p.Caption {
 /* Text styling-header */
 
 h1{
-    @apply text-8xl leading-[90%] tracking-[-5%];
+    @apply text-4xl leading-[2.625rem] tracking-[-4%] md:text-8xl md:leading-[90%] md:tracking-[-5%];
 }
 
 h2{
-    @apply text-7xl;
+    @apply text-4xl leading-[2.625rem] tracking-[-4%] md:leading-none md:tracking-normal md:text-7xl;
     
 }
 

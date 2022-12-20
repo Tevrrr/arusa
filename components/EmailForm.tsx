@@ -10,7 +10,7 @@ const EmailForm: NextPage = () => {
 					<Image alt='' src='/formBg.png' fill className=' object-cover' />
 				</div>
 
-				<h2 className=' max-w-2xl'>Be part of our club for discount</h2>
+				<h2>Be part of our club <br/> for discount</h2>
 				<p>
 					<input
 						type='text'
