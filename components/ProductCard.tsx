@@ -12,10 +12,12 @@ const ProductCard: NextPage<ProductCardProps> = ({
 	price,
 	className = '',
 }) => {
-	return (
+    return (
+		// min-w-[49%] md:min-w-fit md:!border-0 justify-center  border-b odd:border-r border-oyster
 		<div
-			className={`w-full p-2 min-w-[150px] max-w-[180px] md:max-w-[330px] ${className}`}>
-			<div className=' relative w-full min-h-[150px] md:min-h-[330px] bg-stormy '>
+            className={`flex flex-col grow p-2 md:p-0 
+                        w-full min-h-[230px] md:min-h-[360px] max-w-[170px] md:min-w-[330px] min-w-[150px] ${className}`}>
+			<div className=' relative grow '>
 				<Image
 					alt=''
 					src='/formBg.png'

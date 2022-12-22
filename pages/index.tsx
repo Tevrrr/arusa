@@ -104,16 +104,38 @@ export default function Home() {
 			<h4 className=' border-y-2 border-oyster py-6 text-stormy text-center'>
 				Enjoy our feature products
 			</h4>
-			<div className='flex justify-center md:px-2 md:py-6'>
-				<div className=' flex flex-wrap justify-center gap-3 max-w-screen-xl w-full'>
-					<CardProduct title='NATIVE IRON CHAIR' price='4,990' />
-					<CardProduct title='NATIVE IRON CHAIR' price='4,990' />
-					<CardProduct title='NATIVE IRON CHAIR' price='4,990' />
-					<CardProduct title='NATIVE IRON CHAIR' price='4,990' />
+			<div className=' w-full flex flex-wrap md:p-4 gap-[1px] md:gap-7 justify-between'>
+				<div className='flex min-w-[49%]  md:min-w-fit md:!border-0 justify-center grow border-b odd:border-r border-oyster'>
+					<ProductCard
+						className=' md:odd:br break-a '
+						title='iglenix vase'
+						price='2.299'
+					/>
+				</div>
+				<div className='flex min-w-[49%]  md:min-w-fit md:!border-0 justify-center grow border-b odd:border-r border-oyster'>
+					<ProductCard
+						className=' md:odd:br break-a '
+						title='iglenix vase'
+						price='2.299'
+					/>
+				</div>
+				<div className='flex min-w-[49%]  md:min-w-fit md:!border-0 justify-center grow border-b odd:border-r border-oyster'>
+					<ProductCard
+						className=' md:odd:br break-a '
+						title='iglenix vase'
+						price='2.299'
+					/>
+				</div>
+				<div className='flex min-w-[49%]  md:min-w-fit md:!border-0 justify-center grow border-b odd:border-r border-oyster'>
+					<ProductCard
+						className=' md:odd:br break-a '
+						title='iglenix vase'
+						price='2.299'
+					/>
 				</div>
 			</div>
 
-			<div className=' flex justify-center border-y-2 border-oyster py-4'>
+			<div className=' flex justify-center border-b md:border-t border-oyster py-4'>
 				<button className='TeritaryBtn'>
 					<p className='Small text-stormy'>Shop all</p>
 				</button>
@@ -158,18 +180,19 @@ export default function Home() {
 						className=' object-cover'
 					/>
 				</div>
-				<div className=' hidden md:flex justify-start'>
+				<div className=' hidden md:flex '>
 					<ProductCard
-						className='!max-w-[250px] pb-2 bg-white p-5 text-opal'
+						className='!max-w-[250px] bg-white !p-5 text-opal'
 						title='iglenix vase'
 						price='2.299'
 					/>
 				</div>
-				<div className=' hidden md:flex justify-end'>
+				<div className=' hidden md:flex '>
+					<div className=' grow'></div>
 					<ProductCard
-						className='!max-w-[250px] bg-white p-5 text-opal'
-						title='atajux lamp'
-						price='2.399'
+						className='!max-w-[250px] bg-white !p-5 text-opal'
+						title='iglenix vase'
+						price='2.299'
 					/>
 				</div>
 			</div>
@@ -225,52 +248,68 @@ export default function Home() {
 				<h4 className='text-center py-6 border-y'>
 					Enjoy our feature products
 				</h4>
-				<div className=' flex justify-center'>
-					<div className=' bg-oyster md:bg-opal max-w-screen-xl w-full flex flex-wrap md:p-4 gap-[1px] md:gap-7 justify-between'>
-						<ProductCard
-							className=' md:odd:br break-a bg-opal '
-							title='iglenix vase'
-							price='2.299'
-						/>
-						<ProductCard
-							className='bg-opal '
-							title='iglenix vase'
-							price='2.299'
-						/>
-						<ProductCard
-							className='bg-opal '
-							title='iglenix vase'
-							price='2.299'
-						/>
-						<ProductCard
-							className='bg-opal'
-							title='iglenix vase'
-							price='2.299'
-						/>
-						<ProductCard
-							className='bg-opal'
-							title='iglenix vase'
-							price='2.299'
-						/>
-						<ProductCard
-							className='bg-opal'
-							title='iglenix vase'
-							price='2.299'
-						/>
-						<ProductCard
-							className='bg-opal'
-							title='iglenix vase'
-							price='2.299'
-						/>
-						<ProductCard
-							className='bg-opal'
-							title='iglenix vase'
-							price='2.299'
-						/>
+				<div className=' flex gap-0 justify-center'>
+					<div className=' max-w-screen-xl w-full flex flex-wrap md:p-4 gap-[1px] md:gap-7 justify-between'>
+						<div className='flex min-w-[49%]  md:min-w-fit md:!border-0 justify-center grow border-b odd:border-r border-oyster'>
+							<ProductCard
+								className=' md:odd:br break-a '
+								title='iglenix vase'
+								price='2.299'
+							/>
+						</div>
+						<div className='flex min-w-[49%]  md:min-w-fit md:!border-0 justify-center grow border-b odd:border-r border-oyster'>
+							<ProductCard
+								className=' md:odd:br break-a '
+								title='iglenix vase'
+								price='2.299'
+							/>
+						</div>
+						<div className='flex min-w-[49%]  md:min-w-fit md:!border-0 justify-center grow border-b odd:border-r border-oyster'>
+							<ProductCard
+								className=' md:odd:br break-a'
+								title='iglenix vase'
+								price='2.299'
+							/>
+						</div>
+						<div className='flex min-w-[49%]  md:min-w-fit md:!border-0 justify-center grow border-b odd:border-r border-oyster'>
+							<ProductCard
+								className=' md:odd:br break-a'
+								title='iglenix vase'
+								price='2.299'
+							/>
+						</div>
+						<div className='flex min-w-[49%]  md:min-w-fit md:!border-0 justify-center grow border-b odd:border-r border-oyster'>
+							<ProductCard
+								className=' md:odd:br break-a'
+								title='iglenix vase'
+								price='2.299'
+							/>
+						</div>
+						<div className='flex min-w-[49%]  md:min-w-fit md:!border-0 justify-center grow border-b odd:border-r border-oyster'>
+							<ProductCard
+								className=' md:odd:br break-a'
+								title='iglenix vase'
+								price='2.299'
+							/>
+						</div>
+						<div className='flex min-w-[49%]  md:min-w-fit md:!border-0 justify-center grow border-b odd:border-r border-oyster'>
+							<ProductCard
+								className=' md:odd:br break-a'
+								title='iglenix vase'
+								price='2.299'
+							/>
+						</div>
+						<div className='flex min-w-[49%]  md:min-w-fit md:!border-0 justify-center grow border-b odd:border-r border-oyster'>
+							<ProductCard
+								className=' md:odd:br break-a'
+								title='iglenix vase'
+								price='2.299'
+							/>
+						</div>
 					</div>
 				</div>
 
-				<div className=' flex justify-center border-y py-6'>
+				<div className=' flex justify-center border-b md:border-t py-6'>
 					<button className='TeritaryBtn'>
 						<p className='Small'>Shop all</p>
 					</button>
@@ -311,7 +350,7 @@ export default function Home() {
 						/>
 					</div>
 				</div>
-				<div className='w-full max-w-sm flex md:flex-col gap-2 justify-between p-2 md:px-4 md:py-3'>
+				<div className='w-full md:max-w-sm flex md:flex-col gap-2 justify-between p-2 md:px-4 md:py-3'>
 					<div className=' relative h-52 md:h-64 grow '>
 						<Image
 							alt=''
