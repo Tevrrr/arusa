@@ -13,10 +13,11 @@ const ProductCard: NextPage<ProductCardProps> = ({
 	className = '',
 }) => {
     return (
-		// min-w-[49%] md:min-w-fit md:!border-0 justify-center  border-b odd:border-r border-oyster
+		// min-w-[49%] md:min-w-fit
 		<div
-            className={`flex flex-col grow p-2 md:p-0 
-                        w-full min-h-[230px] md:min-h-[360px] max-w-[170px] md:min-w-[330px] min-w-[150px] ${className}`}>
+			className={`flex flex-col grow p-2
+                        border-b odd:border-r border-oyster
+                        min-w-[49%]  min-h-[230px] md:min-h-[360px] ${className}`}>
 			<div className=' relative grow '>
 				<Image
 					alt=''
