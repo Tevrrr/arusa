@@ -4,7 +4,8 @@ import Image from 'next/image';
 const EmailForm: NextPage = () => {
 
     return (
-		<div className=' md:px-14 md:py-20'>
+        <div className='flex justify-center'>
+           <div className=' w-full max-w-screen-xl md:px-14 md:py-20'>
 			<div className='relative flex flex-col justify-center items-center text-center gap-12 w-full h-[42rem] text-cloudy'>
 				<div className=' absolute w-full h-full -z-10'>
 					<Image alt='' src='/formBg.png' fill className=' object-cover' />
@@ -19,7 +20,9 @@ const EmailForm: NextPage = () => {
 					/>
 				</p>
 			</div>
-		</div>
+		</div> 
+        </div>
+		
 	);
 }
 

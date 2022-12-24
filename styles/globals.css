@@ -51,7 +51,7 @@ h5{
 /* Button style */
 
 button{
-    @apply uppercase flex gap-2 items-center px-9 py-2 transition-colors duration-75;
+    @apply uppercase  rounded-lg flex gap-2 justify-center items-center px-9 py-2 transition-colors duration-75;
 }
 
 button:disabled{
@@ -59,12 +59,16 @@ button:disabled{
 }
 
 .TeritaryBtn{
-    @apply hover:border-b mb-[1px] hover:mb-0 ;
+    @apply hover:border-b mb-[1px] hover:mb-0 rounded-none ;
+}
+
+.SecondaryBtn{
+    @apply bg-opal text-white hover:bg-oyster hover:text-opal
 }
 
 .PrimaryBtn,
 .OutlinedBtn{
-    @apply text-stormy rounded-lg hover:bg-opal hover:text-white
+    @apply text-stormy hover:bg-opal hover:text-white
 }
 
 .PrimaryBtn{

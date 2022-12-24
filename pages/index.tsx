@@ -180,7 +180,7 @@ export default function Home() {
 				</div>
 				<div className=' hidden md:flex '>
 					<ProductCard
-						className=' min-w-max !max-w-[250px] bg-white !p-5 text-opal'
+						className=' !min-w-max !max-w-[250px] bg-white !p-5 text-opal'
 						title='iglenix vase'
 						price='2.299'
 					/>
@@ -189,7 +189,7 @@ export default function Home() {
 				<div className=' hidden md:flex '>
 					<div className=' grow'></div>
 					<ProductCard
-						className=' min-w-max !max-w-[250px] bg-white !p-5 text-opal'
+						className=' !min-w-max !max-w-[250px] bg-white !p-5 text-opal'
 						title='iglenix vase'
 						price='2.299'
 					/>
@@ -222,7 +222,14 @@ export default function Home() {
 						</div>
 						<div className='p-5 border-t'>
 							<div className='p-5 pb-24 bg-[#E0E0E0] text-stormy'>
-								<div className=' bg-smoke h-96'></div>
+								<div className=' relative bg-smoke h-96'>
+									<Image
+										alt=''
+										src='/formBg.png'
+										fill
+										className=' object-cover'
+									/>
+								</div>
 								<div className='flex justify-between uppercase py-3'>
 									<p className='Small'>See lookbook</p>
 									<p className='Small'>Shop all</p>
@@ -362,56 +369,63 @@ export default function Home() {
 			<h4 className='text-center py-6 border-y border-oyster'>
 				Enjoy our articles
 			</h4>
-			<div className=' flex '>
-				<div className=' hidden md:flex flex-col items-center box-content px-5 py-7 border-r border-oyster'>
-					<div className=' grow'></div>
+			<div className='flex justify-center'>
+				<div className=' max-w-screen-xl flex '>
+					<div className=' hidden md:flex flex-col items-center box-content px-5 py-7 border-r border-oyster'>
+						<div className=' grow'></div>
 
-					<h5 className=' writing-lr rotate-180 uppercase'>
-						Reader stories
-					</h5>
-				</div>
-				<div className='flex flex-col md:flex-row grow justify-between gap-8 p-8 pb-7 pr-2'>
-					<div className=' flex flex-col gap-14 md:w-1/2 '>
-						<h3>Manhattan Pià-terre for a new Chicago apartment</h3>
-						<p className='Regular'>
-							Interior designer Sarah Vaile remembers eyeing a New
-							York City apartment—one with bold colors and a
-							personality as distinct as its chic owner—in a 2014
-							issue of House Beautiful, and tucking it away for
-							future design inspiration. Years later, in a
-							serendipitous turn of events, the woman she&apos;d
-							seen in the magazine—a stylish figure now in her
-							30s—just moved to Chicago.
-						</p>
-						<p className='Small uppercase'>
-							<a href=''>Read article</a>
-						</p>
+						<h5 className=' writing-lr rotate-180 uppercase'>
+							Reader stories
+						</h5>
 					</div>
-					<div className=' md:w-1/2'>
-						<div className='h-[35rem] bg-stormy'></div>
+					<div className='flex flex-col md:flex-row grow justify-between gap-8 p-8 pb-7 pr-2'>
+						<div className=' flex flex-col gap-14 md:w-1/2 '>
+							<h3>
+								Manhattan Pià-terre for a new Chicago apartment
+							</h3>
+							<p className='Regular'>
+								Interior designer Sarah Vaile remembers eyeing a
+								New York City apartment—one with bold colors and
+								a personality as distinct as its chic owner—in a
+								2014 issue of House Beautiful, and tucking it
+								away for future design inspiration. Years later,
+								in a serendipitous turn of events, the woman
+								she&apos;d seen in the magazine—a stylish figure
+								now in her 30s—just moved to Chicago.
+							</p>
+							<p className='Small uppercase'>
+								<a href=''>Read article</a>
+							</p>
+						</div>
+						<div className=' md:w-1/2'>
+							<div className='h-[35rem] bg-stormy'></div>
+						</div>
 					</div>
 				</div>
 			</div>
+
 			<div className=' flex justify-center border-y border-oyster py-6'>
 				<button className='TeritaryBtn'>
 					<p className='Small'>See all articles</p>
 				</button>
 			</div>
-			<div className='flex flex-col md:flex-row border-b border-oyster'>
-				<ArticleCard
-					title="Inside a playful, bohemian beach house on Martha's Vineyard"
-					text="I would follow Jessica to the end of the Earth,” Johanna Hynes says, referring to her designer, Jessica Stambaugh. The Nashville-based principal of JS Interiors designed Hynes’ Boston wellness studio, Asana Charlestown, her family’s townhouse—and most recently, their beach chalet in Katama on Martha's Vineyard."
-				/>
+			<div className='flex justify-center'>
+				<div className=' max-w-screen-xl flex flex-col md:flex-row border-b border-oyster'>
+					<ArticleCard
+						title="Inside a playful, bohemian beach house on Martha's Vineyard"
+						text="I would follow Jessica to the end of the Earth,” Johanna Hynes says, referring to her designer, Jessica Stambaugh. The Nashville-based principal of JS Interiors designed Hynes’ Boston wellness studio, Asana Charlestown, her family’s townhouse—and most recently, their beach chalet in Katama on Martha's Vineyard."
+					/>
 
-				<ArticleCard
-					title="Inside a playful, bohemian beach house on Martha's Vineyard"
-					text="I would follow Jessica to the end of the Earth,” Johanna Hynes says, referring to her designer, Jessica Stambaugh. The Nashville-based principal of JS Interiors designed Hynes’ Boston wellness studio, Asana Charlestown, her family’s townhouse—and most recently, their beach chalet in Katama on Martha's Vineyard."
-				/>
+					<ArticleCard
+						title="Inside a playful, bohemian beach house on Martha's Vineyard"
+						text="I would follow Jessica to the end of the Earth,” Johanna Hynes says, referring to her designer, Jessica Stambaugh. The Nashville-based principal of JS Interiors designed Hynes’ Boston wellness studio, Asana Charlestown, her family’s townhouse—and most recently, their beach chalet in Katama on Martha's Vineyard."
+					/>
 
-				<ArticleCard
-					title="Inside a playful, bohemian beach house on Martha's Vineyard"
-					text="I would follow Jessica to the end of the Earth,” Johanna Hynes says, referring to her designer, Jessica Stambaugh. The Nashville-based principal of JS Interiors designed Hynes’ Boston wellness studio, Asana Charlestown, her family’s townhouse—and most recently, their beach chalet in Katama on Martha's Vineyard."
-				/>
+					<ArticleCard
+						title="Inside a playful, bohemian beach house on Martha's Vineyard"
+						text="I would follow Jessica to the end of the Earth,” Johanna Hynes says, referring to her designer, Jessica Stambaugh. The Nashville-based principal of JS Interiors designed Hynes’ Boston wellness studio, Asana Charlestown, her family’s townhouse—and most recently, their beach chalet in Katama on Martha's Vineyard."
+					/>
+				</div>
 			</div>
 		</MainContainer>
 	);
