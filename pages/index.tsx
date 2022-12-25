@@ -1,7 +1,7 @@
 /** @format */
 
 import CardProduct from '../components/ProductCard';
-import MainContainer, { textColor } from '../components/MainContainer';
+import MainContainer, { textColor } from '../components/MainContainer/MainContainer';
 import ProductCard from '../components/ProductCard';
 import ArticleCard from '../components/ArticleСard';
 import Image from 'next/image';

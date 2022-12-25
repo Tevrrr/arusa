@@ -30,7 +30,11 @@ module.exports = {
 			sans: ['Roboto', 'sans-serif'],
 			serif: ['Roboto', 'serif'],
 		},
-		extend: {},
+        extend: {
+            order: {
+                '0':'0'
+            }
+        },
 	},
 	plugins: [],
 };
