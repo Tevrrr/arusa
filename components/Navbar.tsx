@@ -4,9 +4,11 @@ import type { NextPage } from 'next';
 import { useEffect, useState } from 'react';
 import { VscMenu } from 'react-icons/vsc';
 import Bag from './Bag';
-interface NavbarProps {}
+interface NavbarProps {
+	className?: string;
+}
 
-const Navbar: NextPage<NavbarProps> = () => {
+const Navbar: NextPage<NavbarProps> = ({ className = '' }) => {
 	const [menu, setMenu] = useState(false);
 	const [bag, setBag] = useState(false);
 	const [scroll, setScroll] = useState(0);
@@ -33,11 +35,11 @@ const Navbar: NextPage<NavbarProps> = () => {
 	}, []);
 
 	return (
-		<nav className=' z-50 fixed top-0 w-full max-h-screen'>
+		<nav className={`z-50 fixed top-0 w-full max-h-screen`}>
 			<div
-				className={` w-full flex justify-center  ${
+				className={` w-full flex justify-center border-oyster ${className} ${
 					!(menu || bag || scroll > 250) ||
-					'bg-white text-opal border-b border-oyster'
+					'bg-white text-opal border-b '
 				}`}>
 				<div className=' h-14 w-full max-w-screen-xl flex justify-between items-center px-1 lg:px-[4.5rem] py-1 transition-all duration-150 '>
 					<button className='TeritaryBtn px-2' onClick={menuToggle}>

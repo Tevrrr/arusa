@@ -9,7 +9,7 @@ import EmailForm from './EmailForm';
 
 export enum textColor {
 	'light' = 'text-white',
-	'dark' = 'text-opal',
+	'dark' = 'text-opal bg-white border-b',
 }
 
 interface MainContainerProps {
@@ -31,10 +31,10 @@ const MainContainer: NextPage<MainContainerProps> = ({
 			<Head>
 				<title>{title}</title>
 			</Head>
-			<div className='text-white text-opal' />
-			<div className={color}>
-				<Navbar />
-			</div>
+			<div className='text-white bg-white border-b text-opal' />
+
+            <Navbar className={color} />
+
 			<div className=' text-stormy'>{children}</div>
 			{!emailForm || (
 				<EmailForm/>
