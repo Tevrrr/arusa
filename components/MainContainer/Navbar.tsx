@@ -4,6 +4,7 @@ import type { NextPage } from 'next';
 import { useEffect, useState } from 'react';
 import { VscMenu } from 'react-icons/vsc';
 import Bag from './Bag';
+import Link from 'next/link';
 interface NavbarProps {
 	className?: string;
 }
@@ -44,13 +45,13 @@ const Navbar: NextPage<NavbarProps> = ({ className = '' }) => {
 				<div className=' h-14 w-full max-w-screen-xl flex justify-between items-center px-1 lg:px-[4.5rem] py-1 transition-all duration-150 '>
 					<button className='TeritaryBtn px-2' onClick={menuToggle}>
 						<VscMenu className=' text-2xl pb-1' />
-						<p className='Small'>Shop</p>
+						<p className='TextSmall'>Shop</p>
 					</button>
 					<a href='' className='  text-5xl'>
 						arusa
 					</a>
 					<button className='TeritaryBtn px-2' onClick={bagToggle}>
-						<p className='Small'>Bag</p>
+						<p className='TextSmall'>Bag</p>
 						<span className=' bg-opal text-white flex justify-center items-center w-6 h-6 rounded-full'>
 							1
 						</span>{' '}
@@ -66,24 +67,36 @@ const Navbar: NextPage<NavbarProps> = ({ className = '' }) => {
 					<div className=' min-h-screen md:min-h-max grow flex flex-col md:flex-row gap-4 md:justify-between p-4 lg:px-[5rem]'>
 						<div className='flex flex-col gap-3'>
 							<h4>Arusa</h4>
-							<p className='Small uppercase'>Home</p>
-							<p className='Small uppercase'>About</p>
-							<p className='Small uppercase'>Blog</p>
-							<p className='Small uppercase'>Contact</p>
+							<Link href='/' className='TextSmall uppercase'>
+								Home
+							</Link>
+							<Link href='/about' className='TextSmall uppercase'>
+								About
+							</Link>
+							<Link href='/blog' className='TextSmall uppercase'>
+								Blog
+							</Link>
+							<Link
+								href='/contact'
+								className='TextSmall uppercase'>
+								Contact
+							</Link>
 						</div>
 						<div className='flex flex-col gap-3'>
 							<h4>Shop</h4>
-							<p className='Small uppercase'>All</p>
-							<p className='Small uppercase'>Lookbook</p>
-							<p className='Small uppercase'>Collections</p>
-							<p className='Small uppercase'>Featured</p>
+							<Link href='/shop' className='TextSmall uppercase'>
+								All
+							</Link>
+							<p className='TextSmall uppercase'>Lookbook</p>
+							<p className='TextSmall uppercase'>Collections</p>
+							<p className='TextSmall uppercase'>Featured</p>
 						</div>
 						<div className='flex flex-col gap-3'>
 							<h4>Collections</h4>
-							<p className='Small uppercase'>Decors</p>
-							<p className='Small uppercase'>Furnitures</p>
-							<p className='Small uppercase'>Ceramics</p>
-							<p className='Small uppercase'>Lamps</p>
+							<p className='TextSmall uppercase'>Decors</p>
+							<p className='TextSmall uppercase'>Furnitures</p>
+							<p className='TextSmall uppercase'>Ceramics</p>
+							<p className='TextSmall uppercase'>Lamps</p>
 						</div>
 					</div>
 					<div className=' hidden md:block h-80 w-2/5 bg-opal'></div>

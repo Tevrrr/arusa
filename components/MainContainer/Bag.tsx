@@ -8,10 +8,10 @@ const Bag: NextPage<BagProps> = () => {
 		<div className=' w-full h-full flex flex-col '>
 			<div className=' grow'>
 				<h5 className=' hidden md:block uppercase'>Order summary</h5>
-				<p className=' md:hidden Regular uppercase'>Order summary</p>
+				<p className=' md:hidden TextRegular uppercase'>Order summary</p>
 			</div>
 			<div className='flex justify-between items-center border-y border-oyster py-3'>
-				<p className='Regular uppercase'>Grand tota incl. tax</p>
+				<p className='TextRegular uppercase'>Grand tota incl. tax</p>
 				<p className='Caption font-bold'>$4,990.00</p>
 			</div>
 			<div className=' flex flex-col-reverse md:flex-row gap-2 py-4 '>

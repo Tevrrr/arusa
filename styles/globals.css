@@ -8,16 +8,16 @@ body{
 
 /* Text styling-paragraph */
 
-p.Large {
+.TextLarge {
     @apply text-[1.1875rem] leading-6 tracking-widest
 }
-p.Regular {
+.TextRegular {
     @apply text-[.9375rem] leading-[1.1875rem] tracking-[0]
 }
-p.Small {
+.TextSmall {
     @apply text-xs leading-[.875rem] tracking-widest;
 }
-p.Caption {
+.TextCaption {
     @apply text-xs leading-4  tracking-[0]
 
 }

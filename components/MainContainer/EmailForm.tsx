@@ -12,13 +12,11 @@ const EmailForm: NextPage = () => {
 				</div>
 
 				<h2>Be part of our club <br/> for discount</h2>
-				<p>
 					<input
 						type='text'
 						placeholder='YOUR EMAIL'
 						className=' w-80 p-4 bg-[#0000] border rounded-lg border-oyster text-cloudy '
 					/>
-				</p>
 			</div>
 		</div> 
         </div>

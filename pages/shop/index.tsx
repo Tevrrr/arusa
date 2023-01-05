@@ -6,16 +6,16 @@ import SortPanel from '../../components/Shop/SortPanel';
 const Shop: NextPage = () => {
 
     return (
-		<MainContainer title='Shop' color={textColor.dark} emailForm={false}>
+		<MainContainer title='Shop' emailForm={false}>
 			<h1 className=' mt-14 p-2 text-center border-y border-oyster'>
 				All
 			</h1>
 			<div className='flex justify-center border-b border-oyster'>
 				<div className=' max-w-screen-xl w-full flex justify-between md:pl-44 lg:pl-72'>
-					<p className='Regular flex items-center w-1/2 md:w-auto pt-10 p-3 uppercase border-r md:border-0 border-oyster'>
+					<p className='TextRegular flex items-center w-1/2 md:w-auto pt-10 p-3 uppercase border-r md:border-0 border-oyster'>
 						21 products
 					</p>
-					<p className='Regular w-1/2 md:w-auto flex items-center  pt-10 p-3'>
+					<p className='TextRegular w-1/2 md:w-auto flex items-center  pt-10 p-3'>
 						<input
 							className=' grow md:grow-0 md:w-40 p-1'
 							type='text'

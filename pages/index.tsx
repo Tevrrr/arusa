@@ -5,7 +5,6 @@ import MainContainer, { textColor } from '../components/MainContainer/MainContai
 import ProductCard from '../components/ProductCard';
 import ArticleCard from '../components/ArticleСard';
 import Image from 'next/image';
-// <Image alt='' src='/indexPNG/mainBg1.png' fill/>
 
 export default function Home() {
 	return (
@@ -26,7 +25,7 @@ export default function Home() {
 				</h1>
 
 				<button className='PrimaryBtn'>
-					<p className='Small'>Shop all</p>
+					<p className='TextSmall'>Shop all</p>
 				</button>
 			</header>
 			<div className='flex justify-center'>
@@ -88,7 +87,7 @@ export default function Home() {
 						<br />
 						lines and imposing presence
 					</h2>
-					<p className='Regular max-w-lg text-center'>
+					<p className='TextRegular max-w-lg text-center'>
 						Developed the concept of exclusivity, a Arusa features
 						timeless furniture, with natural fabrics, curved lines,
 						plenty of mirrors and classic design, which can be
@@ -97,7 +96,7 @@ export default function Home() {
 						the shapes of each period, with a touch of the present.
 					</p>
 					<button className='OutlinedBtn'>
-						<p className='Small'>Read about us</p>
+						<p className='TextSmall'>Read about us</p>
 					</button>
 				</div>
 			</div>
@@ -132,7 +131,7 @@ export default function Home() {
 
 			<div className=' flex justify-center border-b lg:border-t border-oyster py-4'>
 				<button className='TeritaryBtn'>
-					<p className='Small text-stormy'>Shop all</p>
+					<p className='TextSmall text-stormy'>Shop all</p>
 				</button>
 			</div>
 			<div className='flex justify-center mt-5 bg-opal'>
@@ -140,7 +139,7 @@ export default function Home() {
 					<div className=' md:w-1/2 flex justify-center  px-4 pt-14 pb-10 md:!pt-56 md:!pb-40'>
 						<div className=' max-w-[25.5rem]'>
 							<h4>Native light chair</h4>
-							<p className='Regular mt-12'>
+							<p className='TextRegular mt-12'>
 								Refinement Chair with Ripped Seat, made of retro
 								Eucalyptus wood, of great resistance, Kiln
 								dried, made with a spike system and painted with
@@ -153,7 +152,7 @@ export default function Home() {
 								host will be marked by a lot of elegance and
 								sophistication.
 							</p>
-							<p className='Small uppercase pt-6'>
+							<p className='TextSmall uppercase pt-6'>
 								<a href=''>View product</a>
 							</p>
 						</div>
@@ -207,7 +206,7 @@ export default function Home() {
 					</div>
 					<div className='flex flex-col gap-14 justify-between items-center grow border-r p-4 md:pt-12 md:pb-32 '>
 						<h3 className='px-2'>Lookbook</h3>
-						<p className='Regular max-w-md px-2 text-center'>
+						<p className='TextRegular max-w-md px-2 text-center'>
 							The pieces stand out for their contemporary straight
 							lines and imposing presence. Current, following the
 							world trend of the great masters, the furniture
@@ -217,8 +216,8 @@ export default function Home() {
 					</div>
 					<div className='flex flex-col-reverse md:flex-col md:max-w-[39rem] w-full md:my-5 md:border-b'>
 						<div className=' hidden md:flex justify-between uppercase py-2 px-5 border-t'>
-							<p className='Small'>Item</p>
-							<p className='Small'>Description</p>
+							<p className='TextSmall'>Item</p>
+							<p className='TextSmall'>Description</p>
 						</div>
 						<div className='p-5 border-t'>
 							<div className='p-5 pb-24 bg-[#E0E0E0] text-stormy'>
@@ -231,24 +230,24 @@ export default function Home() {
 									/>
 								</div>
 								<div className='flex justify-between uppercase py-3'>
-									<p className='Small'>See lookbook</p>
-									<p className='Small'>Shop all</p>
+									<p className='TextSmall'>See lookbook</p>
+									<p className='TextSmall'>Shop all</p>
 								</div>
 							</div>
 						</div>
 						<div className='flex justify-between uppercase py-2 px-5 border-t'>
-							<p className='Small'>Materials:</p>
-							<p className='Small'>ceramic, glass, iron, wood</p>
+							<p className='TextSmall'>Materials:</p>
+							<p className='TextSmall'>ceramic, glass, iron, wood</p>
 						</div>
 						<div className='flex justify-between uppercase py-2 px-5 border-t'>
-							<p className='Small'>Produced in:</p>
-							<p className='Small'>
+							<p className='TextSmall'>Produced in:</p>
+							<p className='TextSmall'>
 								Canada, Italy, United States
 							</p>
 						</div>
 						<div className='flex justify-between uppercase py-2 px-5 border-t'>
-							<p className='Small'>Categories:</p>
-							<p className='Small'>Decoration, lamp, furnityre</p>
+							<p className='TextSmall'>Categories:</p>
+							<p className='TextSmall'>Decoration, lamp, furnityre</p>
 						</div>
 					</div>
 				</div>
@@ -285,18 +284,18 @@ export default function Home() {
 
 				<div className=' flex justify-center border-b lg:border-t py-6'>
 					<button className='TeritaryBtn'>
-						<p className='Small'>Shop all</p>
+						<p className='TextSmall'>Shop all</p>
 					</button>
 				</div>
 			</div>
 
 			<div className='flex flex-col items-center gap-9 text-center pt-40 text-stormy md:border-oyster md:border-l pb-20 md:ml-16'>
 				<h2>Every detail matter</h2>
-				<p className='Small uppercase'>
+				<p className='TextSmall uppercase'>
 					We are specialized in adornments, that bring charm to any
 					environment.
 				</p>
-				<p className='Regular max-w-lg px-2'>
+				<p className='TextRegular max-w-lg px-2'>
 					There are multiples of high quality pieces, with styles that
 					transition from classic to contemporary. An exclusive
 					selection of lampshades, vases, murals, pillows, paintings
@@ -383,7 +382,7 @@ export default function Home() {
 							<h3>
 								Manhattan Pià-terre for a new Chicago apartment
 							</h3>
-							<p className='Regular'>
+							<p className='TextRegular'>
 								Interior designer Sarah Vaile remembers eyeing a
 								New York City apartment—one with bold colors and
 								a personality as distinct as its chic owner—in a
@@ -393,7 +392,7 @@ export default function Home() {
 								she&apos;d seen in the magazine—a stylish figure
 								now in her 30s—just moved to Chicago.
 							</p>
-							<p className='Small uppercase'>
+							<p className='TextSmall uppercase'>
 								<a href=''>Read article</a>
 							</p>
 						</div>
@@ -406,7 +405,7 @@ export default function Home() {
 
 			<div className=' flex justify-center border-y border-oyster py-6'>
 				<button className='TeritaryBtn'>
-					<p className='Small'>See all articles</p>
+					<p className='TextSmall'>See all articles</p>
 				</button>
 			</div>
 			<div className='flex justify-center'>
