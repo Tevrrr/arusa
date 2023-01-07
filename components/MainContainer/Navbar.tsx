@@ -17,7 +17,11 @@ const Navbar: NextPage<NavbarProps> = ({ className = '' }) => {
 	const menuToggle = (): void => {
 		setMenu(!menu);
 		setBag(false);
-	};
+    };
+    const closeNavbar = (): void => {
+		setMenu(false);
+		setBag(false);
+	}
 	const bagToggle = (): void => {
 		setBag(!bag);
 		setMenu(false);
@@ -67,24 +71,37 @@ const Navbar: NextPage<NavbarProps> = ({ className = '' }) => {
 					<div className=' min-h-screen md:min-h-max grow flex flex-col md:flex-row gap-4 md:justify-between p-4 lg:px-[5rem]'>
 						<div className='flex flex-col gap-3'>
 							<h4>Arusa</h4>
-							<Link href='/' className='TextSmall uppercase'>
+							<Link
+								href='/'
+								className='TextSmall uppercase'
+								onClick={closeNavbar}>
 								Home
 							</Link>
-							<Link href='/about' className='TextSmall uppercase'>
+							<Link
+								href='/about'
+								className='TextSmall uppercase'
+								onClick={closeNavbar}>
 								About
 							</Link>
-							<Link href='/blog' className='TextSmall uppercase'>
+							<Link
+								href='/blog'
+								className='TextSmall uppercase'
+								onClick={closeNavbar}>
 								Blog
 							</Link>
 							<Link
 								href='/contact'
-								className='TextSmall uppercase'>
+								className='TextSmall uppercase'
+								onClick={closeNavbar}>
 								Contact
 							</Link>
 						</div>
 						<div className='flex flex-col gap-3'>
 							<h4>Shop</h4>
-							<Link href='/shop' className='TextSmall uppercase'>
+							<Link
+								href='/shop'
+								className='TextSmall uppercase'
+								onClick={closeNavbar}>
 								All
 							</Link>
 							<p className='TextSmall uppercase'>Lookbook</p>
