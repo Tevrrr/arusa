@@ -1,6 +1,7 @@
 import type { NextPage } from 'next'
 import MainContainer, { textColor } from '../../components/MainContainer/MainContainer';
 import Image from 'next/image';
+import SideHeader from '../../components/SideHeader';
 
 const About: NextPage = () => {
 
@@ -23,13 +24,8 @@ const About: NextPage = () => {
 			</header>
 			<div className='flex justify-center bg-opal'>
 				<div className=' md:min-h-screen max-w-screen-xl w-full flex text-oyster '>
-					<div className=' hidden md:flex flex-col items-center w-16 py-7 border-r'>
-						<div className=' grow'></div>
-
-						<h5 className=' writing-lr rotate-180 uppercase'>
-							About us
-						</h5>
-					</div>
+					
+                    <SideHeader>About us</SideHeader>
 					<div className=' grow px-4 py-8 md:pl-28 flex items-center'>
 						<div className=' max-w-5xl flex flex-col gap-2 TextRegular'>
 							<h4>Created based on the concept of exclusivity</h4>
@@ -122,13 +118,8 @@ const About: NextPage = () => {
 			</div>
 			<div className='flex justify-center bg-opal'>
 				<div className=' min-h-screen max-w-screen-xl w-full flex text-oyster '>
-					<div className=' hidden md:flex flex-col items-center w-16 py-7 border-r'>
-						<div className=' grow'></div>
-
-						<h5 className=' writing-lr rotate-180 uppercase'>
-							Sections
-						</h5>
-					</div>
+					
+                    <SideHeader>Sections</SideHeader>
 					<div className=' grow lg:pl-28 flex flex-col justify-between py-10 px-4 lg:px-0 '>
 						<h3 className=' pb-12 md:pb-0'>
 							Furniture that offer <br />
@@ -205,13 +196,8 @@ const About: NextPage = () => {
 			</div>
 			<div className='flex justify-center border-b border-oyster'>
 				<div className=' max-w-screen-xl w-full flex'>
-					<div className=' hidden md:flex flex-col items-center w-16 py-7 border-r border-oyster'>
-						<div className=' grow'></div>
-
-						<h5 className=' writing-lr rotate-180 uppercase'>
-							Insights
-						</h5>
-					</div>
+					
+                    <SideHeader>Insights</SideHeader>
 					<div className=' grow flex flex-col lg:flex-row justify-between '>
 						<div className=' shrink-0 relative lg:w-[45%] min-h-[420px] lg:min-h-[670px]'>
 							<Image

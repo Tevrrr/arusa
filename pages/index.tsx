@@ -1,10 +1,13 @@
 /** @format */
 
 import CardProduct from '../components/ProductCard';
-import MainContainer, { textColor } from '../components/MainContainer/MainContainer';
+import MainContainer, {
+	textColor,
+} from '../components/MainContainer/MainContainer';
 import ProductCard from '../components/ProductCard';
 import ArticleCard from '../components/ArticleСard';
 import Image from 'next/image';
+import SideHeader from '../components/SideHeader';
 
 export default function Home() {
 	return (
@@ -197,13 +200,7 @@ export default function Home() {
 
 			<div className='flex justify-center bg-opal'>
 				<div className='w-full max-w-screen-xl overflow-hidden flex flex-col md:flex-row bg-opal text-cloudy'>
-					<div className=' hidden md:flex flex-col items-center w-16 py-7 border-r'>
-						<div className=' grow'></div>
-
-						<h5 className=' writing-lr rotate-180 uppercase'>
-							Lookbook
-						</h5>
-					</div>
+					<SideHeader>Lookbook</SideHeader>
 					<div className='flex flex-col gap-14 justify-between items-center grow border-r p-4 md:pt-12 md:pb-32 '>
 						<h3 className='px-2'>Lookbook</h3>
 						<p className='TextRegular max-w-md px-2 text-center'>
@@ -237,7 +234,9 @@ export default function Home() {
 						</div>
 						<div className='flex justify-between uppercase py-2 px-5 border-t'>
 							<p className='TextSmall'>Materials:</p>
-							<p className='TextSmall'>ceramic, glass, iron, wood</p>
+							<p className='TextSmall'>
+								ceramic, glass, iron, wood
+							</p>
 						</div>
 						<div className='flex justify-between uppercase py-2 px-5 border-t'>
 							<p className='TextSmall'>Produced in:</p>
@@ -247,7 +246,9 @@ export default function Home() {
 						</div>
 						<div className='flex justify-between uppercase py-2 px-5 border-t'>
 							<p className='TextSmall'>Categories:</p>
-							<p className='TextSmall'>Decoration, lamp, furnityre</p>
+							<p className='TextSmall'>
+								Decoration, lamp, furnityre
+							</p>
 						</div>
 					</div>
 				</div>
@@ -288,32 +289,28 @@ export default function Home() {
 					</button>
 				</div>
 			</div>
-
-			<div className='flex flex-col items-center gap-9 text-center pt-40 text-stormy md:border-oyster md:border-l pb-20 md:ml-16'>
-				<h2>Every detail matter</h2>
-				<p className='TextSmall uppercase'>
-					We are specialized in adornments, that bring charm to any
-					environment.
-				</p>
-				<p className='TextRegular max-w-lg px-2'>
-					There are multiples of high quality pieces, with styles that
-					transition from classic to contemporary. An exclusive
-					selection of lampshades, vases, murals, pillows, paintings
-					and many gifts to compose great projects. In order
-					selection, a mix of basic style, stricter customization and
-					more compact dimensions, composing sophisticated and
-					exclusive environments.
-				</p>
+			<div className='flex justify-center  border-b border-oyster'>
+				<div className=' max-w-screen-xl w-full flex flex-col items-center gap-9 text-center pt-40 text-stormy md:border-oyster md:border-l pb-20 md:ml-32'>
+					<h2>Every detail matter</h2>
+					<p className='TextSmall uppercase'>
+						We are specialized in adornments, that bring charm to
+						any environment.
+					</p>
+					<p className='TextRegular max-w-lg px-2'>
+						There are multiples of high quality pieces, with styles
+						that transition from classic to contemporary. An
+						exclusive selection of lampshades, vases, murals,
+						pillows, paintings and many gifts to compose great
+						projects. In order selection, a mix of basic style,
+						stricter customization and more compact dimensions,
+						composing sophisticated and exclusive environments.
+					</p>
+				</div>
 			</div>
-			<div className='flex justify-center'>
-				<div className='w-full max-w-screen-xl flex flex-col md:flex-row text-stormy border-t border-oyster'>
-					<div className=' hidden md:flex flex-col items-center w-16 box-content py-7 border-r border-oyster'>
-						<div className=' grow'></div>
 
-						<h5 className=' writing-lr rotate-180 uppercase'>
-							Details
-						</h5>
-					</div>
+			<div className='flex justify-center'>
+				<div className='w-full max-w-screen-xl flex flex-col md:flex-row text-stormy'>
+					<SideHeader>Details</SideHeader>
 					<div className=' md:px-4 md:py-3 border-r border-oyster grow'>
 						<div className=' relative h-64 md:h-[42rem] '>
 							<Image
@@ -370,13 +367,7 @@ export default function Home() {
 			</h4>
 			<div className='flex justify-center'>
 				<div className=' max-w-screen-xl flex '>
-					<div className=' hidden md:flex flex-col items-center box-content px-5 py-7 border-r border-oyster'>
-						<div className=' grow'></div>
-
-						<h5 className=' writing-lr rotate-180 uppercase'>
-							Reader stories
-						</h5>
-					</div>
+					<SideHeader>Reader stories</SideHeader>
 					<div className='flex flex-col md:flex-row grow justify-between gap-8 p-8 pb-7 pr-2'>
 						<div className=' flex flex-col gap-14 md:w-1/2 '>
 							<h3>

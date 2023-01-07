@@ -3,8 +3,8 @@ import type { NextPage } from 'next'
 const Footer: NextPage = () => {
 
     return (
-		<footer className='flex flex-col text-cloudy bg-opal pb-6'>
-			<div className='flex flex-wrap border-b border-oyster'>
+		<footer className='flex flex-col text-cloudy bg-opal pt-16 md:pt-0 pb-6'>
+			<div className='flex flex-wrap border-y border-oyster'>
 				<div className=' w-1/2 md:w-auto flex grow flex-col gap-4 p-4 md:py-6 md:pl-14 border-r border-oyster '>
 					<p className='TextSmall uppercase'>Store</p>
 					<p className='TextSmall'>
