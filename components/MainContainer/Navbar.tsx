@@ -104,16 +104,16 @@ const Navbar: NextPage<NavbarProps> = ({ className = '' }) => {
 								onClick={closeNavbar}>
 								All
 							</Link>
-							<p className='TextSmall uppercase'>Lookbook</p>
+							{/* <p className='TextSmall uppercase'>Lookbook</p>
 							<p className='TextSmall uppercase'>Collections</p>
-							<p className='TextSmall uppercase'>Featured</p>
+							<p className='TextSmall uppercase'>Featured</p> */}
 						</div>
 						<div className='flex flex-col gap-3'>
-							<h4>Collections</h4>
+							{/* <h4>Collections</h4>
 							<p className='TextSmall uppercase'>Decors</p>
 							<p className='TextSmall uppercase'>Furnitures</p>
 							<p className='TextSmall uppercase'>Ceramics</p>
-							<p className='TextSmall uppercase'>Lamps</p>
+							<p className='TextSmall uppercase'>Lamps</p> */}
 						</div>
 					</div>
 					<div className=' hidden md:block h-80 w-2/5 bg-opal'></div>
