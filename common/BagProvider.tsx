@@ -35,8 +35,9 @@ const BagProvider: NextPage<BagProviderProps> = ({ children }) => {
 		console.log(totalPrice);
 	}, [products]);
 
-	const addProduct = (product: IProduct) => {
-		setProducts([...products, { ...product, count: 1 }]);
+    const addProduct = (product: IProduct) => {
+        if (products.find(item => product.id === item.id)) return;
+			setProducts([...products, { ...product, count: 1 }]);
 	};
 
     const incrementProductCount = (id: number) => {

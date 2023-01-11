@@ -29,19 +29,19 @@ const BagItem: NextPage<BagItemProps> = ({ product }) => {
 			</div>
 			<div className='grow flex flex-col justify-between'>
 				<h5>{title}</h5>
-				<div className='flex justify-between items-center'>
+				<div className='flex gap-2 justify-between items-center'>
 					<p className='Caption font-bold'>${price}</p>
 					<div className='flex justify-between items-center gap-2  overflow-hidden rounded-xl border border-oyster'>
 						<button
-							className=' px-5 py-2 transition-all duration-75 rounded-none hover:bg-oyster cursor-pointer'
+							className=' px-3 md:px-5 py-2 transition-all duration-75 rounded-none hover:bg-oyster cursor-pointer'
 							onClick={handlerCount(incrementProductCount)}>
 							<AiOutlinePlus className=' text-xl' />
 						</button>
 
 						<p className='Caption'>{count}</p>
 						<button
-                            className=' px-5 py-2 transition-all duration-75 rounded-none  hover:bg-oyster cursor-pointer'
-                            disabled={count <= 1}
+							className=' px-3 md:px-5 py-2 transition-all duration-75 rounded-none  hover:bg-oyster cursor-pointer'
+							disabled={count <= 1}
 							onClick={handlerCount(decrementProductCount)}>
 							<AiOutlineMinus className=' text-xl' />
 						</button>

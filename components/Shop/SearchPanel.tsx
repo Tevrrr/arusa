@@ -31,7 +31,7 @@ const SearchPanel: NextPage = () => {
 				onSubmit={formHandler}
 				className='TextRegular w-1/2 md:w-auto flex items-center  pt-10 p-3'>
 				<input
-					className=' grow md:grow-0 md:w-40 p-1'
+					className=' grow md:grow-0 w-28 md:w-40 p-1'
 					type='text'
 					value={queryValue}
 					onChange={(e) => {
