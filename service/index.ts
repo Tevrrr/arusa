@@ -63,3 +63,10 @@ export const getProductsByQuery = (
 
 	return SortBy(sortBy, filteredProducts);
 };
+
+export const getTopProducts = (count: number): IProduct[] => {
+    const products: IProduct[] = JSON.parse(productsJSON);
+    return products.slice(0,count)
+};
+
+

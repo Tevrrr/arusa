@@ -8,8 +8,10 @@ import ProductCard from '../components/ProductCard';
 import ArticleCard from '../components/ArticleСard';
 import Image from 'next/image';
 import SideHeader from '../components/SideHeader';
+import { getTopProducts } from '../service';
 
 export default function Home() {
+	const products = getTopProducts(8);
 	return (
 		<MainContainer title='Home' color={textColor.light}>
 			<header className=' relative w-full h-screen text-white flex flex-col gap-10 justify-center items-center'>
@@ -109,26 +111,15 @@ export default function Home() {
 			</h4>
 			<div className=' flex justify-center'>
 				<div className=' max-w-screen-xl w-full flex flex-wrap lg:gap-7 justify-between'>
-					<ProductCard
-						className=' lg:!border-0 lg:min-w-min lg:!max-w-[330px]'
-						title='iglenix vase'
-						price='2.299'
-					/>
-					<ProductCard
-						className=' lg:!border-0 lg:min-w-min lg:!max-w-[330px]'
-						title='iglenix vase'
-						price='2.299'
-					/>
-					<ProductCard
-						className=' lg:!border-0 lg:min-w-min lg:!max-w-[330px]'
-						title='iglenix vase'
-						price='2.299'
-					/>
-					<ProductCard
-						className=' lg:!border-0 lg:min-w-min lg:!max-w-[330px]'
-						title='iglenix vase'
-						price='2.299'
-					/>
+					{products.slice(0, 4).map((item) => {
+						return (
+							<ProductCard
+								key={item.id}
+								data={item}
+								className=' lg:!border-0 lg:min-w-min lg:!max-w-[330px]'
+							/>
+						);
+					})}
 				</div>
 			</div>
 
@@ -183,8 +174,7 @@ export default function Home() {
 				<div className=' hidden md:flex '>
 					<ProductCard
 						className=' !min-w-max !max-w-[250px] bg-white !p-5 text-opal'
-						title='iglenix vase'
-						price='2.299'
+						data={products[products.length-1]}
 					/>
 				</div>
 
@@ -192,8 +182,7 @@ export default function Home() {
 					<div className=' grow'></div>
 					<ProductCard
 						className=' !min-w-max !max-w-[250px] bg-white !p-5 text-opal'
-						title='iglenix vase'
-						price='2.299'
+						data={products[products.length-2]}
 					/>
 				</div>
 			</div>
@@ -260,26 +249,15 @@ export default function Home() {
 				</h4>
 				<div className=' flex gap-0 justify-center'>
 					<div className=' max-w-screen-xl w-full flex flex-wrap lg:p-4 gap-[1px] lg:gap-7 justify-between'>
-						<ProductCard
-							className=' lg:!border-0 lg:min-w-min lg:!max-w-[330px] '
-							title='iglenix vase'
-							price='2.299'
-						/>
-						<ProductCard
-							className=' lg:!border-0 lg:min-w-min lg:!max-w-[330px] '
-							title='iglenix vase'
-							price='2.299'
-						/>
-						<ProductCard
-							className=' lg:!border-0 lg:min-w-min lg:!max-w-[330px] '
-							title='iglenix vase'
-							price='2.299'
-						/>
-						<ProductCard
-							className=' lg:!border-0 lg:min-w-min lg:!max-w-[330px] '
-							title='iglenix vase'
-							price='2.299'
-						/>
+						{products.map((item) => {
+							return (
+								<ProductCard
+									key={item.id}
+									data={item}
+									className=' md:!max-w-[50%] md:!min-w-[330px] lg:!border-0 lg:min-w-min lg:!max-w-[330px] '
+								/>
+							);
+						})}
 					</div>
 				</div>
 

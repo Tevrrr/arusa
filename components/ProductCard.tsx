@@ -5,21 +5,17 @@ import { BagContext } from '../common/BagProvider';
 import { IProduct } from '../common/types/product';
 
 interface ProductCardProps {
-	title: string;
-	price: string;
-	src?:string;
-    className?: string;
-    data?: IProduct;
+	data: IProduct;
+	className?: string;
 };
 //  
 const ProductCard: NextPage<ProductCardProps> = ({
-	title,
-    price,
-    src = '',
     className = '',
     data
 }) => {
     const { addProduct } = useContext(BagContext);
+    const { title, price } = data;
+    const src = data.images[0]
 
     const onClickCard = () => {
         if (data) {
