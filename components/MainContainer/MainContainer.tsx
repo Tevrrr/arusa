@@ -6,6 +6,7 @@ import { ReactNode } from 'react';
 import Footer from './Footer';
 import Navbar from './Navbar';
 import EmailForm from './EmailForm';
+import BagProvider from '../../common/BagProvider';
 
 export enum textColor {
 	'light' = 'text-white',
@@ -14,10 +15,9 @@ export enum textColor {
 
 interface MainContainerProps {
 	title: string;
-    children: ReactNode;
-    color?: textColor;
-    emailForm?: boolean;
-    
+	children: ReactNode;
+	color?: textColor;
+	emailForm?: boolean;
 }
 
 const MainContainer: NextPage<MainContainerProps> = ({
@@ -32,13 +32,12 @@ const MainContainer: NextPage<MainContainerProps> = ({
 				<title>{title}</title>
 			</Head>
 			<div className='text-white bg-white border-b text-opal' />
+			<BagProvider>
+				<Navbar className={color} />
+				<div className=' text-stormy'>{children}</div>
+			</BagProvider>
 
-            <Navbar className={color} />
-
-			<div className=' text-stormy'>{children}</div>
-			{!emailForm || (
-				<EmailForm/>
-			)}
+			{!emailForm || <EmailForm />}
 
 			<Footer />
 		</div>

@@ -1,15 +1,17 @@
 /** @format */
 
 import type { NextPage } from 'next';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { VscMenu } from 'react-icons/vsc';
 import Bag from './Bag';
 import Link from 'next/link';
+import { BagContext } from '../../common/BagProvider';
 interface NavbarProps {
 	className?: string;
 }
 
 const Navbar: NextPage<NavbarProps> = ({ className = '' }) => {
+    const {count} = useContext(BagContext)
 	const [menu, setMenu] = useState(false);
 	const [bag, setBag] = useState(false);
 	const [scroll, setScroll] = useState(0);
@@ -57,7 +59,7 @@ const Navbar: NextPage<NavbarProps> = ({ className = '' }) => {
 					<button className='TeritaryBtn px-2' onClick={bagToggle}>
 						<p className='TextSmall'>Bag</p>
 						<span className=' bg-opal text-white flex justify-center items-center w-6 h-6 rounded-full'>
-							1
+							{count}
 						</span>{' '}
 					</button>
 				</div>

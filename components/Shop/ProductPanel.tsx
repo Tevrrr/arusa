@@ -17,6 +17,7 @@ const ProductPanel: NextPage = () => {
 						src={item.images[0]}
 						title={item.title}
 						price={item.price.toString()}
+						data={item}
 					/>
 				);
 			})}

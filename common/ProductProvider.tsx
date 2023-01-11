@@ -26,7 +26,6 @@ export const ProductContext = createContext<IProductProvider>(initialState);
 export const ProductProvider: NextPage<ProductProviderProps> = ({
 	children,
 }) => {
-	// const [products, setProducts] = useState<IProduct[]>([]);
 	const [filters, setFilters] = useState<string[]>([]);
 	const [activeSortBy, setActiveSortBy] = useState('A-Z');
 	const [searchQuery, setSearchQuery] = useState('');
