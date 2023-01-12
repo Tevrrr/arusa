@@ -1,10 +1,7 @@
 /** @format */
 
-import { IProduct } from './../common/types/product';
-import { productsJSON } from './data/products';
-
-
-
+import { IProduct, IProductPage } from './../common/types/product';
+import { productsJSON, productPagesJSON } from './data/products';
 
 const SortBy = (sortBy: string, Products: IProduct[]): IProduct[] => {
 	if (sortBy === 'Price: low to high') {
@@ -40,33 +37,46 @@ const SortBy = (sortBy: string, Products: IProduct[]): IProduct[] => {
 	});
 };
 
-export const getProductsByFilter = (
+export const getProductsByFilter = async (
 	filters: string[],
-	sortBy: string
-): IProduct[] => {
-		const products: IProduct[] = JSON.parse(productsJSON);
+	sortBy: string,
+	props: (value: IProduct[]) => void
+) => {
+	const products: IProduct[] = await JSON.parse(productsJSON);
 
 	let filteredProducts: IProduct[] = filters.length
 		? products.filter((item) => filters.includes(item.filter))
 		: products;
 
-	return SortBy(sortBy, filteredProducts);
+	props( SortBy(sortBy, filteredProducts));
 };
-export const getProductsByQuery = (
+export const getProductsByQuery = async (
 	query: string,
-	sortBy: string
-): IProduct[] => {
-	const products: IProduct[] = JSON.parse(productsJSON);
+	sortBy: string,
+	props: (value: IProduct[]) => void
+) => {
+	const products: IProduct[] = await JSON.parse(productsJSON);
 	let filteredProducts: IProduct[] = products.filter((item) =>
 		item.title.toLocaleLowerCase().includes(query.toLocaleLowerCase())
 	);
 
-	return SortBy(sortBy, filteredProducts);
+	props( SortBy(sortBy, filteredProducts));
 };
 
-export const getTopProducts = (count: number): IProduct[] => {
-    const products: IProduct[] = JSON.parse(productsJSON);
-    return products.slice(0,count)
+export const getTopProducts = async (count: number): Promise<IProduct[]> => {
+	const products: IProduct[] = await JSON.parse(productsJSON);
+	return products;
 };
 
+export const getProductPage = async (
+	id: number,
+	props: (value: IProductPage | undefined) => void
+) => {
+    const productPages: IProductPage[] = await JSON.parse(productPagesJSON);
+	props(
+		productPages.find((item) => {
+			return (item.id = id);
+		})
+	);
 
+};

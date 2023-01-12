@@ -26,16 +26,19 @@ export const ProductContext = createContext<IProductProvider>(initialState);
 export const ProductProvider: NextPage<ProductProviderProps> = ({
 	children,
 }) => {
+	const [products, setProducts] = useState<IProduct[]>([]);
+
 	const [filters, setFilters] = useState<string[]>([]);
 	const [activeSortBy, setActiveSortBy] = useState('A-Z');
 	const [searchQuery, setSearchQuery] = useState('');
 	const [productQuantity, setProductQuantity] = useState(0);
 
-	const products = useMemo<IProduct[]>(() => {
+	useEffect(() => {
 		if (searchQuery) {
-			return getProductsByQuery(searchQuery, activeSortBy);
+			getProductsByQuery(searchQuery, activeSortBy, setProducts);
+		} else {
+			getProductsByFilter(filters, activeSortBy, setProducts);
 		}
-		return getProductsByFilter(filters, activeSortBy);
 	}, [filters, activeSortBy, searchQuery]);
 
 	useEffect(() => {
@@ -67,7 +70,7 @@ export const ProductProvider: NextPage<ProductProviderProps> = ({
 				filters,
 				searchQuery,
 				setSearchQuery,
-				sortBy:activeSortBy,
+				sortBy: activeSortBy,
 				sortByToggle,
 				filterToggle,
 			}}>
