@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { useContext } from 'react';
 import { BagContext } from '../common/BagProvider';
 import { IProduct } from '../common/types/product';
+import Link from 'next/link';
 
 interface ProductCardProps {
 	data: IProduct;
@@ -13,31 +14,28 @@ const ProductCard: NextPage<ProductCardProps> = ({
     className = '',
     data
 }) => {
-    const { addProduct } = useContext(BagContext);
-    const { title, price } = data;
+    const { title, price, id } = data;
     const src = data.images[0]
 
-    const onClickCard = () => {
-        if (data) {
-            addProduct(data);
-        }
-    }
+
 
 
     return (
-		<div
+		<Link
+			href={`/shop/${id}`}
 			className={`cursor-pointer flex flex-col grow p-2
                         border-b odd:border-r border-oyster
-                        min-w-[49%]  min-h-[360px] md:min-h-[460px] ${className}`}
-			onClick={onClickCard}>
-			<div className=' relative grow '>
-				<Image alt='' src={src} fill className=' object-cover' />
-			</div>
-			<div className='flex flex-col md:flex-row gap-6 md:gap-0 justify-between py-3 '>
-				<p className='TextSmall uppercase'>{title}</p>
-				<p className='TextSmall'>${price}</p>
-			</div>
-		</div>
+                        min-w-[49%]  min-h-[360px] md:min-h-[460px] ${className}`}>
+			
+				<div className=' relative grow '>
+					<Image alt='' src={src} fill className=' object-cover' />
+				</div>
+				<div className='flex flex-col md:flex-row gap-6 md:gap-0 justify-between py-3 '>
+					<p className='TextSmall uppercase'>{title}</p>
+					<p className='TextSmall'>${price}</p>
+				</div>
+			
+		</Link>
 	);
 };
 

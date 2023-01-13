@@ -4,7 +4,8 @@ import type { NextPage } from 'next';
 import { useContext } from 'react';
 import { BagContext } from '../../common/BagProvider';
 import { IBagItem } from '../../common/types/BagContext';
-import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
+import { AiOutlinePlus, AiOutlineMinus, AiOutlineClose } from 'react-icons/ai';
+
 import Image from 'next/image';
 
 interface BagItemProps {
@@ -12,18 +13,26 @@ interface BagItemProps {
 }
 
 const BagItem: NextPage<BagItemProps> = ({ product }) => {
-	const { incrementProductCount, decrementProductCount } =
+	const { incrementProductCount, decrementProductCount, removeProduct } =
 		useContext(BagContext);
 	const { title, price, count, id } = product;
-    const src = product.images[0];
-    
-    const handlerCount = (handlerFunction:(id:number)=>void):()=>void => {
-        return () => {
-            handlerFunction(id)
-        }
-    }
+	const src = product.images[0];
+
+	const handlerCount = (
+		handlerFunction: (id: number) => void
+	): (() => void) => {
+		return () => {
+			handlerFunction(id);
+		};
+	};
 	return (
-		<div className='flex gap-4'>
+		<div className=' relative flex gap-4'>
+			<div className=' absolute top-0 right-0 z-10 border border-oyster rounded-full p-1 transition-all duration-75 hover:bg-oyster cursor-pointer'>
+				<AiOutlineClose
+					className=' text-xl cursor-pointer'
+					onClick={() => removeProduct(id)}
+				/>
+			</div>
 			<div className=' relative w-32 h-32 border border-oyster overflow-hidden rounded-xl'>
 				<Image alt='' src={src} fill className=' object-cover' />
 			</div>
@@ -40,7 +49,7 @@ const BagItem: NextPage<BagItemProps> = ({ product }) => {
 
 						<p className='Caption'>{count}</p>
 						<button
-							className=' px-3 md:px-5 py-2 transition-all duration-75 rounded-none  hover:bg-oyster cursor-pointer'
+							className=' px-3 md:px-5 py-2 transition-all duration-75 rounded-none disabled:cursor-auto disabled:bg-[#0000] hover:bg-oyster cursor-pointer'
 							disabled={count <= 1}
 							onClick={handlerCount(decrementProductCount)}>
 							<AiOutlineMinus className=' text-xl' />

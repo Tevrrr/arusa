@@ -10,6 +10,7 @@ const initialState: IBagContext = {
 	count: 0,
 	totalPrice: 0,
 	addProduct: (product: IProduct) => {},
+	removeProduct: (id: number) => {},
 	incrementProductCount: (id: number) => {},
 	decrementProductCount: (id: number) => {},
 };
@@ -35,20 +36,25 @@ const BagProvider: NextPage<BagProviderProps> = ({ children }) => {
 		console.log(totalPrice);
 	}, [products]);
 
-    const addProduct = (product: IProduct) => {
-        if (products.find(item => product.id === item.id)) return;
-			setProducts([...products, { ...product, count: 1 }]);
+	const addProduct = (product: IProduct) => {
+		if (products.find((item) => product.id === item.id)) return;
+		setProducts([...products, { ...product, count: 1 }]);
 	};
 
-    const incrementProductCount = (id: number) => {
-        setProducts(products.map((item) => {
-            if (item.id !== id) return item;
-            return { ...item, count: item.count + 1 };
-        }))
-    };
+	const removeProduct = (id: number) => {
+		setProducts(products.filter((item) => item.id !== id));
+	};
 
-    const decrementProductCount = (id: number) => {
-        
+	const incrementProductCount = (id: number) => {
+		setProducts(
+			products.map((item) => {
+				if (item.id !== id) return item;
+				return { ...item, count: item.count + 1 };
+			})
+		);
+	};
+
+	const decrementProductCount = (id: number) => {
 		setProducts(
 			products.map((item) => {
 				if (item.id !== id) return item;
@@ -59,7 +65,15 @@ const BagProvider: NextPage<BagProviderProps> = ({ children }) => {
 
 	return (
 		<BagContext.Provider
-			value={{ products, count, totalPrice, addProduct, decrementProductCount, incrementProductCount }}>
+			value={{
+				products,
+				count,
+				totalPrice,
+				addProduct,
+				removeProduct,
+				decrementProductCount,
+				incrementProductCount,
+			}}>
 			{children}
 		</BagContext.Provider>
 	);

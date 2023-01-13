@@ -32,10 +32,10 @@ const MainContainer: NextPage<MainContainerProps> = ({
 				<title>{title}</title>
 			</Head>
 			<div className='text-white bg-white border-b text-opal' />
-			<BagProvider>
+
 				<Navbar className={color} />
 				<div className=' text-stormy'>{children}</div>
-			</BagProvider>
+
 
 			{!emailForm || <EmailForm />}
 

@@ -56,9 +56,9 @@ const Navbar: NextPage<NavbarProps> = ({ className = '' }) => {
 						<VscMenu className=' text-2xl pb-1' />
 						<p className='TextSmall'>Shop</p>
 					</button>
-					<a href='' className='  text-5xl'>
+					<Link href='/' className='  text-5xl'>
 						arusa
-					</a>
+					</Link>
 					<button className='TeritaryBtn px-2' onClick={bagToggle}>
 						<p className='TextSmall'>Bag</p>
 						<span className=' bg-opal text-white flex justify-center items-center w-6 h-6 rounded-full'>
