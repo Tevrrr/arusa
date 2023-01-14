@@ -2,19 +2,20 @@
 export interface IProduct {
     id: number;
     filter: string;
-	images: string[];
+	mainImage: string;
 	title: string;
 	price: number;
 
 }
 
 export interface IProductPage extends IProduct {
+	images: string[];
 	material: string;
 	description: string;
 	fullDescription?: string;
 	dimensions: IDimensions;
-    model: string;
-    fabricOrigin: string;	
+	model: string;
+	fabricOrigin: string;
 }
 
 export interface IDimensions{

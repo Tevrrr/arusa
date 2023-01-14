@@ -14,9 +14,6 @@ const ProductPanel: NextPage = () => {
 					<ProductCard
 						className=' !p-4 last:!max-w-[50%] !min-w-[50%] lg:!min-h-[620px]'
 						key={item.id}
-						src={item.images[0]}
-						title={item.title}
-						price={item.price.toString()}
 						data={item}
 					/>
 				);

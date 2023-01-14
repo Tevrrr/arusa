@@ -10,17 +10,12 @@ export const productGenerator = (amount: number): IProduct[] => {
 	for (let i = 0; i < amount; i++) {
 		let filter = FILTERS[getRandomInt(FILTERS.length)];
 		let name = NAMES[getRandomInt(NAMES.length)];
-		let images = [
-			'/mockups/' + filter + (getRandomInt(3) + 1) + '.png',
-			'/mockups/' + filter + '02.png',
-			'/mockups/' + filter + '03.png',
-		];
 		let nextItem: IProduct = {
 			id: i,
 			filter,
 			title: `${name} ${filter}`,
 			price: getRandomInt(50) * 10,
-			images,
+			mainImage: '/mockups/' + filter + (getRandomInt(3) + 1) + '.png',
 		};
 		products.push(nextItem);
 	}
@@ -33,7 +28,7 @@ export const productPageGenerator = (amount: number): IProductPage[] => {
 		let filter = FILTERS[getRandomInt(FILTERS.length)];
 		let name = NAMES[getRandomInt(NAMES.length)];
 		let images = [
-			'/mockups/' + filter + (getRandomInt(3) + 1) + '.png',
+
 			'/mockups/' + filter + '02.png',
 			'/mockups/' + filter + '03.png',
 		];
@@ -42,6 +37,7 @@ export const productPageGenerator = (amount: number): IProductPage[] => {
 			filter,
 			title: `${name} ${filter}`,
 			price: getRandomInt(50) * 10,
+			mainImage: '/mockups/' + filter + (getRandomInt(3) + 1) + '.png',
 			images,
 			material: 'Triple wardobe, mango wood',
 			description: LOREM_IPSUM,

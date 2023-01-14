@@ -7,6 +7,9 @@ import { getProductPage } from '../../service';
 import { useRouter } from 'next/router';
 import { useContext, useEffect } from 'react';
 import { BagContext } from '../../common/BagProvider';
+import { IProductPageToIProduct } from '../../common/helpers/IProductPageToIProduct';
+import Slider from '../../components/Shop/Slider';
+import Image from 'next/image';
 
 interface ProductProps {
 	data: IProductPage | null;
@@ -24,68 +27,54 @@ const Product: NextPage<ProductProps> = ({ data }) => {
 
 	const onClickAdd = () => {
 		if (data) {
-			addProduct(data);
+			addProduct(IProductPageToIProduct(data));
 		}
 	};
 
 	return data ? (
-		<MainContainer title='{Product}' emailForm={false}>
+		<MainContainer title={data.title} emailForm={true}>
 			<div className='pt-14 flex justify-center'>
-				<div className=' max-w-screen-xl w-full flex'>
-					<div className='w-1/2 h-[500px] bg-smoke'></div>
-					<div className='grow flex justify-center items-center'>
+				<div className=' max-w-screen-xl w-full flex flex-col lg:flex-row'>
+					<div className=' flex justify-center lg:w-1/2 h-[600px] lg:h-[700px] px-4 py-6 lg:border-r border-oyster'>
+						<Slider images={[data.mainImage, ...data.images]} />
+					</div>
+					<div className='grow flex justify-center items-center p-4'>
 						<div className=' max-w-lg  flex flex-col gap-4 text-opal'>
-							<h3 className=' text-stormy'>
-								{data.title}
-								{data.id}
-							</h3>
+							<h3 className=' text-stormy'>{data.title}</h3>
 							<p className='TextRegular uppercase text-stormy'>
-								Triple wardrobe, mango wood
+								{data.material}
 							</p>
-							<p className='TextRegular'>
-                                {data.description}
-							</p>
-							<div className='flex justify-between items-center'>
-								<p className='TextLarge'>${data.price}</p>
-								<p className='TextRegular uppercase'>
-									Size guide
-								</p>
-							</div>
-							<div className='flex justify-between gap-1'>
-								<button className='OutlinedBtn py-1 grow'>
-									<p className='TextSmall'>40x40</p>
-								</button>
-								<button className='OutlinedBtn py-1 grow'>
-									<p className='TextSmall'>80x80</p>
-								</button>
-								<button className='OutlinedBtn py-1 grow'>
-									<p className='TextSmall'>100x100</p>
-								</button>
-								<button className='OutlinedBtn py-1 grow'>
-									<p className='TextSmall'>120x120</p>
-								</button>
-							</div>
+							<p className='TextRegular'>{data.description}</p>
+							<p className='TextLarge'>${data.price}</p>
 							<button
 								className='SecondaryBtn uppercase'
 								onClick={onClickAdd}>
 								Add to bag
 							</button>
-							<div className='flex'>
-								<button className='OutlinedBtn py-1 grow rounded-r-none'>
-									<p className='TextSmall uppercase'>
-										Description
-									</p>
-								</button>
-								<button className='OutlinedBtn py-1 grow rounded-none !border-x-0'>
-									<p className='TextSmall uppercase'>
-										Description
-									</p>
-								</button>
-								<button className='OutlinedBtn py-1 grow rounded-l-none'>
-									<p className='TextSmall uppercase'>
-										Description
-									</p>
-								</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div className=' flex justify-center bg-opal text-oyster'>
+				<div className=' max-w-screen-xl w-full flex flex-col py-2 gap-2 md:flex-row-reverse md:min-h-screen'>
+					<div className='md:w-1/2 flex items-center justify-center'>
+						<div className=' relative w-80 h-80 bg-smoke overflow-hidden md:rounded-lg rounded-md'>
+							<Image alt='' src='/mockups/size.jpg' fill className=' object-cover' />
+						</div>
+					</div>
+					<div className='md:w-1/2 flex justify-center items-center'>
+						<div className='flex flex-col gap-4 p-2 max-w-lg'>
+							<p className='TextRegular uppercase'>Description</p>
+							<p className='TextRegular'>
+								{data.fullDescription || data.description}
+							</p>
+							<div className='TextRegular uppercase '>
+								<p>Height(cm):{data.dimensions.height}</p>
+								<p>Width(cm):{data.dimensions.width}</p>
+								<p>Depth(cm):{data.dimensions.depth}</p>
+								<p>Weight:{data.dimensions.weight}</p>
+								<p>Model:{data.model}</p>
+								<p>Fabric origin {data.fabricOrigin}</p>
 							</div>
 						</div>
 					</div>

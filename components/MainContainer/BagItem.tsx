@@ -15,8 +15,7 @@ interface BagItemProps {
 const BagItem: NextPage<BagItemProps> = ({ product }) => {
 	const { incrementProductCount, decrementProductCount, removeProduct } =
 		useContext(BagContext);
-	const { title, price, count, id } = product;
-	const src = product.images[0];
+	const { title, price, count, id, mainImage } = product;
 
 	const handlerCount = (
 		handlerFunction: (id: number) => void
@@ -34,7 +33,7 @@ const BagItem: NextPage<BagItemProps> = ({ product }) => {
 				/>
 			</div>
 			<div className=' relative w-32 h-32 border border-oyster overflow-hidden rounded-xl'>
-				<Image alt='' src={src} fill className=' object-cover' />
+				<Image alt='' src={mainImage} fill className=' object-cover' />
 			</div>
 			<div className='grow flex flex-col justify-between'>
 				<h5>{title}</h5>
