@@ -16,26 +16,24 @@ export enum textColor {
 interface MainContainerProps {
 	title: string;
 	children: ReactNode;
-	color?: textColor;
+	dark?: boolean;
 	emailForm?: boolean;
 }
 
 const MainContainer: NextPage<MainContainerProps> = ({
 	children,
 	title,
-	color = textColor.dark,
+	dark = false,
 	emailForm = true,
 }) => {
 	return (
-		<div>
+		<div className='flex flex-col min-h-screen'>
 			<Head>
 				<title>{title}</title>
 			</Head>
-			<div className='text-white bg-white border-b text-opal' />
 
-				<Navbar className={color} />
-				<div className=' text-stormy'>{children}</div>
-
+			<Navbar dark={dark} />
+			<div className=' text-stormy'>{children}</div>
 
 			{!emailForm || <EmailForm />}
 

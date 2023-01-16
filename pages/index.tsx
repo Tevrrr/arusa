@@ -22,7 +22,7 @@ interface HomeProps {
 
 
 		return (
-			<MainContainer title='Home' color={textColor.light}>
+			<MainContainer title='Home' dark>
 				<header className=' relative w-full h-screen text-white flex flex-col gap-10 justify-center items-center'>
 					<div className='absolute w-full h-screen bg-opal -z-10'>
 						<Image
@@ -211,8 +211,8 @@ interface HomeProps {
 					</div>
 				</div>
 
-				<div className='flex justify-center bg-opal'>
-					<div className='w-full max-w-screen-xl overflow-hidden flex flex-col md:flex-row bg-opal text-cloudy'>
+				<div className='flex justify-center bg-opal '>
+					<div className='w-full max-w-screen-xl overflow-hidden flex flex-col md:flex-row bg-opal text-cloudy lg:border-r'>
 						<SideHeader>Lookbook</SideHeader>
 						<div className='flex flex-col gap-14 justify-between items-center grow border-r p-4 md:pt-12 md:pb-32 '>
 							<h3 className='px-2'>Lookbook</h3>

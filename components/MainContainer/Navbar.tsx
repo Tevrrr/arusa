@@ -10,11 +10,12 @@ import Image from 'next/image';
 
 
 interface NavbarProps {
-	className?: string;
+    className?: string;
+    dark: boolean;
 }
 
-const Navbar: NextPage<NavbarProps> = ({ className = '' }) => {
-    const {count} = useContext(BagContext)
+const Navbar: NextPage<NavbarProps> = ({ className = '', dark }) => {
+	const { count } = useContext(BagContext);
 	const [menu, setMenu] = useState(false);
 	const [bag, setBag] = useState(false);
 	const [scroll, setScroll] = useState(0);
@@ -22,11 +23,11 @@ const Navbar: NextPage<NavbarProps> = ({ className = '' }) => {
 	const menuToggle = (): void => {
 		setMenu(!menu);
 		setBag(false);
-    };
-    const closeNavbar = (): void => {
+	};
+	const closeNavbar = (): void => {
 		setMenu(false);
 		setBag(false);
-	}
+	};
 	const bagToggle = (): void => {
 		setBag(!bag);
 		setMenu(false);
@@ -45,10 +46,13 @@ const Navbar: NextPage<NavbarProps> = ({ className = '' }) => {
 	}, []);
 
 	return (
-		<nav className={`z-50 fixed top-0 w-full max-h-screen`}>
+		<nav
+			className={`z-50 fixed top-0 w-full max-h-screen ${
+				dark ? ' text-white' : 'text-opal'
+			}`}>
 			<div
 				className={` w-full flex justify-center border-oyster ${className} ${
-					!(menu || bag || scroll > 250) ||
+					!(!dark||menu || bag || scroll > 250) ||
 					'bg-white text-opal border-b '
 				}`}>
 				<div className=' h-14 w-full max-w-screen-xl flex justify-between items-center px-1 lg:px-[4.5rem] py-1 transition-all duration-150 '>
@@ -56,8 +60,20 @@ const Navbar: NextPage<NavbarProps> = ({ className = '' }) => {
 						<VscMenu className=' text-2xl pb-1' />
 						<p className='TextSmall'>Shop</p>
 					</button>
-					<Link href='/' className='  text-5xl'>
-						arusa
+					<Link
+						href='/'
+						className=' relative w-28 h-5 fill-opal text-opal '>
+						<Image
+							alt=''
+							src={`/logo/${
+								!dark || menu || bag || scroll > 250
+									? 'dark'
+									: 'light'
+							}.svg`}
+							width={100}
+							height={100}
+							className=' object-cover'
+						/>
 					</Link>
 					<button className='TeritaryBtn px-2' onClick={bagToggle}>
 						<p className='TextSmall'>Bag</p>

@@ -11,6 +11,8 @@ import Image from 'next/image';
 interface BagItemProps {
 	product: IBagItem;
 }
+// Наезжает кнопка удалить а название
+
 
 const BagItem: NextPage<BagItemProps> = ({ product }) => {
 	const { incrementProductCount, decrementProductCount, removeProduct } =

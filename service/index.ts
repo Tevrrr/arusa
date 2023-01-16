@@ -70,9 +70,10 @@ export const getTopProducts = async (
 	count: number,
 	props?: (value: IProduct[]) => void
 ): Promise<IProduct[]> => {
-	const products: IProduct[] = await JSON.parse(productsJSON);
-	if (props) props(products);
-	return products;
+    const products: IProduct[] = await JSON.parse(productsJSON);
+    const result = products.slice(0, count)
+	if (props) props(result);
+	return result;
 };
 
 export const getProductPage = async (

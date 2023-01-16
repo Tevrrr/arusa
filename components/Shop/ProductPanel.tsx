@@ -12,7 +12,7 @@ const ProductPanel: NextPage = () => {
 			{products.map((item) => {
 				return (
 					<ProductCard
-						className=' !p-4 last:!max-w-[50%] !min-w-[50%] lg:!min-h-[620px]'
+						className=' !p-4 last:!max-w-[50%] !min-w-[49%] lg:!min-h-[620px]'
 						key={item.id}
 						data={item}
 					/>
