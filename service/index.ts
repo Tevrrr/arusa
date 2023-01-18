@@ -1,5 +1,7 @@
 /** @format */
 
+import { IBagItem } from '../common/types/BagContext';
+import { IClientData } from '../common/types/clientData';
 import { IProduct, IProductPage } from './../common/types/product';
 import { productsJSON, productPagesJSON } from './data/products';
 
@@ -86,4 +88,9 @@ export const getProductPage = async (
 	});
 	if (props) props(result || null);
 	return result || null;
+};
+
+export const submitForm = (products: IBagItem[], clientData: IClientData) => {
+	const result = { clientData, products };
+	console.log(result);
 };

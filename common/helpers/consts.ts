@@ -5,3 +5,6 @@ export const LOREM_IPSUM =
 
 export const FILTERS = ['Decors', 'Ceramics', 'Chairs', 'Lamp'];
 export const NAMES = ['Native', 'Native light', 'Keala', 'Century', 'Paola', 'Paila wood'];
+export const EMAIL_REGEXP =
+			/^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu;
+	

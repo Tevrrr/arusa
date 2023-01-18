@@ -8,7 +8,7 @@ interface ArticleCardProps {
 
 const ArticleCard: NextPage<ArticleCardProps> = ({ title, text }) => {
 	return (
-		<div className='cursor-pointer flex flex-col gap-3 py-6 px-3 pb-16 border-r last:border-none border-oyster'>
+		<div className=' flex flex-col gap-3 py-6 px-3 pb-16 border-r last:border-none border-oyster'>
 			<div className=' relative w-full bg-stormy h-96'>
 				<Image
 					alt=''

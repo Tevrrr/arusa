@@ -13,6 +13,7 @@ const initialState: IBagContext = {
 	removeProduct: (id: number) => {},
 	incrementProductCount: (id: number) => {},
 	decrementProductCount: (id: number) => {},
+	emptyBag: () => {},
 };
 
 export const BagContext = createContext<IBagContext>(initialState);
@@ -33,7 +34,6 @@ const BagProvider: NextPage<BagProviderProps> = ({ children }) => {
 		});
 		setCount(products.length);
 		setTotalPrice(totalPrice);
-		console.log(totalPrice);
 	}, [products]);
 
 	const addProduct = (product: IProduct) => {
@@ -61,7 +61,10 @@ const BagProvider: NextPage<BagProviderProps> = ({ children }) => {
 				return { ...item, count: item.count - 1 };
 			})
 		);
-	};
+    };
+    const emptyBag = () => {
+        setProducts([])
+    }
 
 	return (
 		<BagContext.Provider
@@ -73,6 +76,7 @@ const BagProvider: NextPage<BagProviderProps> = ({ children }) => {
 				removeProduct,
 				decrementProductCount,
 				incrementProductCount,
+				emptyBag,
 			}}>
 			{children}
 		</BagContext.Provider>

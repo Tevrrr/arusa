@@ -27,14 +27,15 @@ const Bag: NextPage<BagProps> = () => {
 			</div>
 			<div className=' flex flex-col-reverse md:flex-row gap-2 py-4 '>
 				<Link href='/shop' className=' md:grow'>
-					<button className='OutlinedBtn uppercase w-full'>
+					<button className='OutlinedBtn w-full uppercase'>
 						Continue shopping
 					</button>
 				</Link>
-
-				<button className='SecondaryBtn md:grow uppercase'>
-					Proceed sheckout
-				</button>
+				<Link href='/orderForm' className=' md:grow'>
+					<button className='SecondaryBtn w-full uppercase'>
+						Proceed checkout
+					</button>
+				</Link>
 			</div>
 		</div>
 	);

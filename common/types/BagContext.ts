@@ -6,7 +6,8 @@ export interface IBagContext {
 	addProduct: (product: IProduct) => void;
 	removeProduct: (id: number) => void;
 	incrementProductCount: (id: number) => void;
-	decrementProductCount: (id: number) => void;
+    decrementProductCount: (id: number) => void;
+    emptyBag: () => void;
 }
 export interface IBagItem extends IProduct {
     count: number;

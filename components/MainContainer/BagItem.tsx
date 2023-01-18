@@ -11,7 +11,6 @@ import Image from 'next/image';
 interface BagItemProps {
 	product: IBagItem;
 }
-// Наезжает кнопка удалить а название
 
 
 const BagItem: NextPage<BagItemProps> = ({ product }) => {
@@ -38,7 +37,9 @@ const BagItem: NextPage<BagItemProps> = ({ product }) => {
 				<Image alt='' src={mainImage} fill className=' object-cover' />
 			</div>
 			<div className='grow flex flex-col justify-between'>
-				<h5>{title}</h5>
+				<h5 className='pr-7'>
+					{title}
+				</h5>
 				<div className='flex gap-2 justify-between items-center'>
 					<p className='Caption font-bold'>${price}</p>
 					<div className='flex justify-between items-center gap-2  overflow-hidden rounded-xl border border-oyster'>
