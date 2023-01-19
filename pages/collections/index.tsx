@@ -4,8 +4,11 @@ import type { NextPage } from 'next';
 import MainContainer from '../../components/MainContainer/MainContainer';
 import { FILTERS } from '../../common/helpers/consts';
 import Link from 'next/link';
+import { getProductsByCollection } from '../../service';
+import { collections } from '../../service/data/collections';
 
 const Collections: NextPage = () => {
+
 	return (
 		<MainContainer title='Collections'>
 			<div className='flex justify-center items-center min-h-screen pt-14'>

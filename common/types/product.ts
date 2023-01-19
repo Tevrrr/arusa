@@ -5,9 +5,9 @@ export interface IProduct {
 	mainImage: string;
 	title: string;
 	price: number;
-    sellability: number;
-    collectionCode?: number;
-    collectionName?: number;
+	sellability: number;
+	collectionCode?: string;
+	collectionName?: string;
 }
 
 export interface IProductPage extends IProduct {

@@ -1,41 +1,50 @@
+/** @format */
+
+import { ICollection } from './../types/collection';
 import { LOREM_IPSUM, FILTERS, NAMES } from './consts';
 import { IProduct, IProductPage } from './../types/product';
+import { getRandomInt } from './getRandomInt';
 
-const getRandomInt = (max:number):number => {
-	return Math.floor(Math.random() * max);
-}
-
-export const productGenerator = (amount: number ): IProduct[] => {
+export const productGenerator = (
+	amount: number,
+	collections?: ICollection[]
+): IProduct[] => {
 	let products: IProduct[] = [];
 	for (let i = 0; i < amount; i++) {
 		let filter = FILTERS[getRandomInt(FILTERS.length)];
 		let name = NAMES[getRandomInt(NAMES.length)];
+
 		let nextItem: IProduct = {
 			id: i,
 			filter,
 			title: `${name} ${filter}`,
-            price: getRandomInt(50) * 10,
-            sellability: getRandomInt(50) * 10,
+			price: getRandomInt(50) * 10,
+			sellability: getRandomInt(50) * 10,
 			mainImage: '/mockups/' + filter + (getRandomInt(3) + 1) + '.png',
 		};
+
+		if (collections) {
+			const CollectionIndex = getRandomInt(collections.length);
+			nextItem = {
+				...nextItem,
+				collectionCode: collections[CollectionIndex].code,
+				collectionName: collections[CollectionIndex].name,
+			};
+		}
 		products.push(nextItem);
 	}
 	return products;
 };
 
-export const productPageGenerator = (
-
-	products: IProduct[]
-): IProductPage[] => {
+export const productPageGenerator = (products: IProduct[]): IProductPage[] => {
 	let productPages: IProductPage[] = [];
 	for (let i = 0; i < products.length; i++) {
-
 		let images = [
 			'/mockups/' + products[i].filter + '02.png',
 			'/mockups/' + products[i].filter + '03.png',
 		];
 		let nextItem: IProductPage = {
-            ...products[i],
+			...products[i],
 			images,
 			material: 'Triple wardobe, mango wood',
 			description: LOREM_IPSUM,

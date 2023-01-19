@@ -1,9 +1,13 @@
 /** @format */
 
+import { ICollection } from './../common/types/collection';
+/** @format */
+
 import { IBagItem } from '../common/types/BagContext';
 import { IClientData } from '../common/types/clientData';
 import { IProduct, IProductPage } from './../common/types/product';
 import { productsJSON, productPagesJSON } from './data/products';
+import { collectionsJSON } from './data/collections';
 
 const SortBy = (sortBy: string, Products: IProduct[]): IProduct[] => {
 	if (sortBy === 'Price: low to high') {
@@ -19,8 +23,8 @@ const SortBy = (sortBy: string, Products: IProduct[]): IProduct[] => {
 			if (a.price > b.price) return -1;
 			return 0;
 		});
-    }
-    if (sortBy === 'Best selling') {
+	}
+	if (sortBy === 'Best selling') {
 		return Products.sort((a, b) => {
 			if (a.sellability < b.sellability) return 1;
 			if (a.sellability > b.sellability) return -1;
@@ -44,6 +48,34 @@ const SortBy = (sortBy: string, Products: IProduct[]): IProduct[] => {
 		if (nameA > nameB) return -1;
 		return 0;
 	});
+};
+
+export const getProductsByCollection = async (
+	code: string,
+	props?: (value: IProduct[]) => void
+): Promise<IProduct[]> => {
+	const products: IProduct[] = await JSON.parse(productsJSON);
+
+    const collectionProducts: IProduct[] = products.filter((item) => {
+        return code === item.collectionCode;
+	});
+
+	if (props) props(collectionProducts);
+	return collectionProducts;
+};
+
+export const getCollections = async (
+	filter: string,
+	props?: (value: ICollection[]) => void
+): Promise<ICollection[]> => {
+	const collections: ICollection[] = await JSON.parse(collectionsJSON);
+
+	const filteredCollections: ICollection[] = collections.filter((item) => {
+		return filter === item.filter;
+	});
+
+	if (props) props(filteredCollections);
+	return filteredCollections;
 };
 
 export const getProductsByFilter = async (
@@ -71,7 +103,7 @@ export const getProductsByQuery = async (
 		item.title.toLocaleLowerCase().includes(query.toLocaleLowerCase())
 	);
 	const result = SortBy(sortBy, filteredProducts);
-	if(props) props(result);
+	if (props) props(result);
 	return result;
 };
 
@@ -79,8 +111,8 @@ export const getTopProducts = async (
 	count: number,
 	props?: (value: IProduct[]) => void
 ): Promise<IProduct[]> => {
-    const products: IProduct[] = await JSON.parse(productsJSON);
-    const result = products.slice(0, count)
+	const products: IProduct[] = await JSON.parse(productsJSON);
+	const result = products.slice(0, count);
 	if (props) props(result);
 	return result;
 };
@@ -102,7 +134,6 @@ export const submitForm = (products: IBagItem[], clientData: IClientData) => {
 	console.log(result);
 };
 
-export const submitEmail= (email:string) => {
-
+export const submitEmail = (email: string) => {
 	console.log(email);
 };
