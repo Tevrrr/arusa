@@ -3,6 +3,7 @@
 import type { NextPage } from 'next';
 import { useContext, useState } from 'react';
 import { ProductContext } from '../../common/ProductProvider';
+import { SORT_BY } from '../../common/helpers/consts';
 
 interface SortPanelProps {
 	filters: string[];
@@ -13,16 +14,6 @@ const SortPanel: NextPage<SortPanelProps> = ({ filters }) => {
     const [sortByPanel, setSortByPanel] = useState(false);
     const { filters: activeFilters, sortBy: activeSortBy, filterToggle,sortByToggle } =
 		useContext(ProductContext);
-
-
-	const sortBy = [
-		'Price: low to high',
-		'Price: high to low',
-		'A-Z',
-		'Z-A',
-		'Best selling',
-	];
-	<p className='TextRegular cursor-pointer'></p>;
 
 	const filterPanelToggle = (): void => {
 		setFilterPanel(!filterPanel);
@@ -49,7 +40,7 @@ const SortPanel: NextPage<SortPanelProps> = ({ filters }) => {
 			<p
 				onClick={filterPanelToggle}
 				className='TextRegular w-1/2 md:w-full cursor-pointer md:cursor-auto lg:pl-20 p-5 border-r md:border-b md:border-r-0 border-oyster'>
-				FilterPanel
+				Filters
 			</p>
 			<div
 				className={`order-1 md:order-0 w-full md:flex flex-col gap-4 lg:pl-20 p-5 
@@ -74,7 +65,7 @@ const SortPanel: NextPage<SortPanelProps> = ({ filters }) => {
 				className={`w-full md:flex flex-col gap-4 lg:pl-20 p-5 text-ash
                             border-t md:border-t-0 border-oyster hidden
                             ${!sortByPanel || '!flex '}`}>
-				{sortBy.map((item, i) => (
+				{SORT_BY.map((item, i) => (
 					<p
 						key={item + i}
 						className={`TextRegular cursor-pointer 

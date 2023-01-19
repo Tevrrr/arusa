@@ -19,6 +19,13 @@ const SortBy = (sortBy: string, Products: IProduct[]): IProduct[] => {
 			if (a.price > b.price) return -1;
 			return 0;
 		});
+    }
+    if (sortBy === 'Best selling') {
+		return Products.sort((a, b) => {
+			if (a.sellability < b.sellability) return 1;
+			if (a.sellability > b.sellability) return -1;
+			return 0;
+		});
 	}
 	if (sortBy === 'Z-A') {
 		return Products.sort((a, b) => {
@@ -93,4 +100,9 @@ export const getProductPage = async (
 export const submitForm = (products: IBagItem[], clientData: IClientData) => {
 	const result = { clientData, products };
 	console.log(result);
+};
+
+export const submitEmail= (email:string) => {
+
+	console.log(email);
 };

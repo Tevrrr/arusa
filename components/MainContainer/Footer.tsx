@@ -3,6 +3,7 @@
 import type { NextPage } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
+import { FILTERS } from '../../common/helpers/consts';
 
 const Footer: NextPage = () => {
 	return (
@@ -33,10 +34,20 @@ const Footer: NextPage = () => {
 				</div>
 				<div className=' w-1/2 md:w-auto flex grow flex-col gap-4 p-4 md:py-6 md:pl-14 border-t md:border-t-0 border-r border-oyster '>
 					<p className='TextSmall uppercase'>Collections</p>
-					<p className='TextSmall opacity-50'>Decors</p>
-					<p className='TextSmall opacity-50'>Furnitures</p>
-					<p className='TextSmall opacity-50'>Ceramic</p>
-					<p className='TextSmall opacity-50'>Lamps</p>
+					{FILTERS.map((item, i) => {
+						return (
+							<Link
+								href={{
+									pathname: '/collections/[collectionName]',
+									query: { collectionName: item },
+								}}
+								key={i}
+								className='TextSmall '>
+								{item}
+							</Link>
+						);
+					})}
+					
 				</div>
 				<div className=' w-1/2 md:w-auto flex grow flex-col gap-4 p-4 md:py-6 md:pl-14 border-t md:border-t-0 '>
 					<p className='TextSmall uppercase'>Help</p>
@@ -47,12 +58,7 @@ const Footer: NextPage = () => {
 				</div>
 			</div>
 			<div className=' flex items-center justify-center relative md:my-10 m-4 min-h-[33vh]  '>
-				<Image
-					alt=''
-					src='/logo/light.svg'
-					fill
-					className=' '
-				/>
+				<Image alt='' src='/logo/light.svg' fill className=' ' />
 			</div>
 			<p className='TextSmall py-6 text-center uppercase border-y border-oyster'>
 				© ARUSA 2022 | Agatha Sakowicz

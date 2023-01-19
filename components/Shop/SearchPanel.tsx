@@ -29,7 +29,7 @@ const SearchPanel: NextPage = () => {
 			</p>
 			<form
 				onSubmit={formHandler}
-				className='TextRegular w-1/2 md:w-auto flex items-center  pt-10 p-3'>
+				className='TextRegular w-1/2 md:w-auto flex items-center gap-2 pt-10 p-3'>
 				<input
 					className=' grow md:grow-0 w-28 md:w-40 p-1'
 					type='text'

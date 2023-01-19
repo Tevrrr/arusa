@@ -7,11 +7,11 @@ import Bag from './Bag';
 import Link from 'next/link';
 import { BagContext } from '../../common/BagProvider';
 import Image from 'next/image';
-
+import { FILTERS } from '../../common/helpers/consts';
 
 interface NavbarProps {
-    className?: string;
-    dark: boolean;
+	className?: string;
+	dark: boolean;
 }
 
 const Navbar: NextPage<NavbarProps> = ({ className = '', dark }) => {
@@ -52,7 +52,7 @@ const Navbar: NextPage<NavbarProps> = ({ className = '', dark }) => {
 			}`}>
 			<div
 				className={` w-full flex justify-center border-oyster ${className} ${
-					!(!dark||menu || bag || scroll > 250) ||
+					!(!dark || menu || bag || scroll > 250) ||
 					'bg-white text-opal border-b '
 				}`}>
 				<div className=' h-14 w-full max-w-screen-xl flex justify-between items-center px-1 lg:px-[4.5rem] py-1 transition-all duration-150 '>
@@ -128,27 +128,33 @@ const Navbar: NextPage<NavbarProps> = ({ className = '', dark }) => {
 							<p className='TextSmall uppercase opacity-50'>
 								Lookbook
 							</p>
-							<p className='TextSmall uppercase opacity-50'>
+							<Link
+								href='/collections'
+								className='TextSmall uppercase'
+								onClick={closeNavbar}>
 								Collections
-							</p>
+							</Link>
 							<p className='TextSmall uppercase opacity-50'>
 								Featured
 							</p>
 						</div>
 						<div className='flex flex-col gap-3'>
 							<h4>Collections</h4>
-							<p className='TextSmall uppercase opacity-50'>
-								Decors
-							</p>
-							<p className='TextSmall uppercase opacity-50'>
-								Furnitures
-							</p>
-							<p className='TextSmall uppercase opacity-50'>
-								Ceramics
-							</p>
-							<p className='TextSmall uppercase opacity-50'>
-								Lamps
-							</p>
+							{FILTERS.map((item, i) => {
+								return (
+									<Link
+										href={{
+											pathname:
+												'/collections/[collectionName]',
+											query: { collectionName: item },
+										}}
+										key={i}
+										className='TextSmall uppercase '>
+										{item}
+									</Link>
+								);
+							})}
+							
 						</div>
 					</div>
 					<div className=' relative hidden md:block h-80 w-2/5 bg-opal'>

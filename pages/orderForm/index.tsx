@@ -8,10 +8,12 @@ import { IClientData } from '../../common/types/clientData';
 import { submitForm } from '../../service';
 import { useContext } from 'react';
 import { BagContext } from '../../common/BagProvider';
+import { useRouter } from 'next/router';
 
 
 const OrderForm: NextPage = () => {
-	const { products, emptyBag } = useContext(BagContext);
+    const { products, emptyBag } = useContext(BagContext);
+    const router = useRouter()
 
     const {
 		register,
@@ -21,7 +23,8 @@ const OrderForm: NextPage = () => {
 	} = useForm<IClientData>();
     const onSubmit = handleSubmit((data) => {
         submitForm(products, data);
-        emptyBag()
+        emptyBag();
+        router.push('/shop');
     });
 
     return (
@@ -31,7 +34,7 @@ const OrderForm: NextPage = () => {
 					<SideHeader>
 						<h5>Order form</h5>
 					</SideHeader>
-					<div className='grow relative md:block hidden m-4'>
+					<div className='w-1/2 relative md:block hidden m-4'>
 						<Image
 							alt=''
 							src='/orderFormPNG/bg.png'

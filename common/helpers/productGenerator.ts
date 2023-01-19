@@ -5,7 +5,7 @@ const getRandomInt = (max:number):number => {
 	return Math.floor(Math.random() * max);
 }
 
-export const productGenerator = (amount: number): IProduct[] => {
+export const productGenerator = (amount: number ): IProduct[] => {
 	let products: IProduct[] = [];
 	for (let i = 0; i < amount; i++) {
 		let filter = FILTERS[getRandomInt(FILTERS.length)];
@@ -14,7 +14,8 @@ export const productGenerator = (amount: number): IProduct[] => {
 			id: i,
 			filter,
 			title: `${name} ${filter}`,
-			price: getRandomInt(50) * 10,
+            price: getRandomInt(50) * 10,
+            sellability: getRandomInt(50) * 10,
 			mainImage: '/mockups/' + filter + (getRandomInt(3) + 1) + '.png',
 		};
 		products.push(nextItem);
@@ -22,22 +23,19 @@ export const productGenerator = (amount: number): IProduct[] => {
 	return products;
 };
 
-export const productPageGenerator = (amount: number): IProductPage[] => {
-	let products: IProductPage[] = [];
-	for (let i = 0; i < amount; i++) {
-		let filter = FILTERS[getRandomInt(FILTERS.length)];
-		let name = NAMES[getRandomInt(NAMES.length)];
-		let images = [
+export const productPageGenerator = (
 
-			'/mockups/' + filter + '02.png',
-			'/mockups/' + filter + '03.png',
+	products: IProduct[]
+): IProductPage[] => {
+	let productPages: IProductPage[] = [];
+	for (let i = 0; i < products.length; i++) {
+
+		let images = [
+			'/mockups/' + products[i].filter + '02.png',
+			'/mockups/' + products[i].filter + '03.png',
 		];
 		let nextItem: IProductPage = {
-			id: i,
-			filter,
-			title: `${name} ${filter}`,
-			price: getRandomInt(50) * 10,
-			mainImage: '/mockups/' + filter + (getRandomInt(3) + 1) + '.png',
+            ...products[i],
 			images,
 			material: 'Triple wardobe, mango wood',
 			description: LOREM_IPSUM,
@@ -51,7 +49,7 @@ export const productPageGenerator = (amount: number): IProductPage[] => {
 				weight: getRandomInt(10) + 5,
 			},
 		};
-		products.push(nextItem);
+		productPages.push(nextItem);
 	}
-	return products;
+	return productPages;
 };

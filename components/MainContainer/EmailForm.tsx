@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Input from '../Input';
 import { useForm } from 'react-hook-form';
 import { IClientData } from '../../common/types/clientData';
-import { submitForm } from '../../service';
+import { submitEmail, submitForm } from '../../service';
 import { EMAIL_REGEXP } from '../../common/helpers/consts';
 
 type IEmailForm = {
@@ -19,7 +19,10 @@ const EmailForm: NextPage = () => {
 		handleSubmit,
 		formState: { errors },
 	} = useForm<IEmailForm>();
-	const onSubmit = handleSubmit((data) => {});
+    const onSubmit = handleSubmit((data) => {
+        submitEmail(data.email);
+        setValue('email', '')
+    });
 
 	return (
 		<div className='flex justify-center'>

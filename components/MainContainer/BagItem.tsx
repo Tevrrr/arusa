@@ -44,17 +44,17 @@ const BagItem: NextPage<BagItemProps> = ({ product }) => {
 					<p className='Caption font-bold'>${price}</p>
 					<div className='flex justify-between items-center gap-2  overflow-hidden rounded-xl border border-oyster'>
 						<button
-							className=' px-3 md:px-5 py-2 transition-all duration-75 rounded-none hover:bg-oyster cursor-pointer'
-							onClick={handlerCount(incrementProductCount)}>
-							<AiOutlinePlus className=' text-xl' />
-						</button>
-
-						<p className='Caption'>{count}</p>
-						<button
 							className=' px-3 md:px-5 py-2 transition-all duration-75 rounded-none disabled:cursor-auto disabled:bg-[#0000] hover:bg-oyster cursor-pointer'
 							disabled={count <= 1}
 							onClick={handlerCount(decrementProductCount)}>
 							<AiOutlineMinus className=' text-xl' />
+						</button>
+
+						<p className='Caption'>{count}</p>
+						<button
+							className=' px-3 md:px-5 py-2 transition-all duration-75 rounded-none hover:bg-oyster cursor-pointer'
+							onClick={handlerCount(incrementProductCount)}>
+							<AiOutlinePlus className=' text-xl' />
 						</button>
 					</div>
 				</div>

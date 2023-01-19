@@ -6,9 +6,9 @@ import SortPanel from '../../components/Shop/SortPanel';
 import { ProductProvider } from '../../common/ProductProvider';
 import ProductPanel from '../../components/Shop/ProductPanel';
 import SearchPanel from '../../components/Shop/SearchPanel';
+import { FILTERS } from '../../common/helpers/consts';
 
 const Shop: NextPage = () => {
-	const filters = ['Decors', 'Ceramics', 'Chairs', 'Lamp'];
 	return (
 		<MainContainer title='Shop' emailForm={false}>
 			<ProductProvider>
@@ -20,7 +20,7 @@ const Shop: NextPage = () => {
 				</div>
 				<div className='flex justify-center'>
 					<div className=' max-w-screen-xl w-full xl:border-x border-oyster flex flex-col md:flex-row'>
-						<SortPanel filters={filters} />
+						<SortPanel filters={FILTERS} />
 						<div className=' grow flex gap-0 justify-center'>
 							<ProductPanel />
 						</div>

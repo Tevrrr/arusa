@@ -1,11 +1,13 @@
 
 export interface IProduct {
-    id: number;
-    filter: string;
+	id: number;
+	filter: string;
 	mainImage: string;
 	title: string;
 	price: number;
-
+    sellability: number;
+    collectionCode?: number;
+    collectionName?: number;
 }
 
 export interface IProductPage extends IProduct {

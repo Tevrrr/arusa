@@ -5,6 +5,7 @@ export const IProductPageToIProduct = (data: IProductPage):IProduct => {
 		title: data.title,
 		filter: data.filter,
 		mainImage: data.mainImage,
-		price: data.price,
+        price: data.price,
+        sellability: data.sellability
 	};
 }

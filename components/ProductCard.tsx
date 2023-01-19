@@ -14,7 +14,7 @@ const ProductCard: NextPage<ProductCardProps> = ({
     className = '',
     data
 }) => {
-    const { title, price, id, mainImage } = data;
+    const { title, price, id, mainImage, sellability } = data;
 
 
 
@@ -22,15 +22,20 @@ const ProductCard: NextPage<ProductCardProps> = ({
 
     return (
 		<Link
-			href={`/shop/${id}`}
-			className={`cursor-pointer flex flex-col grow p-2
+			href={{
+				pathname: '/shop/[id]',
+				query: { id },
+			}}
+			className={`cursor-pointer flex flex-col grow p-2 box-border
                         border-b odd:border-r border-oyster
-                        min-w-[49%]  min-h-[360px] md:min-h-[460px] ${className}`}>
+                        w-[50%]  min-h-[360px] md:min-h-[460px] ${className}`}>
 			<div className=' relative grow '>
-				<Image alt=''  src={mainImage} fill className=' object-cover' />
+				<Image alt='' src={mainImage} fill className=' object-cover' />
 			</div>
 			<div className='flex flex-col md:flex-row gap-6 md:gap-0 justify-between py-3 '>
-				<p className='TextSmall uppercase'>{title}</p>
+				<p className='TextSmall uppercase'>
+					{title} {sellability}
+				</p>
 				<p className='TextSmall'>${price}</p>
 			</div>
 		</Link>
