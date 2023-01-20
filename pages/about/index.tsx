@@ -6,7 +6,7 @@ import SideHeader from '../../components/SideHeader';
 const About: NextPage = () => {
 
     return (
-		<MainContainer color={textColor.light} title='About'>
+		<MainContainer title='About'>
 			<header className=' relative w-full h-screen text-white flex flex-col gap-10 justify-center items-center'>
 				<div className='absolute w-full h-screen bg-opal -z-10'>
 					<Image
