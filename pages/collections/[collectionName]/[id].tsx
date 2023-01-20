@@ -20,13 +20,13 @@ const CollectionPage: NextPage<CollectionPageProps> = ({ products }) => {
 							<ProductCard
 								key={item.id}
 								data={item}
-								className=' lg:!border-0 lg:max-w-[33.33%] xl:max-w-[25%] '
+								className=' lg:!border-0 max-w-[50%] lg:max-w-[33.33%] xl:max-w-[25%] '
 							/>
 						))
 					) : (
 						<></>
-                    )}
-                    <div className='grow'></div>
+					)}
+					<div className='grow'></div>
 				</div>
 			</div>
 		</MainContainer>
