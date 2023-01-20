@@ -126,17 +126,18 @@ interface HomeProps {
 					Enjoy our feature products
 				</h4>
 				<div className=' flex justify-center'>
-					<div className=' max-w-screen-xl w-full flex flex-wrap lg:gap-7 justify-between'>
+					<div className=' max-w-screen-xl w-full flex flex-wrap justify-between'>
 						{!products ||
 							products.slice(0, 4).map((item) => {
 								return (
 									<ProductCard
 										key={item.id}
 										data={item}
-										className=' lg:!border-0 lg:min-w-min lg:!max-w-[330px]'
+										className=' lg:!border-0 lg:max-w-[33.33%] xl:max-w-[25%]'
 									/>
 								);
 							})}
+						<div className='grow'></div>
 					</div>
 				</div>
 
@@ -279,14 +280,14 @@ interface HomeProps {
 						Enjoy our feature products
 					</h4>
 					<div className=' flex gap-0 justify-center'>
-						<div className=' max-w-screen-xl w-full flex flex-wrap lg:p-4 gap-[1px] lg:gap-7 justify-between'>
+						<div className=' max-w-screen-xl w-full flex flex-wrap justify-between'>
 							{!products ||
 								products.map((item) => {
 									return (
 										<ProductCard
 											key={item.id}
 											data={item}
-											className=' md:!max-w-[50%] md:!min-w-[330px] lg:!border-0 lg:min-w-min lg:!max-w-[330px] '
+											className=' lg:!border-0 lg:max-w-[33.33%] xl:max-w-[25%] '
 										/>
 									);
 								})}

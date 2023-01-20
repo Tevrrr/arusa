@@ -4,6 +4,7 @@ import type { NextPage, NextPageContext } from 'next';
 import MainContainer from '../../../components/MainContainer/MainContainer';
 import { getProductsByCollection } from '../../../service';
 import { IProduct } from '../../../common/types/product';
+import ProductCard from '../../../components/ProductCard';
 
 interface CollectionPageProps {
 	products: IProduct[] | undefined;
@@ -13,14 +14,19 @@ const CollectionPage: NextPage<CollectionPageProps> = ({ products }) => {
 	return (
 		<MainContainer title='Name'>
 			<div className=' flex justify-center pt-14'>
-				<div className=' max-w-screen-xl w-full flex justify-center'>
+				<div className=' max-w-screen-xl w-full flex flex-wrap justify-between'>
 					{products ? (
 						products.map((item) => (
-							<h4 key={item.id}>{item.title}</h4>
+							<ProductCard
+								key={item.id}
+								data={item}
+								className=' lg:!border-0 lg:max-w-[33.33%] xl:max-w-[25%] '
+							/>
 						))
 					) : (
 						<></>
-					)}
+                    )}
+                    <div className='grow'></div>
 				</div>
 			</div>
 		</MainContainer>

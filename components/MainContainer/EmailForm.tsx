@@ -4,7 +4,6 @@ import type { NextPage } from 'next';
 import Image from 'next/image';
 import Input from '../Input';
 import { useForm } from 'react-hook-form';
-import { IClientData } from '../../common/types/clientData';
 import { submitEmail, submitForm } from '../../service';
 import { EMAIL_REGEXP } from '../../common/helpers/consts';
 
