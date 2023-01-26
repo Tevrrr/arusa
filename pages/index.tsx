@@ -11,12 +11,16 @@ import { getTopProducts } from '../service';
 import { IProduct } from '../common/types/product';
 
 import Link from 'next/link';
-import { GetServerSideProps, GetServerSidePropsResult, NextPage, NextPageContext } from 'next';
+import { GetServerSideProps, NextPage } from 'next';
 
 interface HomeProps {
 	products: IProduct[];
 };
 
+//
+// https://glidejs.com/
+// 
+// 
 
  const Home: NextPage<HomeProps> = ({ products }) => {
 
@@ -133,7 +137,8 @@ interface HomeProps {
 									<ProductCard
 										key={item.id}
 										data={item}
-										className=' lg:!border-0 max-w-[50%] lg:max-w-[33.33%] xl:max-w-[25%]'
+										className=' lg:!border-0 max-w-[50%] lg:max-w-[33.33%] xl:max-w-[25%] group'
+										imageClassName=' group-hover:scale-110 transition-transform duration-700'
 									/>
 								);
 							})}
@@ -195,7 +200,8 @@ interface HomeProps {
 					<div className=' hidden md:flex '>
 						{!products || (
 							<ProductCard
-								className=' !min-w-max !max-w-[250px] bg-white !p-5 text-opal'
+								className=' !min-w-max !max-w-[250px] bg-white !p-5 text-opal group'
+								imageClassName=' group-hover:scale-110 transition-transform duration-700'
 								data={products[products.length - 1]}
 							/>
 						)}
@@ -205,7 +211,8 @@ interface HomeProps {
 						<div className=' grow'></div>
 						{!products || (
 							<ProductCard
-								className=' !min-w-max !max-w-[250px] bg-white !p-5 text-opal'
+								className=' !min-w-max !max-w-[250px] bg-white !p-5 text-opal group'
+								imageClassName=' group-hover:scale-110 transition-transform duration-700'
 								data={products[products.length - 2]}
 							/>
 						)}
@@ -287,7 +294,8 @@ interface HomeProps {
 										<ProductCard
 											key={item.id}
 											data={item}
-											className=' lg:!border-0 max-w-[50%] lg:max-w-[33.33%] xl:max-w-[25%] '
+											className=' lg:!border-0 max-w-[50%] lg:max-w-[33.33%] xl:max-w-[25%] group '
+											imageClassName=' group-hover:scale-110 transition-transform duration-700'
 										/>
 									);
 								})}
@@ -375,7 +383,7 @@ interface HomeProps {
 					</div>
 				</div>
 
-				<h4 className='text-center py-6 border-y border-oyster'>
+				{/* <h4 className='text-center py-6 border-y border-oyster'>
 					Enjoy our articles
 				</h4>
 				<div className='flex justify-center'>
@@ -431,7 +439,7 @@ interface HomeProps {
 							text="I would follow Jessica to the end of the Earth,” Johanna Hynes says, referring to her designer, Jessica Stambaugh. The Nashville-based principal of JS Interiors designed Hynes’ Boston wellness studio, Asana Charlestown, her family’s townhouse—and most recently, their beach chalet in Katama on Martha's Vineyard."
 						/>
 					</div>
-				</div>
+				</div> */}
 			</MainContainer>
 		);
  };

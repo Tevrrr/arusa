@@ -46,136 +46,146 @@ const Navbar: NextPage<NavbarProps> = ({ className = '', dark }) => {
 	}, []);
 
 	return (
-		<nav
-			className={`z-50 fixed top-0 w-full max-h-screen ${
-				dark ? ' text-white' : 'text-opal'
-			}`}>
-			<div
-				className={` w-full flex justify-center border-oyster ${className} ${
-					!(!dark || menu || bag || scroll > 250) ||
-					'bg-white text-opal border-b '
+		<>
+			<nav
+				className={`z-50 fixed top-0 w-full max-h-screen ${
+					dark ? ' text-white' : 'text-opal'
 				}`}>
-				<div className=' h-14 w-full max-w-screen-xl flex justify-between items-center px-1 lg:px-[4.5rem] py-1 transition-all duration-150 '>
-					<button className='TeritaryBtn px-2' onClick={menuToggle}>
-						<VscMenu className=' text-2xl pb-1' />
-						<p className='TextSmall'>Shop</p>
-					</button>
-					<Link
-						href='/'
-						className=' relative w-28 h-5 fill-opal text-opal '>
-						<Image
-							alt=''
-							src={`/logo/${
-								!dark || menu || bag || scroll > 250
-									? 'dark'
-									: 'light'
-							}.svg`}
-							width={100}
-							height={100}
-							className=' object-cover'
-						/>
-					</Link>
-					<button className='TeritaryBtn px-2' onClick={bagToggle}>
-						<p className='TextSmall'>Bag</p>
-						<span className=' bg-opal text-white flex justify-center items-center w-6 h-6 rounded-full'>
-							{count}
-						</span>{' '}
-					</button>
+				<div
+					className={` w-full flex justify-center border-oyster ${className} ${
+						!(!dark || menu || bag || scroll > 250) ||
+						'bg-white text-opal border-b '
+					}`}>
+					<div className=' h-14 w-full max-w-screen-xl flex justify-between items-center px-1 lg:px-[4.5rem] py-1 transition-all duration-150 '>
+						<button
+							className='TeritaryBtn px-2'
+							onClick={menuToggle}>
+							<VscMenu className=' text-2xl pb-1' />
+							<p className='TextSmall'>Shop</p>
+						</button>
+						<Link
+							href='/'
+							className=' relative w-28 h-5 fill-opal text-opal '>
+							<Image
+								alt=''
+								src={`/logo/${
+									!dark || menu || bag || scroll > 250
+										? 'dark'
+										: 'light'
+								}.svg`}
+								width={100}
+								height={100}
+								className=' object-cover'
+							/>
+						</Link>
+						<button
+							className='TeritaryBtn px-2'
+							onClick={bagToggle}>
+							<p className='TextSmall'>Bag</p>
+							<span className=' bg-opal text-white flex justify-center items-center w-6 h-6 rounded-full'>
+								{count}
+							</span>{' '}
+						</button>
+					</div>
 				</div>
-			</div>
 
-			{/* Menu */}
-			<div
-				className={`absolute -z-10 w-full top-14 bg-white text-opal flex justify-center transition-all duration-300
+				{/* Menu */}
+				<div
+					className={`absolute -z-10 w-full top-14 bg-white text-opal flex justify-center transition-all duration-300
                              ${menu || 'translate-y-[-150%]'}`}>
-				<div className=' w-full max-w-screen-xl flex items-center'>
-					<div className=' min-h-screen md:min-h-max grow flex flex-col md:flex-row gap-4 md:justify-between p-4 lg:px-[5rem]'>
-						<div className='flex flex-col gap-3'>
-							<h4>Arusa</h4>
-							<Link
-								href='/'
-								className='TextSmall uppercase'
-								onClick={closeNavbar}>
-								Home
-							</Link>
-							<Link
-								href='/about'
-								className='TextSmall uppercase'
-								onClick={closeNavbar}>
-								About
-							</Link>
-							<Link
-								href='/blog'
-								className='TextSmall uppercase'
-								onClick={closeNavbar}>
-								Blog
-							</Link>
-							<Link
-								href='/contact'
-								className='TextSmall uppercase'
-								onClick={closeNavbar}>
-								Contact
-							</Link>
+					<div className=' w-full max-w-screen-xl flex items-center'>
+						<div className=' min-h-screen md:min-h-max grow flex flex-col md:flex-row gap-4 md:justify-between p-4 lg:px-[5rem]'>
+							<div className='flex flex-col gap-3'>
+								<h4>Arusa</h4>
+								<Link
+									href='/'
+									className='TextSmall uppercase'
+									onClick={closeNavbar}>
+									Home
+								</Link>
+								<Link
+									href='/about'
+									className='TextSmall uppercase'
+									onClick={closeNavbar}>
+									About
+								</Link>
+								<Link
+									href='/blog'
+									className='TextSmall uppercase'
+									onClick={closeNavbar}>
+									Blog
+								</Link>
+								<Link
+									href='/contact'
+									className='TextSmall uppercase'
+									onClick={closeNavbar}>
+									Contact
+								</Link>
+							</div>
+							<div className='flex flex-col gap-3'>
+								<h4>Shop</h4>
+								<Link
+									href='/shop'
+									className='TextSmall uppercase'
+									onClick={closeNavbar}>
+									All
+								</Link>
+								<p className='TextSmall uppercase opacity-50'>
+									Lookbook
+								</p>
+								<Link
+									href='/collections'
+									className='TextSmall uppercase'
+									onClick={closeNavbar}>
+									Collections
+								</Link>
+								<p className='TextSmall uppercase opacity-50'>
+									Featured
+								</p>
+							</div>
+							<div className='flex flex-col gap-3'>
+								<h4>Collections</h4>
+								{FILTERS.map((item, i) => {
+									return (
+										<Link
+											href={{
+												pathname:
+													'/collections/[collectionName]',
+												query: { collectionName: item },
+											}}
+											key={i}
+											className='TextSmall uppercase '>
+											{item}
+										</Link>
+									);
+								})}
+							</div>
 						</div>
-						<div className='flex flex-col gap-3'>
-							<h4>Shop</h4>
-							<Link
-								href='/shop'
-								className='TextSmall uppercase'
-								onClick={closeNavbar}>
-								All
-							</Link>
-							<p className='TextSmall uppercase opacity-50'>
-								Lookbook
-							</p>
-							<Link
-								href='/collections'
-								className='TextSmall uppercase'
-								onClick={closeNavbar}>
-								Collections
-							</Link>
-							<p className='TextSmall uppercase opacity-50'>
-								Featured
-							</p>
+						<div className=' relative hidden md:block h-80 w-2/5 bg-opal'>
+							<Image
+								alt=''
+								src='/navBg.png'
+								fill
+								className=' object-cover'
+							/>
 						</div>
-						<div className='flex flex-col gap-3'>
-							<h4>Collections</h4>
-							{FILTERS.map((item, i) => {
-								return (
-									<Link
-										href={{
-											pathname:
-												'/collections/[collectionName]',
-											query: { collectionName: item },
-										}}
-										key={i}
-										className='TextSmall uppercase '>
-										{item}
-									</Link>
-								);
-							})}
-							
-						</div>
-					</div>
-					<div className=' relative hidden md:block h-80 w-2/5 bg-opal'>
-						<Image
-							alt=''
-							src='/navBg.png'
-							fill
-							className=' object-cover'
-						/>
 					</div>
 				</div>
-			</div>
-			<div
-				className={`absolute -z-10 right-0 top-14 w-full md:w-2/3 lg:w-1/2 h-full min-h-screen md:h-[650px] md:min-h-max 
+				<div
+					className={`absolute -z-10 right-0 top-14 w-full md:w-2/3 lg:w-1/2 h-full min-h-screen  
                             p-4 pb-14 lg:px-[5rem] bg-white text-opal md:border-b md:border-l border-oyster 
                             transition-all duration-300 ${
 								bag || 'translate-y-[-150%]'
 							}`}>
-				<Bag />
-			</div>
-		</nav>
+					<Bag />
+				</div>
+			</nav>
+			<div
+				onClick={closeNavbar}
+				className={`absolute cursor-pointer w-full h-screen bg-stormy bg-opacity-75 z-10 ${
+					menu || bag || ' hidden'
+				}`}></div>
+		</>
 	);
 };
 

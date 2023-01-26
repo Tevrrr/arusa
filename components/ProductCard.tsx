@@ -8,10 +8,12 @@ import Link from 'next/link';
 interface ProductCardProps {
 	data: IProduct;
 	className?: string;
+	imageClassName?: string;
 };
 //  
 const ProductCard: NextPage<ProductCardProps> = ({
     className = '',
+    imageClassName = '',
     data
 }) => {
     const { title, price, id, mainImage, sellability } = data;
@@ -29,8 +31,13 @@ const ProductCard: NextPage<ProductCardProps> = ({
 			className={`cursor-pointer flex flex-col grow p-2 box-border
                         border-b odd:border-r border-oyster
                         w-[50%]  min-h-[360px] md:min-h-[460px] ${className}`}>
-			<div className=' relative grow '>
-				<Image alt='' src={mainImage} fill className=' object-cover' />
+			<div className=' relative grow  overflow-hidden'>
+				<Image
+					alt=''
+					src={mainImage}
+					fill
+					className={` object-cover ${imageClassName}`}
+				/>
 			</div>
 			<div className='flex flex-col md:flex-row gap-6 md:gap-0 justify-between py-3 '>
 				<p className='TextSmall uppercase'>

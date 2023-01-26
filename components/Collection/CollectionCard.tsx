@@ -23,7 +23,7 @@ const CollectionCard: NextPage<CollectionCardProps> = ({
 					alt=''
 					src={image}
 					fill
-					className=' object-cover -z-10 group-hover:scale-110 transition-transform duration-150'
+					className=' object-cover -z-10 group-hover:scale-110 transition-transform duration-700'
 				/>}
 			</Link>
 		</div>

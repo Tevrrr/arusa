@@ -51,7 +51,7 @@ h5{
 /* Button style */
 
 button{
-    @apply uppercase  rounded-lg flex gap-2 justify-center items-center px-9 py-2 transition-colors duration-75;
+    @apply uppercase  rounded-lg flex gap-2 justify-center items-center px-9 py-2 transition-colors duration-75 target:outline-0;
 }
 
 button:disabled{
