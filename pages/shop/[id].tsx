@@ -15,7 +15,7 @@ interface ProductProps {
 	data: IProductPage | null;
 }
 
-const Product: NextPage<ProductProps> = ({ data }) => {
+const Product: NextPage<ProductProps> = ({ data}) => {
 	const router = useRouter();
 	const { addProduct } = useContext(BagContext);
 
@@ -40,7 +40,9 @@ const Product: NextPage<ProductProps> = ({ data }) => {
 					</div>
 					<div className='grow flex justify-center items-center p-4'>
 						<div className=' max-w-lg  flex flex-col gap-4 text-opal'>
-							<h3 className=' text-stormy'>{data.title}</h3>
+							<h3 className=' text-stormy'>
+								{data.title}
+							</h3>
 							<p className='TextRegular uppercase text-stormy'>
 								{data.material}
 							</p>
@@ -59,7 +61,12 @@ const Product: NextPage<ProductProps> = ({ data }) => {
 				<div className=' max-w-screen-xl w-full flex flex-col py-2 gap-2 md:flex-row-reverse md:min-h-screen'>
 					<div className='md:w-1/2 flex items-center justify-center'>
 						<div className=' relative w-80 h-80 bg-smoke overflow-hidden md:rounded-lg rounded-md'>
-							<Image alt='' src='/mockups/size.jpg' fill className=' object-cover' />
+							<Image
+								alt=''
+								src='/mockups/size.jpg'
+								fill
+								className=' object-cover'
+							/>
 						</div>
 					</div>
 					<div className='md:w-1/2 flex justify-center items-center'>
@@ -92,11 +99,10 @@ interface PostNextPageContext extends NextPageContext {
 	};
 }
 
-export const getServerSideProps = async ({ query }: PostNextPageContext) => {
+export const getServerSideProps = async ({req, query }: PostNextPageContext) => {
 	const data: IProductPage | null = await getProductPage(
 		Number.parseInt(query.id)
-	);
-
+    );
 	return {
 		props: { data },
 	};
