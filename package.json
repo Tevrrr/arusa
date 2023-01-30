@@ -11,13 +11,18 @@
 		"start": "cross-env NODE_ENV=production node dist/server/index.js"
 	},
 	"dependencies": {
+		"@types/bcryptjs": "^2.4.2",
+		"@types/express-fileupload": "^1.4.1",
 		"@types/react": "18.0.26",
 		"@types/react-dom": "18.0.9",
+		"bcryptjs": "^2.4.3",
 		"cross-env": "^7.0.3",
 		"dotenv": "^16.0.3",
 		"eslint": "8.29.0",
 		"eslint-config-next": "13.0.6",
 		"express": "^4.18.2",
+		"express-fileupload": "^1.4.0",
+		"express-validator": "^6.14.3",
 		"mongoose": "^6.9.0",
 		"next": "13.0.6",
 		"react": "18.2.0",

@@ -2,9 +2,6 @@
 
 import mongoose from 'mongoose';
 
-
-
-
 export const ProductType = {
 	filter: { type: String, required: true },
 	mainImage: { type: String, required: true },
