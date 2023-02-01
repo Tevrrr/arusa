@@ -6,6 +6,7 @@ import dotenv from 'dotenv';
 import next from 'next';
 import productRouter from './routers/productRouter';
 import authRouter from './routers/authRouter';
+import orderFormRouter from './routers/orderFormRouter';
 
 dotenv.config();
 
@@ -28,7 +29,8 @@ const handle   = app.getRequestHandler();
 app.prepare().then(async () => {
 	const server = express();
     server.use(express.json());
-    server.use('/api', productRouter);
+    server.use('/api'     , productRouter);
+    server.use('/api'     , orderFormRouter);
     server.use('/api/auth', authRouter);
 
 

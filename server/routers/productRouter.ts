@@ -5,7 +5,7 @@ import authMiddleware from '../middleware/authMiddleware';
 const productRouter = Router();
 
 productRouter.post('/product', authMiddleware(['ADMIN']), productController.addProduct);
-productRouter.get('/product', productController.getProduct);
+productRouter.get('/products', productController.getProduct);
 
 export default productRouter;
 
