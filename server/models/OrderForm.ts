@@ -3,7 +3,7 @@
 import mongoose from 'mongoose';
 
 export const OrderFormType = {
-	ClientData: {
+	clientData: {
 		type: {
 			firstName: { type: String, required: true },
 			lastName: { type: String, required: true },
@@ -12,7 +12,15 @@ export const OrderFormType = {
 		},
 		required: true,
 	},
-	productIDs: { type: [String], required: true },
+	products: {
+		type: [
+			{
+				id: { type: String, required: true },
+				count: { type: Number, required: true },
+			},
+		],
+		required: true,
+	},
 	finished: { type: Boolean, required: true },
 };
 

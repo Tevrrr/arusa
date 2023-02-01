@@ -23,8 +23,8 @@ const OrderForm: NextPage = () => {
 	} = useForm<IClientData>();
     const onSubmit = handleSubmit((data) => {
         submitForm(products, data);
-        emptyBag();
-        router.push('/shop');
+        // emptyBag();
+        // router.push('/shop');
     });
 
     return (

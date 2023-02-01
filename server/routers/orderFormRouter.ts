@@ -8,12 +8,12 @@ const orderFormRouter = Router();
 
 orderFormRouter.post('/orderForm', orderFormController.addOrderForm);
 orderFormRouter.get(
-	'/orderForms',
+	'/orderForm',
 	authMiddleware(['ADMIN']),
 	orderFormController.getOrderForms
 );
 orderFormRouter.put(
-	'/orderForms',
+	'/orderForm',
 	authMiddleware(['ADMIN']),
 	orderFormController.updateOrderForm
 );

@@ -18,8 +18,9 @@ class orderFormController {
 	}
 	async addOrderForm(req: Request, res: Response) {
 		try {
-			const { ClientData, productIDs } = req.body;
-			if (!ClientData || !productIDs) {
+            const { clientData, products } = req.body;
+            console.log(req.body);
+			if (!clientData || !products) {
 				return res
 					.status(400)
 					.send(
@@ -27,8 +28,8 @@ class orderFormController {
 					);
 			}
 			const newOrderForm = await OrderForm.create({
-				ClientData,
-				productIDs,
+				clientData,
+				products,
 				finished: false,
 			});
 			res.status(200).json(newOrderForm);
@@ -45,12 +46,12 @@ class orderFormController {
 					.status(400)
 					.send('You must specify the order form!');
             }
-			const updateOrderForm = await OrderForm.findByIdAndUpdate(
+			const updatedOrderForm = await OrderForm.findByIdAndUpdate(
 				orderForm.id,
                 orderForm,
                 {new:true}
 			);
-			res.status(200).json(updateOrderForm);
+			res.status(200).json(updatedOrderForm);
 		} catch (error) {
 			console.log(error);
 			res.status(400).send('put order forms error');
