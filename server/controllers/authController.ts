@@ -65,7 +65,7 @@ class authController {
 				return res.status(400).json({ message: 'Wrong password' });
             }
             const token = generationAccessToken(user.id, user.roles);
-            res.status(200).json({token})
+            res.status(200).json({user: {username: user.username, roles: user.roles } ,token})
 		} catch (error) {
 			console.log(error);
 			res.status(400).json({ message: 'Login error' });

@@ -1,25 +1,33 @@
 /** @format */
 
-const mongoose = require('mongoose');
-const { ProductSchema } = require('./Product');
+import mongoose from 'mongoose';
 
 export const ProductPageType = {
-	...ProductSchema,
-	images: { type: Array<String>, required: true },
+	filter: { type: String, required: true },
+	mainImage: { type: String, required: true },
+	title: { type: String, required: true },
+	price: { type: Number, required: true },
+	sellability: { type: Number, required: true },
+	images: { type: [String], required: true },
 	material: { type: String, required: true },
 	description: { type: String, required: true },
-	fullDescription: String,
-	dimensions: {
-		height: { type: Number, required: true },
-		width: { type: Number, required: true },
-		depth: { type: Number, required: true },
-		weight: { type: Number, required: true },
-	},
 	model: { type: String, required: true },
 	fabricOrigin: { type: String, required: true },
+	dimensions: {
+		type: {
+			height: { type: Number, required: true },
+			width: { type: Number, required: true },
+			depth: { type: Number, required: true },
+			weight: { type: Number, required: true },
+		},
+		required: true,
+	},
+
+	fullDescription: String,
+	collectionCode: String,
+	collectionName: String,
 };
 
 const ProductPageSchema = new mongoose.Schema(ProductPageType);
 const ProductPage = mongoose.model('ProductPage', ProductPageSchema);
-exports.ProductPage = ProductPage;
-exports.ProductPageSchema = ProductPageSchema;
+export default ProductPage;

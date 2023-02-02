@@ -24,7 +24,6 @@ interface HomeProps {
 
  const Home: NextPage<HomeProps> = ({ products }) => {
 
-
 		return (
 			<MainContainer title='Home' dark>
 				<header className=' relative w-full h-screen text-white flex flex-col gap-10 justify-center items-center'>

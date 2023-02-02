@@ -1,10 +1,13 @@
-import  Head  from 'next/head';
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
+/** @format */
+
+import Head from 'next/head';
+import '../styles/globals.css';
+import type { AppProps } from 'next/app';
 import BagProvider from '../common/BagProvider';
+import UserProvider from '../common/UserProvider';
 
 export default function App({ Component, pageProps }: AppProps) {
-    return (
+	return (
 		<>
 			<Head>
 				<meta
@@ -12,9 +15,11 @@ export default function App({ Component, pageProps }: AppProps) {
 					content='width=device-width, initial-scale=1'
 				/>
 			</Head>
-			<BagProvider>
-				<Component {...pageProps} />
-			</BagProvider>
+			<UserProvider>
+				<BagProvider>
+					<Component {...pageProps} />
+				</BagProvider>
+			</UserProvider>
 		</>
-	); 
+	);
 }

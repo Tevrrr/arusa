@@ -47,12 +47,13 @@ const Footer: NextPage = () => {
 							</Link>
 						);
 					})}
-					
 				</div>
 				<div className=' w-1/2 md:w-auto flex grow flex-col gap-4 p-4 md:py-6 md:pl-14 border-t md:border-t-0 '>
 					<p className='TextSmall uppercase'>Help</p>
 					<p className='TextSmall opacity-50'>Contact</p>
-					<p className='TextSmall opacity-50'>Login & Account</p>
+					<Link href='/login'>
+						<p className='TextSmall cursor-pointer'>Login</p>
+					</Link>
 					<p className='TextSmall opacity-50'>Privacy Policy</p>
 					<p className='TextSmall opacity-50'>Refund Policy</p>
 				</div>

@@ -3,8 +3,8 @@
 export { getCollections } from './getters/collection';
 export { getProductsByCollection, getProductsByFilter, getProductsByQuery, getTopProducts } from './getters/product';
 export { getProductPage } from './getters/productPage';
-export { submitEmail } from './submiters/email';
-export { submitForm } from './submiters/form';
+export { submitEmail } from './posts/email';
+export { submitForm } from './posts/form';
 
 
 

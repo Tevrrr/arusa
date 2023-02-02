@@ -1,4 +1,4 @@
-import { User } from './../../common/types/User';
+
 /** @format */
 
 import { Request, Response } from 'express';

@@ -4,9 +4,9 @@ import express, { Request, Response } from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import next from 'next';
-import productRouter from './routers/productRouter';
 import authRouter from './routers/authRouter';
 import orderFormRouter from './routers/orderFormRouter';
+import productPageRouter from './routers/productPageRouter';
 
 dotenv.config();
 
@@ -29,7 +29,7 @@ const handle   = app.getRequestHandler();
 app.prepare().then(async () => {
 	const server = express();
     server.use(express.json());
-    server.use('/api'     , productRouter);
+    server.use('/api'     , productPageRouter);
     server.use('/api'     , orderFormRouter);
     server.use('/api/auth', authRouter);
 
