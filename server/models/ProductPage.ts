@@ -3,7 +3,7 @@
 import mongoose from 'mongoose';
 
 export const ProductPageType = {
-	filter: { type: String, required: true },
+	filter: { type: String, ref:'Filter', required: true },
 	mainImage: { type: String, required: true },
 	title: { type: String, required: true },
 	price: { type: Number, required: true },

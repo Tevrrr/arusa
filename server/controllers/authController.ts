@@ -31,16 +31,16 @@ class authController {
 				return res
 					.status(400)
 					.json({ message: 'Such a user already exists' });
-            }
-            
+			}
+
 			const hashPassword = hashSync(password, 5);
 			const userRole = await Role.findOne({ value: role });
 			if (!userRole) {
 				return res
 					.status(400)
 					.json({ message: 'There is no such role' });
-            }
-            
+			}
+
 			const user = await User.create({
 				username,
 				password: hashPassword,
@@ -58,17 +58,32 @@ class authController {
 			const user = await User.findOne({ username });
 			if (!user) {
 				return res.status(400).json({ message: 'User not found' });
-            }
-            
+			}
+
 			const validPassword = compareSync(password, user.password);
 			if (!validPassword) {
 				return res.status(400).json({ message: 'Wrong password' });
-            }
-            const token = generationAccessToken(user.id, user.roles);
-            res.status(200).json({user: {username: user.username, roles: user.roles } ,token})
+			}
+			const token = generationAccessToken(user.id, user.roles);
+			res.status(200).json({
+				user: { username: user.username, roles: user.roles },
+				token,
+			});
 		} catch (error) {
 			console.log(error);
 			res.status(400).json({ message: 'Login error' });
+		}
+	}
+	async loginByToken(req: Request, res: Response) {
+		try {
+			const user = req.body.user
+
+			res.status(200).json({
+				user: { username: user.username, roles: user.roles },
+			});
+		} catch (error) {
+			console.log(error);
+			res.status(400).json({ message: 'loginByToken error' });
 		}
 	}
 }

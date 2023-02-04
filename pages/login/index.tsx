@@ -7,31 +7,39 @@ import { useForm } from 'react-hook-form';
 
 import { useRouter } from 'next/router';
 import { UserContext } from '../../common/UserProvider';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Link from 'next/link';
 
 interface ILoginForm {
 	username: string;
 	password: string;
 }
-
+// if (user) router.push('/adminPanel');
 const OrderForm: NextPage = () => {
-	const { login } = useContext(UserContext);
+	const { login, checkLocalToken, user } = useContext(UserContext);
 	const [error, setError] = useState('');
 	const router = useRouter();
-
 	const { register, handleSubmit } = useForm<ILoginForm>();
+
+	useEffect(() => {
+		if (user) {
+			router.push('/adminPanel');
+		} else {
+			checkLocalToken((user) => {
+				if (user) router.push('/adminPanel');
+			});
+		}
+	}, []);
+
 	const onSubmit = handleSubmit((data) => {
 		login(data.username, data.password, (result) => {
 			if (!result) {
 				setError('Invalid username or password!');
-            }
-            else {
-				setError('Access');
-                
-            }
+			} else {
+                setError('Access');
+                router.push('/adminPanel');
+			}
 		});
-		// router.push('/shop');
 	});
 
 	return (
@@ -61,11 +69,6 @@ const OrderForm: NextPage = () => {
 								Login
 							</button>
 							{!error || <p className='TextSmall'>{error}</p>}
-							<Link href='/adminPanel'>
-								<p className='TextSmall cursor-pointer'>
-									Admin Panel
-								</p>
-							</Link>
 						</form>
 					</div>
 				</div>

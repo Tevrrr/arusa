@@ -3,6 +3,7 @@
 import { Router } from 'express';
 import { check } from 'express-validator';
 import authController from '../controllers/authController';
+import authMiddleware from '../middleware/authMiddleware';
 
 const authRouter = Router();
 
@@ -18,5 +19,6 @@ authRouter.post(
 	authController.registration
 );
 authRouter.post('/login', authController.login);
+authRouter.get('/login',authMiddleware(), authController.loginByToken);
 
 export default authRouter;

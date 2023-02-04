@@ -8,6 +8,7 @@ export interface IUserResponse {
 }
 
 export interface IUserCrontext extends IUserResponse {
+    checkLocalToken: (props?: (user: IUser | null, token: string) => void)=>void;
 	login: (
 		username: string,
 		password: string,

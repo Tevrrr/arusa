@@ -1,12 +1,12 @@
 import type { NextPage } from 'next'
-import  AuthController  from '../../components/AuthController';
+import MainAdminContainer from '../../components/AdminPanel/MainAdminContainer';
 
 const AdminPanel: NextPage = () => {
 
     return (
-        <AuthController>
+        <MainAdminContainer title='Main'>
             ADMIN
-        </AuthController>
+        </MainAdminContainer>
     )
 }
 
