@@ -37,7 +37,7 @@ export const ProductProvider: NextPage<ProductProviderProps> = ({
 		if (searchQuery) {
 			getProductsByQuery(searchQuery, activeSortBy, setProducts);
 		} else {
-			getProductsByFilter(filters, activeSortBy, setProducts);
+			getProductsByFilter(filters, activeSortBy, setProducts, 20);
 		}
 	}, [filters, activeSortBy, searchQuery]);
 

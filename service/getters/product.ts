@@ -1,5 +1,6 @@
 /** @format */
 
+import axios from "axios";
 import { IProduct } from "../../common/types/product";
 import { productsJSON } from "../data/products";
 
@@ -60,31 +61,53 @@ export const getProductsByCollection = async (
 
 export const getProductsByFilter = async (
 	filters: string[],
-	sortBy: string,
-	props: (value: IProduct[]) => void
-): Promise<IProduct[]> => {
-	const products: IProduct[] = await JSON.parse(productsJSON);
+    sortBy: string,
+	props: (value: IProduct[]) => void,
+    limit: number = 0,
+    skip: number = 0,
+): Promise<IProduct[] | null> => {
+    try {
+		const URL = process.env.NEXT_PUBLIC_URL || 'http://localhost:3000';
 
-	const filteredProducts: IProduct[] = filters.length
-		? products.filter((item) => filters.includes(item.filter))
-		: products;
-	const result = SortBy(sortBy, filteredProducts);
-	if (props) props(result);
-	return result;
+		const response = await axios.get(`${URL}/api/products`, {
+			params: {
+				filters,
+				sortBy,
+				limit,
+				skip,
+            },
+            
+		});
+        console.log(response.data);
+        if (props) props(response.data);
+		return response.data;
+	} catch (error) {
+        console.log(error);
+        return null;
+	}
 };
 
 export const getProductsByQuery = async (
-	query: string,
+	searchQuery: string,
 	sortBy: string,
 	props?: (value: IProduct[]) => void
-): Promise<IProduct[]> => {
-	const products: IProduct[] = await JSON.parse(productsJSON);
-	const filteredProducts: IProduct[] = products.filter((item) =>
-		item.title.toLocaleLowerCase().includes(query.toLocaleLowerCase())
-	);
-	const result = SortBy(sortBy, filteredProducts);
-	if (props) props(result);
-	return result;
+): Promise<IProduct[] | null> => {
+	try {
+		const URL = process.env.NEXT_PUBLIC_URL || 'http://localhost:3000';
+
+		const response = await axios.get(`${URL}/api/products`, {
+			params: {
+				searchQuery,
+				sortBy,
+			},
+		});
+		console.log(response.data);
+		if (props) props(response.data);
+		return response.data;
+	} catch (error) {
+		console.log(error);
+		return null;
+	}
 };
 
 export const getTopProducts = async (

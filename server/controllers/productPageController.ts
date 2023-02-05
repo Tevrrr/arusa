@@ -3,6 +3,15 @@
 import { Request, Response } from 'express';
 import ProductPage from '../models/ProductPage';
 import { IProduct } from '../../common/types/product';
+import { SortBy } from '../../common/helpers/sortBy';
+
+interface IQuery {
+	sortBy?: string;
+	filters?: string[];
+	limit?: string;
+	skip?: string;
+    searchQuery?: string;
+}
 
 class productPageController {
 	async getProductPage(req: Request, res: Response) {
@@ -21,10 +30,28 @@ class productPageController {
 	}
 	async getProducts(req: Request, res: Response) {
 		try {
-			const { query } = req.body;
-			const pages = await ProductPage.find(query || {});
+			const searchOptions = (): {} => {
+				return {
+					...(params.filters ? { filter: params.filters } : {}),
+					...(params.searchQuery
+						? {
+								title: {
+									$regex: new RegExp(params.searchQuery, 'i'),
+								},
+						  }
+						: {}),
+				};
+			};
+
+			const params: IQuery = req.query;
+
+			const products = await ProductPage.find(searchOptions())
+				.skip(Number.parseInt(params.skip || '0'))
+				.limit(Number.parseInt(params.limit || '0'))
+				.sort(SortBy(params.sortBy || ''));
+
 			res.status(200).json(
-				pages.map((item): IProduct => {
+				products.map((item): IProduct => {
 					return {
 						id: item.id,
 						filter: item.filter,
