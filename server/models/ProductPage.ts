@@ -8,7 +8,7 @@ export const ProductPageType = {
 	title: { type: String, required: true },
 	price: { type: Number, required: true },
 	sellability: { type: Number, required: true },
-	images: { type: [String], required: true },
+	images: [{ type: String, required: true }],
 	material: { type: String, required: true },
 	description: { type: String, required: true },
 	model: { type: String, required: true },

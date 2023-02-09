@@ -15,7 +15,9 @@ const initialState: IProductProvider = {
 	filters: [],
 	sortBy: 'A-Z',
 	searchQuery: '',
-	productQuantity: 0,
+    productQuantity: 0,
+    countProductsFound: 0,
+	addNextProducts: () => {},
 	setSearchQuery: (value: string) => {},
 	sortByToggle: (value: string) => {},
 	filterToggle: (value: string) => {},
@@ -32,18 +34,56 @@ export const ProductProvider: NextPage<ProductProviderProps> = ({
 	const [activeSortBy, setActiveSortBy] = useState('A-Z');
 	const [searchQuery, setSearchQuery] = useState('');
 	const [productQuantity, setProductQuantity] = useState(0);
+	const [countProductsFound, setCountProductsFound] = useState(0);
 
 	useEffect(() => {
 		if (searchQuery) {
-			getProductsByQuery(searchQuery, activeSortBy, setProducts);
+			getProductsByQuery(searchQuery, activeSortBy, (products, count) => {
+				setProducts(products);
+				setCountProductsFound(count);
+			},5)
 		} else {
-			getProductsByFilter(filters, activeSortBy, setProducts, 20);
+			getProductsByFilter(
+				filters,
+				activeSortBy,
+				(products, count) => {
+					setProducts(products);
+					setCountProductsFound(count);
+				},
+				5
+			);
 		}
 	}, [filters, activeSortBy, searchQuery]);
 
 	useEffect(() => {
 		setProductQuantity(products.length);
 	}, [products]);
+
+	const addNextProducts = () => {
+		if (searchQuery) {
+			getProductsByQuery(
+				searchQuery,
+				activeSortBy,
+				(newProducts, count) => {
+					setProducts([...products, ...newProducts]);
+					setCountProductsFound(count);
+				},
+				5,
+				productQuantity
+			);
+		} else {
+			getProductsByFilter(
+				filters,
+				activeSortBy,
+				(newProducts, count) => {
+					setProducts([...products, ...newProducts]);
+					setCountProductsFound(count);
+				},
+				5,
+				productQuantity
+			);
+		}
+	};
 
 	const sortByToggle = (value: string) => {
 		if (activeSortBy === value) {
@@ -68,7 +108,9 @@ export const ProductProvider: NextPage<ProductProviderProps> = ({
 				products,
 				productQuantity,
 				filters,
-				searchQuery,
+                searchQuery,
+                countProductsFound,
+				addNextProducts,
 				setSearchQuery,
 				sortBy: activeSortBy,
 				sortByToggle,

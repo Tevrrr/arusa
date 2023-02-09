@@ -6,7 +6,7 @@ import { AiOutlineSearch, AiOutlineClose } from 'react-icons/ai';
 import { ProductContext } from '../../common/ProductProvider';
 
 const SearchPanel: NextPage = () => {
-	const { searchQuery, setSearchQuery, productQuantity } =
+	const { searchQuery, setSearchQuery, productQuantity, countProductsFound } =
 		useContext(ProductContext);
 	const [queryValue, setQueryValue] = useState(searchQuery);
 
@@ -25,7 +25,7 @@ const SearchPanel: NextPage = () => {
 	return (
 		<div className=' max-w-screen-xl w-full flex justify-between md:pl-44 lg:pl-72'>
 			<p className='TextRegular flex items-center w-1/2 md:w-auto pt-10 p-3 uppercase border-r md:border-0 border-oyster'>
-				{productQuantity} products
+				{productQuantity} products || {countProductsFound}
 			</p>
 			<form
 				onSubmit={formHandler}

@@ -9,7 +9,7 @@ export const SortBy = (sortBy: string): {} => {
 		return { price: -1 };
 	}
 	if (sortBy === 'Best selling') {
-		return { sellability: 1 };
+		return { sellability: -1 };
 	}
 	if (sortBy === 'Z-A') {
 		return { title: -1 };

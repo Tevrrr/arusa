@@ -447,7 +447,7 @@ export default Home;
 
 export const getServerSideProps: GetServerSideProps =
     async () => {
-		const products: IProduct[] = await getTopProducts(8);
+		const products: IProduct[] = await getTopProducts(8) || [];
 		return {
 			props: {products},
 		};

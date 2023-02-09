@@ -10,18 +10,19 @@ interface IQuery {
 	filters?: string[];
 	limit?: string;
 	skip?: string;
-    searchQuery?: string;
+	searchQuery?: string;
 }
 
 class productPageController {
 	async getProductPage(req: Request, res: Response) {
 		try {
-			const { id } = req.body;
-			if (!id) {
+			const { pageID } = req.query;
+			if (!pageID) {
 				return res.status(400).send('You need to specify the page ID!');
 			}
 
-			const productPages = await ProductPage.find({ id });
+            const productPages = await ProductPage.findById(pageID);
+            console.log(pageID, productPages);
 			res.status(200).json(productPages);
 		} catch (error) {
 			console.log(error);
@@ -45,25 +46,32 @@ class productPageController {
 
 			const params: IQuery = req.query;
 
-			const products = await ProductPage.find(searchOptions())
+			const productPages = await ProductPage.find(searchOptions())
 				.skip(Number.parseInt(params.skip || '0'))
 				.limit(Number.parseInt(params.limit || '0'))
-				.sort(SortBy(params.sortBy || ''));
+                .sort(SortBy(params.sortBy || ''));
+            
+            const products = productPages.map((item): IProduct => {
+				return {
+					id: item.id,
+					filter: item.filter,
+					mainImage: item.mainImage,
+					title: item.title,
+					price: item.price,
+					sellability: item.sellability,
+					collectionCode: item.collectionCode,
+					collectionName: item.collectionName,
+				};
+			});
+            
+			const countProductsFound = await ProductPage.find(
+				searchOptions()
+			).countDocuments();
 
-			res.status(200).json(
-				products.map((item): IProduct => {
-					return {
-						id: item.id,
-						filter: item.filter,
-						mainImage: item.mainImage,
-						title: item.title,
-						price: item.price,
-						sellability: item.sellability,
-						collectionCode: item.collectionCode,
-						collectionName: item.collectionName,
-					};
-				})
-			);
+            res.status(200).json({
+				products,
+				countProductsFound,
+			});
 		} catch (error) {
 			console.log(error);
 			res.status(400).send('get product error');

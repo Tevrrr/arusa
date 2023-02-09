@@ -17,7 +17,8 @@ interface ProductProps {
 
 const Product: NextPage<ProductProps> = ({ data}) => {
 	const router = useRouter();
-	const { addProduct } = useContext(BagContext);
+    const { addProduct } = useContext(BagContext);
+    console.log(data);
 
 	useEffect(() => {
 		if (!data) {
@@ -40,9 +41,7 @@ const Product: NextPage<ProductProps> = ({ data}) => {
 					</div>
 					<div className='grow flex justify-center items-center p-4'>
 						<div className=' max-w-lg  flex flex-col gap-4 text-opal'>
-							<h3 className=' text-stormy'>
-								{data.title}
-							</h3>
+							<h3 className=' text-stormy'>{data.title}</h3>
 							<p className='TextRegular uppercase text-stormy'>
 								{data.material}
 							</p>
@@ -101,8 +100,9 @@ interface PostNextPageContext extends NextPageContext {
 
 export const getServerSideProps = async ({req, query }: PostNextPageContext) => {
 	const data: IProductPage | null = await getProductPage(
-		Number.parseInt(query.id)
+		query.id
     );
+    console.log(data);
 	return {
 		props: { data },
 	};
