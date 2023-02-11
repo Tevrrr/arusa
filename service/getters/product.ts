@@ -36,7 +36,6 @@ export const getProductsByFilter = async (
 				skip,
 			},
 		});
-		console.log(response.data);
 		if (props) props(response.data.products, response.data.countProductsFound);
 		return response.data.products;
 	} catch (error) {
@@ -63,7 +62,7 @@ export const getProductsByQuery = async (
 				skip,
 			},
 		});
-		console.log(response.data);
+
 		if (props)
 			props(response.data.products, response.data.countProductsFound);
 		return response.data.products;
@@ -82,6 +81,7 @@ export const getTopProducts = async (
 		'Best selling',
 		props,
 		count
-	);
+    );
+
 	return products;
 };

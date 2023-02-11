@@ -17,12 +17,8 @@ interface HomeProps {
 	products: IProduct[];
 };
 
-//
-// https://glidejs.com/
-// 
-// 
+const Home: NextPage<HomeProps> = ({ products }) => {
 
- const Home: NextPage<HomeProps> = ({ products }) => {
 
 		return (
 			<MainContainer title='Home' dark>

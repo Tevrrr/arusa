@@ -2,6 +2,24 @@
 
 import mongoose from 'mongoose';
 
+export interface IClientData {
+	firstName: string;
+	lastName: string;
+	address: string;
+	phone: string;
+}
+
+export interface IProduct {
+	id: string;
+	count: number;
+}
+
+export interface IOrderForm {
+	clientData: IClientData;
+	products: IProduct[];
+	finished: boolean;
+}
+
 export const OrderFormType = {
 	clientData: {
 		type: {
@@ -24,6 +42,6 @@ export const OrderFormType = {
 	finished: { type: Boolean, required: true },
 };
 
-const OrderFormSchema = new mongoose.Schema(OrderFormType);
-const OrderForm = mongoose.model('OrderForm', OrderFormSchema);
+const OrderFormSchema = new mongoose.Schema<IOrderForm>(OrderFormType);
+const OrderForm = mongoose.model<IOrderForm>('OrderForm', OrderFormSchema);
 export default OrderForm;

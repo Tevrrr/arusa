@@ -1,6 +1,9 @@
+import { IProductPage } from './../../common/types/product';
 /** @format */
 
 import mongoose from 'mongoose';
+
+
 
 export const ProductPageType = {
 	filter: { type: String, ref:'Filter', required: true },
@@ -28,6 +31,9 @@ export const ProductPageType = {
 	collectionName: String,
 };
 
-const ProductPageSchema = new mongoose.Schema(ProductPageType);
-const ProductPage = mongoose.model('ProductPage', ProductPageSchema);
+const ProductPageSchema = new mongoose.Schema<IProductPage>(ProductPageType);
+const ProductPage = mongoose.model<IProductPage>(
+	'ProductPage',
+	ProductPageSchema
+);
 export default ProductPage;

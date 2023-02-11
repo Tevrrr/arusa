@@ -7,13 +7,7 @@ import Role from '../models/Role';
 import User from '../models/User';
 import { validationResult } from 'express-validator/src/validation-result';
 import findSecretKey from '../../common/helpers/findSecretKey';
-
-const generationAccessToken = (id:string, roles: string[]) => {
-    const payload = { id, roles };
-    const secretKey = findSecretKey();
-    
-    return sign(payload, secretKey, {expiresIn: '24h'});
-}
+import authService from '../services/authService';
 
 class authController {
 	async registration(req: Request, res: Response) {
@@ -26,26 +20,14 @@ class authController {
 			}
 
 			const { username, password, role } = req.body;
-			const userFind = await User.findOne({ username });
-			if (userFind) {
-				return res
-					.status(400)
-					.json({ message: 'Such a user already exists' });
-			}
-
-			const hashPassword = hashSync(password, 5);
-			const userRole = await Role.findOne({ value: role });
-			if (!userRole) {
-				return res
-					.status(400)
-					.json({ message: 'There is no such role' });
-			}
-
-			const user = await User.create({
+			const result = await authService.registration(
 				username,
-				password: hashPassword,
-				roles: [userRole.value],
-			});
+				password,
+				role
+			);
+			if (typeof result === 'string') {
+				return res.status(400).json({ message: result });
+			}
 			res.status(200).json({ message: 'User successfully registered' });
 		} catch (error) {
 			console.log(error);
@@ -55,16 +37,12 @@ class authController {
 	async login(req: Request, res: Response) {
 		try {
 			const { username, password } = req.body;
-			const user = await User.findOne({ username });
-			if (!user) {
-				return res.status(400).json({ message: 'User not found' });
-			}
-
-			const validPassword = compareSync(password, user.password);
-			if (!validPassword) {
-				return res.status(400).json({ message: 'Wrong password' });
-			}
-			const token = generationAccessToken(user.id, user.roles);
+			const result = await authService.login(username, password);
+			if (typeof result === 'string') {
+				return res.status(400).json({ message: result });
+            }
+            
+			const { user, token } = result;
 			res.status(200).json({
 				user: { username: user.username, roles: user.roles },
 				token,
@@ -76,7 +54,7 @@ class authController {
 	}
 	async loginByToken(req: Request, res: Response) {
 		try {
-			const user = req.body.user
+			const user = req.body.user;
 
 			res.status(200).json({
 				user: { username: user.username, roles: user.roles },

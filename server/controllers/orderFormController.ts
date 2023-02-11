@@ -1,15 +1,15 @@
-
 /** @format */
-
 
 import { Request, Response } from 'express';
 import OrderForm from '../models/OrderForm';
-
+import orderFormService from '../services/orderFormService';
 
 class orderFormController {
 	async getOrderForms(req: Request, res: Response) {
 		try {
-			const forms = await OrderForm.find(req.body?.query || {});
+			const forms = await orderFormService.getOrderForms(
+				req.body?.query || {}
+			);
 			res.status(200).json({ forms });
 		} catch (error) {
 			console.log(error);
@@ -18,8 +18,7 @@ class orderFormController {
 	}
 	async addOrderForm(req: Request, res: Response) {
 		try {
-            const { clientData, products } = req.body;
-            console.log(req.body);
+			const { clientData, products } = req.body;
 			if (!clientData || !products) {
 				return res
 					.status(400)
@@ -27,11 +26,11 @@ class orderFormController {
 						'You must specify client data and a list of product IDs!'
 					);
 			}
-			const newOrderForm = await OrderForm.create({
+			const newOrderForm = await orderFormService.addOrderForm(
 				clientData,
 				products,
-				finished: false,
-			});
+				false
+			);
 			res.status(200).json(newOrderForm);
 		} catch (error) {
 			console.log(error);
@@ -42,16 +41,16 @@ class orderFormController {
 		try {
 			const { orderForm } = req.body;
 			if (!orderForm) {
-				return res
-					.status(400)
-					.send('You must specify the order form!');
-            }
-			const updatedOrderForm = await OrderForm.findByIdAndUpdate(
+				return res.status(400).send('You must specify the order form!');
+			}
+			const result = await orderFormService.updateOrderForm(
 				orderForm.id,
-                orderForm,
-                {new:true}
-			);
-			res.status(200).json(updatedOrderForm);
+				orderForm
+            );
+            if (!result) {
+				return res.status(400).send('Form not found!');
+			}
+			res.status(200).json(result);
 		} catch (error) {
 			console.log(error);
 			res.status(400).send('put order forms error');

@@ -18,7 +18,6 @@ interface ProductProps {
 const Product: NextPage<ProductProps> = ({ data}) => {
 	const router = useRouter();
     const { addProduct } = useContext(BagContext);
-    console.log(data);
 
 	useEffect(() => {
 		if (!data) {
