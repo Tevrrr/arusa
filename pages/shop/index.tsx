@@ -18,12 +18,11 @@ const Shop: NextPage = () => {
 				<div className='flex justify-center border-b border-oyster'>
 					<SearchPanel />
 				</div>
-				<div className='flex justify-center'>
-					<div className=' max-w-screen-xl w-full xl:border-x border-oyster flex flex-col md:flex-row'>
-						<SortPanel filters={FILTERS} />
-						<div className=' grow flex gap-0 justify-center'>
-							<ProductPanel />
-						</div>
+
+				<div className='mx-auto max-w-screen-xl w-full xl:border-x border-oyster flex flex-col md:flex-row'>
+					<SortPanel filters={FILTERS} />
+					<div className=' grow flex gap-0 justify-center'>
+						<ProductPanel />
 					</div>
 				</div>
 			</ProductProvider>

@@ -45,100 +45,97 @@ const Home: NextPage<HomeProps> = ({ products }) => {
 						</button>
 					</Link>
 				</header>
-				<div className='flex justify-center'>
-					<div className=' w-full max-w-screen-xl overflow-hidden relative flex flex-col gap-9 justify-center items-center pt-44 pb-52 md:pt-80 md:pb-96 py-48 px-4 text-stormy'>
-						<div className=' -z-10 absolute top-10 left-8 md:top-5 md:left-auto w-36 h-28 md:w-80 md:h-64'>
-							<Image
-								alt=''
-								src='/indexPNG/mainBg1.png'
-								fill
-								className=' object-cover'
-							/>
-						</div>
-						<div className=' -z-10 absolute top-[12%] right-3  md:top-[18%] md:right-5 lg:right-[15%] w-20 h-14  md:w-44 md:h-32'>
-							<Image
-								alt=''
-								src='/indexPNG/mainBg2.png'
-								fill
-								className=' object-cover'
-							/>
-						</div>
-						<div className=' -z-10 absolute -right-14 top-1/4 lg:right-0 md:top-[40%] w-20 h-24 md:w-1/5 md:h-52'>
-							<Image
-								alt=''
-								src='/indexPNG/mainBg3.png'
-								fill
-								className=' object-cover'
-							/>
-						</div>
-						<div className=' -z-10 absolute -right-8 bottom-14 md:left-[60%] md:bottom-20 lg:bottom-36 w-40 h-32 md:w-96 md:h-72'>
-							<Image
-								alt=''
-								src='/indexPNG/mainBg4.png'
-								fill
-								className=' object-cover'
-							/>
-						</div>
-						<div className=' -z-10 absolute -left-28 bottom-28 lg:left-0 md:top-[45%] w-44 h-32 md:w-1/4 md:h-72'>
-							<Image
-								alt=''
-								src='/indexPNG/mainBg5.png'
-								fill
-								className=' object-cover'
-							/>
-						</div>
-						<div className=' -z-10 absolute -left-20 top-1/3 lg:left-[1%] md:top-[20%] w-24 h-20 md:w-1/5 md:h-48'>
-							<Image
-								alt=''
-								src='/indexPNG/mainBg6.png'
-								fill
-								className=' object-cover'
-							/>
-						</div>
-						<h2 className=' max-w-xs md:max-w-2xl text-center '>
-							Creating
-							<span className=' md:italic md:font-extralight'>
-								{' '}
-								perfect{' '}
-							</span>{' '}
-							<br />
-							lines and imposing presence
-						</h2>
-						<p className='TextRegular max-w-lg text-center'>
-							Developed the concept of exclusivity, a Arusa
-							features timeless furniture, with natural fabrics,
-							curved lines, plenty of mirrors and classic design,
-							which can be incorporated into any decor project.
-							The pieces enchant for their sobriety, to last for
-							generations, faithful to the shapes of each period,
-							with a touch of the present.
-						</p>
-						<Link href='/about'>
-							<button className='OutlinedBtn'>
-								<p className='TextSmall'>Read about us</p>
-							</button>
-						</Link>
+
+				<div className='mx-auto w-full max-w-screen-xl overflow-hidden relative flex flex-col gap-9 justify-center items-center pt-44 pb-52 md:pt-80 md:pb-96 py-48 px-4 text-stormy'>
+					<div className=' -z-10 absolute top-10 left-8 md:top-5 md:left-auto w-36 h-28 md:w-80 md:h-64'>
+						<Image
+							alt=''
+							src='/indexPNG/mainBg1.png'
+							fill
+							className=' object-cover'
+						/>
 					</div>
+					<div className=' -z-10 absolute top-[12%] right-3  md:top-[18%] md:right-5 lg:right-[15%] w-20 h-14  md:w-44 md:h-32'>
+						<Image
+							alt=''
+							src='/indexPNG/mainBg2.png'
+							fill
+							className=' object-cover'
+						/>
+					</div>
+					<div className=' -z-10 absolute -right-14 top-1/4 lg:right-0 md:top-[40%] w-20 h-24 md:w-1/5 md:h-52'>
+						<Image
+							alt=''
+							src='/indexPNG/mainBg3.png'
+							fill
+							className=' object-cover'
+						/>
+					</div>
+					<div className=' -z-10 absolute -right-8 bottom-14 md:left-[60%] md:bottom-20 lg:bottom-36 w-40 h-32 md:w-96 md:h-72'>
+						<Image
+							alt=''
+							src='/indexPNG/mainBg4.png'
+							fill
+							className=' object-cover'
+						/>
+					</div>
+					<div className=' -z-10 absolute -left-28 bottom-28 lg:left-0 md:top-[45%] w-44 h-32 md:w-1/4 md:h-72'>
+						<Image
+							alt=''
+							src='/indexPNG/mainBg5.png'
+							fill
+							className=' object-cover'
+						/>
+					</div>
+					<div className=' -z-10 absolute -left-20 top-1/3 lg:left-[1%] md:top-[20%] w-24 h-20 md:w-1/5 md:h-48'>
+						<Image
+							alt=''
+							src='/indexPNG/mainBg6.png'
+							fill
+							className=' object-cover'
+						/>
+					</div>
+					<h2 className=' max-w-xs md:max-w-2xl text-center '>
+						Creating
+						<span className=' md:italic md:font-extralight'>
+							{' '}
+							perfect{' '}
+						</span>{' '}
+						<br />
+						lines and imposing presence
+					</h2>
+					<p className='TextRegular max-w-lg text-center'>
+						Developed the concept of exclusivity, a Arusa features
+						timeless furniture, with natural fabrics, curved lines,
+						plenty of mirrors and classic design, which can be
+						incorporated into any decor project. The pieces enchant
+						for their sobriety, to last for generations, faithful to
+						the shapes of each period, with a touch of the present.
+					</p>
+					<Link href='/about'>
+						<button className='OutlinedBtn'>
+							<p className='TextSmall'>Read about us</p>
+						</button>
+					</Link>
 				</div>
 
 				<h4 className=' border-y-2 border-oyster py-6 text-stormy text-center'>
 					Enjoy our feature products
 				</h4>
-				<div className=' flex justify-center'>
-					<div className=' max-w-screen-xl w-full flex flex-wrap justify-between'>
-						{!products ||
-							products.slice(0, 4).map((item) => {
-								return (
-									<ProductCard
-										key={item.id}
-										data={item}
-										className=' lg:!border-0 max-w-[50%] lg:max-w-[33.33%] xl:max-w-[25%] group'
-										imageClassName=' group-hover:scale-110 transition-transform duration-700'
-									/>
-								);
-							})}
-						<div className='grow'></div>
-					</div>
+
+				<div className='mx-auto  max-w-screen-xl w-full flex flex-wrap justify-between'>
+					{!products ||
+						products.slice(0, 4).map((item) => {
+							return (
+								<ProductCard
+									key={item.id}
+									data={item}
+									className=' lg:!border-0 max-w-[50%] lg:max-w-[33.33%] xl:max-w-[25%] group'
+									imageClassName=' group-hover:scale-110 transition-transform duration-700'
+								/>
+							);
+						})}
+					<div className='grow'></div>
 				</div>
 
 				<div className=' flex justify-center border-b lg:border-t border-oyster py-4'>
@@ -324,36 +321,34 @@ const Home: NextPage<HomeProps> = ({ products }) => {
 					</div>
 				</div>
 
-				<div className='flex justify-center'>
-					<div className='w-full max-w-screen-xl flex flex-col md:flex-row text-stormy'>
-						<SideHeader>Details</SideHeader>
-						<div className=' md:px-4 md:py-3 border-r border-oyster grow'>
-							<div className=' relative h-64 md:h-[42rem] '>
-								<Image
-									alt=''
-									src='/indexPNG/detailsMain.png'
-									fill
-									className=' object-cover'
-								/>
-							</div>
+				<div className='mx-auto w-full max-w-screen-xl flex flex-col md:flex-row text-stormy'>
+					<SideHeader>Details</SideHeader>
+					<div className=' md:px-4 md:py-3 border-r border-oyster grow'>
+						<div className=' relative h-64 md:h-[42rem] '>
+							<Image
+								alt=''
+								src='/indexPNG/detailsMain.png'
+								fill
+								className=' object-cover'
+							/>
 						</div>
-						<div className='w-full md:max-w-sm flex md:flex-col gap-2 justify-between p-2 md:px-4 md:py-3'>
-							<div className=' relative h-52 md:h-64 grow '>
-								<Image
-									alt=''
-									src='/indexPNG/details1.png'
-									fill
-									className=' object-cover'
-								/>
-							</div>
-							<div className=' relative h-52 md:h-96 grow  '>
-								<Image
-									alt=''
-									src='/indexPNG/details2.png'
-									fill
-									className=' object-cover'
-								/>
-							</div>
+					</div>
+					<div className='w-full md:max-w-sm flex md:flex-col gap-2 justify-between p-2 md:px-4 md:py-3'>
+						<div className=' relative h-52 md:h-64 grow '>
+							<Image
+								alt=''
+								src='/indexPNG/details1.png'
+								fill
+								className=' object-cover'
+							/>
+						</div>
+						<div className=' relative h-52 md:h-96 grow  '>
+							<Image
+								alt=''
+								src='/indexPNG/details2.png'
+								fill
+								className=' object-cover'
+							/>
 						</div>
 					</div>
 				</div>
@@ -377,64 +372,6 @@ const Home: NextPage<HomeProps> = ({ products }) => {
 						/>
 					</div>
 				</div>
-
-				{/* <h4 className='text-center py-6 border-y border-oyster'>
-					Enjoy our articles
-				</h4>
-				<div className='flex justify-center'>
-					<div className=' max-w-screen-xl flex '>
-						<SideHeader>Reader stories</SideHeader>
-						<div className='flex flex-col md:flex-row grow justify-between gap-8 p-8 pb-7 pr-2'>
-							<div className=' flex flex-col gap-14 md:w-1/2 '>
-								<h3>
-									Manhattan Pià-terre for a new Chicago
-									apartment
-								</h3>
-								<p className='TextRegular'>
-									Interior designer Sarah Vaile remembers
-									eyeing a New York City apartment—one with
-									bold colors and a personality as distinct as
-									its chic owner—in a 2014 issue of House
-									Beautiful, and tucking it away for future
-									design inspiration. Years later, in a
-									serendipitous turn of events, the woman
-									she&apos;d seen in the magazine—a stylish
-									figure now in her 30s—just moved to Chicago.
-								</p>
-								<p className='TextSmall uppercase'>
-									<a href=''>Read article</a>
-								</p>
-							</div>
-							<div className=' md:w-1/2'>
-								<div className='h-[35rem] bg-stormy'></div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div className=' flex justify-center border-y border-oyster py-6'>
-					<button className='TeritaryBtn'>
-						<p className='TextSmall'>See all articles</p>
-					</button>
-				</div>
-				<div className='flex justify-center'>
-					<div className=' max-w-screen-xl flex flex-col md:flex-row border-b border-oyster'>
-						<ArticleCard
-							title="Inside a playful, bohemian beach house on Martha's Vineyard"
-							text="I would follow Jessica to the end of the Earth,” Johanna Hynes says, referring to her designer, Jessica Stambaugh. The Nashville-based principal of JS Interiors designed Hynes’ Boston wellness studio, Asana Charlestown, her family’s townhouse—and most recently, their beach chalet in Katama on Martha's Vineyard."
-						/>
-
-						<ArticleCard
-							title="Inside a playful, bohemian beach house on Martha's Vineyard"
-							text="I would follow Jessica to the end of the Earth,” Johanna Hynes says, referring to her designer, Jessica Stambaugh. The Nashville-based principal of JS Interiors designed Hynes’ Boston wellness studio, Asana Charlestown, her family’s townhouse—and most recently, their beach chalet in Katama on Martha's Vineyard."
-						/>
-
-						<ArticleCard
-							title="Inside a playful, bohemian beach house on Martha's Vineyard"
-							text="I would follow Jessica to the end of the Earth,” Johanna Hynes says, referring to her designer, Jessica Stambaugh. The Nashville-based principal of JS Interiors designed Hynes’ Boston wellness studio, Asana Charlestown, her family’s townhouse—and most recently, their beach chalet in Katama on Martha's Vineyard."
-						/>
-					</div>
-				</div> */}
 			</MainContainer>
 		);
  };

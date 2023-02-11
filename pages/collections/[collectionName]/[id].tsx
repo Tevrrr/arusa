@@ -13,21 +13,19 @@ interface CollectionPageProps {
 const CollectionPage: NextPage<CollectionPageProps> = ({ products }) => {
 	return (
 		<MainContainer title='Name'>
-			<div className=' flex justify-center pt-14'>
-				<div className=' max-w-screen-xl w-full flex flex-wrap justify-between'>
-					{products ? (
-						products.map((item) => (
-							<ProductCard
-								key={item.id}
-								data={item}
-								className=' lg:!border-0 max-w-[50%] lg:max-w-[33.33%] xl:max-w-[25%] '
-							/>
-						))
-					) : (
-						<></>
-					)}
-					<div className='grow'></div>
-				</div>
+			<div className='mx-auto pt-14 max-w-screen-xl w-full flex flex-wrap justify-between'>
+				{products ? (
+					products.map((item) => (
+						<ProductCard
+							key={item.id}
+							data={item}
+							className=' lg:!border-0 max-w-[50%] lg:max-w-[33.33%] xl:max-w-[25%] '
+						/>
+					))
+				) : (
+					<></>
+				)}
+				<div className='grow'></div>
 			</div>
 		</MainContainer>
 	);

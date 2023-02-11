@@ -33,28 +33,27 @@ const Product: NextPage<ProductProps> = ({ data}) => {
 
 	return data ? (
 		<MainContainer title={data.title} emailForm={true}>
-			<div className='pt-14 flex justify-center'>
-				<div className=' max-w-screen-xl w-full flex flex-col lg:flex-row'>
-					<div className=' flex justify-center lg:w-1/2 h-[600px] lg:h-[700px] px-4 py-6 lg:border-r border-oyster'>
-						<Slider images={[data.mainImage, ...data.images]} />
-					</div>
-					<div className='grow flex justify-center items-center p-4'>
-						<div className=' max-w-lg  flex flex-col gap-4 text-opal'>
-							<h3 className=' text-stormy'>{data.title}</h3>
-							<p className='TextRegular uppercase text-stormy'>
-								{data.material}
-							</p>
-							<p className='TextRegular'>{data.description}</p>
-							<p className='TextLarge'>${data.price}</p>
-							<button
-								className='SecondaryBtn uppercase'
-								onClick={onClickAdd}>
-								Add to bag
-							</button>
-						</div>
+			<div className='mx-auto pt-14 max-w-screen-xl w-full flex flex-col lg:flex-row'>
+				<div className=' flex justify-center lg:w-1/2 h-[600px] lg:h-[700px] px-4 py-6 lg:border-r border-oyster'>
+					<Slider images={[data.mainImage, ...data.images]} />
+				</div>
+				<div className='grow flex justify-center items-center p-4'>
+					<div className=' max-w-lg  flex flex-col gap-4 text-opal'>
+						<h3 className=' text-stormy'>{data.title}</h3>
+						<p className='TextRegular uppercase text-stormy'>
+							{data.material}
+						</p>
+						<p className='TextRegular'>{data.description}</p>
+						<p className='TextLarge'>${data.price}</p>
+						<button
+							className='SecondaryBtn uppercase'
+							onClick={onClickAdd}>
+							Add to bag
+						</button>
 					</div>
 				</div>
 			</div>
+
 			<div className=' flex justify-center bg-opal text-oyster'>
 				<div className=' max-w-screen-xl w-full flex flex-col py-2 gap-2 md:flex-row-reverse md:min-h-screen'>
 					<div className='md:w-1/2 flex items-center justify-center'>

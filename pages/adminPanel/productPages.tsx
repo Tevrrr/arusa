@@ -12,19 +12,24 @@ import { postProductPage } from '../../service/posts/productPage';
 import { UserContext } from '../../common/UserProvider';
 
 const ProductPage: NextPage = () => {
-    const [newProductPage, setNewProductPage] = useState<IProductPage>();
-    const { token } = useContext(UserContext);
+	const [newProductPage, setNewProductPage] = useState<IProductPage>();
+	const { token } = useContext(UserContext);
 
 	const generate = () => {
 		setNewProductPage(productPageGenerator(productGenerator(1))[0]);
 	};
-    const post = () => {
-        if (newProductPage && token) postProductPage(newProductPage, token);
-    };
+	const post = () => {
+		if (newProductPage && token) postProductPage(newProductPage, token);
+	};
+	// <button className='PrimaryBtn' onClick={post}>
+	// 						Post
+	// 					</button>
+	// 					<button className='PrimaryBtn' onClick={generate}>
+	// 						Generate
+	// 					</button>
 	return (
-		<MainAdminContainer title='Product'>
-			<div className='flex justify-center'>
-				<div className=' max-w-screen-xl w-full flex gap-4 flex-col'>
+		<MainAdminContainer title='Product page'>
+				<div className=' mx-auto max-w-screen-xl w-full flex gap-4 flex-col'>
 					<div className=' flex gap-4 pt-20'>
 						<button className='PrimaryBtn' onClick={post}>
 							Post
@@ -33,9 +38,7 @@ const ProductPage: NextPage = () => {
 							Generate
 						</button>
 					</div>
-					<div className=''>{JSON.stringify(newProductPage)}</div>
 				</div>
-			</div>
 		</MainAdminContainer>
 	);
 };

@@ -54,9 +54,9 @@ const AdminNavbar: NextPage<AdminNavbarProps> = ({ className = '', dark }) => {
 							/>
 						</Link>
 						<div className='flex gap-4'>
-							<Link href='/adminPanel/productPage'>Products</Link>
-							<Link href='/'>Orders</Link>
-							<Link href='/'>Collections</Link>
+							<Link href='/adminPanel/productPages'>Products</Link>
+							<Link href='/adminPanel/orders'>Orders</Link>
+							<Link href='/adminPanel/collections'>Collections</Link>
 						</div>
 					</div>
 				</div>

@@ -5,9 +5,6 @@ import MainContainer from '../../components/MainContainer/MainContainer';
 import { FILTERS } from '../../common/helpers/consts';
 import CollectionCard from '../../components/Collection/CollectionCard';
 
-
-
-
 const Collections: NextPage = () => {
 	return (
 		<MainContainer title='Collections'>
@@ -25,8 +22,7 @@ const Collections: NextPage = () => {
 								image={`/collectionGroupsPNG/${item}.png`}
 							/>
 						);
-                    })}
-                   
+					})}
 				</div>
 			</div>
 		</MainContainer>
