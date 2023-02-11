@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import MainAdminContainer from '../../components/AdminPanel/MainAdminContainer';
+import MainAdminContainer from '../../../components/AdminPanel/MainAdminContainer';
 
 interface CollectionsProps {};
 

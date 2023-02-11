@@ -23,10 +23,10 @@ const OrderForm: NextPage = () => {
 
 	useEffect(() => {
 		if (user) {
-			router.push('/adminPanel');
+			router.push('/adminPanel/orders');
 		} else {
 			checkLocalToken((user) => {
-				if (user) router.push('/adminPanel');
+				if (user) router.push('/adminPanel/orders');
 			});
 		}
 	}, []);
@@ -37,7 +37,7 @@ const OrderForm: NextPage = () => {
 				setError('Invalid username or password!');
 			} else {
 				setError('Access');
-				router.push('/adminPanel');
+				router.push('/adminPanel/orders');
 			}
 		});
 	});

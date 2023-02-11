@@ -15,8 +15,7 @@ const AuthController: NextPage<AuthControllerProps> = ({ children }) => {
 	useEffect(() => {
 		if (!user)
 			checkLocalToken((user) => {
-                if (user) router.push('/adminPanel');
-                else router.push('/login');
+                if (!user) router.push('/login');
 			});
 	}, [user]);
 

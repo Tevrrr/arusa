@@ -1,17 +1,15 @@
 /** @format */
 
 import type { NextPage } from 'next';
-import { DetailedHTMLProps, InputHTMLAttributes } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
 
-interface InputProps
-	 {
+interface InputProps {
 	className?: string;
 	placeholder?: string;
 	register?: UseFormRegisterReturn;
 }
 
-const Input: NextPage<InputProps> = ({className, placeholder, register}) => {
+const Input: NextPage<InputProps> = ({ className, placeholder, register }) => {
 	return (
 		<input
 			type='text'
