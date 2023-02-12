@@ -7,10 +7,10 @@ class CollectionController {
 	async getCollections(req: Request, res: Response) {
 		try {
 			const collections = await Collection.find({});
-			res.status(200).json({ collections });
+			res.status(200).json( collections );
 		} catch (error) {
 			console.log(error);
-			res.status(400).send('get collections error');
+			res.status(400).json({ message: 'get collections error' });
 		}
 	}
 	async addCollection(req: Request, res: Response) {
@@ -25,7 +25,7 @@ class CollectionController {
 			res.status(200).json(newCollection);
 		} catch (error) {
 			console.log(error);
-			res.status(400).send('add collection error');
+            res.status(400).json({ message: 'add collection error' });
 		}
 	}
 	async updateCollection(req: Request, res: Response) {
@@ -42,7 +42,7 @@ class CollectionController {
 			res.status(200).json(updatedOrderForm);
 		} catch (error) {
 			console.log(error);
-			res.status(400).send('update collection error');
+            res.status(400).json({ message: 'update collection error' });
 		}
 	}
 }

@@ -1,6 +1,6 @@
 export interface ICollection {
+    _id: string;
 	filter: string;
 	image: string;
-	code: string;
 	name: string;
 }

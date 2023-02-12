@@ -8,7 +8,7 @@ class filterController {
 	async getFilters(req: Request, res: Response) {
 		try {
 			const filters = await filterService.getFilters();
-			res.status(200).json({ filters });
+			res.status(200).json( filters );
 		} catch (error) {
 			console.log(error);
 			res.status(400).send('get filters error');

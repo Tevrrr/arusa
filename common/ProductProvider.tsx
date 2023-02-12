@@ -8,6 +8,7 @@ import { getProductsByFilter, getProductsByQuery } from '../service';
 
 interface ProductProviderProps {
 	children: ReactNode;
+	limit?: number;
 }
 
 const initialState: IProductProvider = {
@@ -17,7 +18,8 @@ const initialState: IProductProvider = {
 	searchQuery: '',
     productQuantity: 0,
     countProductsFound: 0,
-	addNextProducts: () => {},
+    addNextProducts: () => { },
+    updateProducts: ()=> {},
 	setSearchQuery: (value: string) => {},
 	sortByToggle: (value: string) => {},
 	filterToggle: (value: string) => {},
@@ -26,7 +28,8 @@ const initialState: IProductProvider = {
 export const ProductContext = createContext<IProductProvider>(initialState);
 
 export const ProductProvider: NextPage<ProductProviderProps> = ({
-	children,
+    children,
+    limit,
 }) => {
 	const [products, setProducts] = useState<IProduct[]>([]);
 
@@ -38,10 +41,15 @@ export const ProductProvider: NextPage<ProductProviderProps> = ({
 
 	useEffect(() => {
 		if (searchQuery) {
-			getProductsByQuery(searchQuery, activeSortBy, (products, count) => {
-				setProducts(products);
-				setCountProductsFound(count);
-			},5)
+			getProductsByQuery(
+				searchQuery,
+				activeSortBy,
+				(products, count) => {
+					setProducts(products);
+					setCountProductsFound(count);
+				},
+				limit||5
+			);
 		} else {
 			getProductsByFilter(
 				filters,
@@ -50,7 +58,7 @@ export const ProductProvider: NextPage<ProductProviderProps> = ({
 					setProducts(products);
 					setCountProductsFound(count);
 				},
-				5
+				limit || 5
 			);
 		}
 	}, [filters, activeSortBy, searchQuery]);
@@ -68,7 +76,7 @@ export const ProductProvider: NextPage<ProductProviderProps> = ({
 					setProducts([...products, ...newProducts]);
 					setCountProductsFound(count);
 				},
-				5,
+				limit || 5,
 				productQuantity
 			);
 		} else {
@@ -79,11 +87,22 @@ export const ProductProvider: NextPage<ProductProviderProps> = ({
 					setProducts([...products, ...newProducts]);
 					setCountProductsFound(count);
 				},
-				5,
+				limit || 5,
 				productQuantity
 			);
 		}
-	};
+    };
+    const updateProducts = () => {
+        getProductsByQuery(
+			searchQuery,
+			activeSortBy,
+			(products, count) => {
+				setProducts(products);
+				setCountProductsFound(count);
+			},
+			productQuantity
+		);
+    }
 
 	const sortByToggle = (value: string) => {
 		if (activeSortBy === value) {
@@ -111,7 +130,7 @@ export const ProductProvider: NextPage<ProductProviderProps> = ({
                 searchQuery,
                 countProductsFound,
 				addNextProducts,
-				setSearchQuery,
+				setSearchQuery,updateProducts,
 				sortBy: activeSortBy,
 				sortByToggle,
 				filterToggle,

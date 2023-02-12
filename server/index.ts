@@ -8,6 +8,7 @@ import authRouter from './routers/authRouter';
 import orderFormRouter from './routers/orderFormRouter';
 import productPageRouter from './routers/productPageRouter';
 import filterRouter from './routers/filterRouter';
+import collectionRouter from './routers/collectionRouter';
 
 dotenv.config();
 
@@ -31,6 +32,7 @@ app.prepare().then(async () => {
 	const server = express();
     server.use(express.json());
     server.use('/api',      productPageRouter);
+    server.use('/api',      collectionRouter);
     server.use('/api',      filterRouter);
     server.use('/api',      orderFormRouter);
     server.use('/api/auth', authRouter);

@@ -4,21 +4,21 @@ import { Router } from 'express';
 import collectionController from '../controllers/collectionController';
 import authMiddleware from '../middleware/authMiddleware';
 
-const CollectionRouter = Router();
+const collectionRouter = Router();
 
-CollectionRouter.post(
+collectionRouter.post(
 	'/collection',
 	authMiddleware(['ADMIN']),
 	collectionController.addCollection
 );
-CollectionRouter.put(
+collectionRouter.put(
 	'/collection',
 	authMiddleware(['ADMIN']),
 	collectionController.updateCollection
 );
-CollectionRouter.get(
+collectionRouter.get(
 	'/collection',
 	collectionController.getCollections
 );
 
-export default CollectionRouter;
+export default collectionRouter;

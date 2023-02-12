@@ -7,8 +7,11 @@ import Input from '../Input';
 import Select from '../Select';
 import Textarea from '../Textarea';
 import { BaseSyntheticEvent } from 'react';
+import { ICollection } from '../../common/types/collection';
 
 interface ProductPageFormProps {
+	filters?: string[];
+	collections?: ICollection[];
 	register: UseFormRegister<IProductPage>;
 	onSubmit: (
 		e?: BaseSyntheticEvent<object, any, any> | undefined
@@ -18,6 +21,8 @@ interface ProductPageFormProps {
 const ProductPageForm: NextPage<ProductPageFormProps> = ({
 	register,
 	onSubmit,
+	filters = [],
+	collections = [],
 }) => {
 	return (
 		<form
@@ -61,7 +66,9 @@ const ProductPageForm: NextPage<ProductPageFormProps> = ({
 				/>
 				<Select
 					title='Filter'
-					options={['1', '2', '3']}
+					options={filters.map((item) => {
+						return { name: item, value: item };
+					})}
 					register={register('filter', {
 						required: true,
 					})}
@@ -98,8 +105,13 @@ const ProductPageForm: NextPage<ProductPageFormProps> = ({
 				/>
 				<Select
 					title='Collection Name'
-					options={['1', '2', '3']}
-					register={register('collectionName')}
+					options={[
+						{ name: 'null', value: '' },
+						...collections.map((item) => {
+							return { name: item.name, value: item._id };
+						}),
+					]}
+					register={register('collectionCode')}
 				/>
 				<div className='grow'></div>
 			</div>

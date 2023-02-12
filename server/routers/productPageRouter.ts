@@ -16,6 +16,11 @@ productPageRouter.put(
 	authMiddleware(['ADMIN']),
 	productPageController.updateProductPage
 );
+productPageRouter.delete(
+	'/productPage',
+	authMiddleware(['ADMIN']),
+	productPageController.deleteProductPage
+);
 
 productPageRouter.get('/productPage', productPageController.getProductPage);
 productPageRouter.get('/products', productPageController.getProducts);

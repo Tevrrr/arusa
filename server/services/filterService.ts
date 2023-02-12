@@ -7,9 +7,9 @@ import { Request, Response } from 'express';
 import Filter from '../models/Filter';
 
 class filterService {
-	async getFilters(): Promise<IFilter[]> {
+	async getFilters(): Promise<string[]> {
 		const filters = await Filter.find({});
-		return filters;
+		return filters.map(item => item.value);
 	}
 	async addFilter(value: string): Promise<IFilter> {
 		const newFilter = await Filter.create({

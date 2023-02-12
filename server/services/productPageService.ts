@@ -2,6 +2,7 @@ import { IProductPage } from './../../common/types/product';
 import ProductPage from '../models/ProductPage';
 import { IProduct } from '../../common/types/product';
 import { SortBy } from '../../common/helpers/sortBy';
+import Collection from '../models/Collection';
 
 interface IQuery {
 	sortBy?: string;
@@ -14,6 +15,10 @@ interface IQuery {
 class productPageService {
 	async getProductPage(id: string): Promise<IProductPage | null> {
 		const productPage = await ProductPage.findById(id);
+		return productPage;
+	}
+	async deleteProductPage(id: string): Promise<IProductPage | null> {
+		const productPage = await ProductPage.findByIdAndDelete(id);
 		return productPage;
 	}
 	async getProducts(
@@ -48,24 +53,41 @@ class productPageService {
 				collectionCode: item.collectionCode,
 				collectionName: item.collectionName,
 			};
-        });
+		});
 
 		const countProductsFound = await ProductPage.find(
 			searchOptions()
 		).countDocuments();
 		return { products, countProductsFound };
 	}
-	async addProductPage(newPage: {}): Promise<IProductPage> {
-		const page = await ProductPage.create(newPage);
+    async addProductPage(newPage: {}, collectionCode?: string): Promise<IProductPage> {
+        let page: IProductPage;
+        if (collectionCode) {
+            const collection = await Collection.findById(collectionCode)
+            page = await ProductPage.create({
+				...newPage,
+				sellability: 0,
+                collectionCode,
+                collectionName: collection?.name
+			});
+        }
+        else {
+            page = await ProductPage.create({
+				...newPage,
+				sellability: 0,
+			});
+        }
+		
 		return page;
 	}
-	async updateProductPage(id:string,page:IProductPage): Promise<IProduct | null> {
-		const updatedOrderForm = await ProductPage.findByIdAndUpdate(
-			id,
-			page,
-			{ new: true }
-        );
-        return updatedOrderForm;
+	async updateProductPage(
+		id: string,
+		page: IProductPage
+	): Promise<IProduct | null> {
+		const updatedOrderForm = await ProductPage.findByIdAndUpdate(id, page, {
+			new: true,
+		});
+		return updatedOrderForm;
 	}
 }
 

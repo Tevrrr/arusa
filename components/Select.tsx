@@ -4,21 +4,21 @@ import uniqid from 'uniqid';
 
 
 interface SelectProps {
-    title: string;
-	options: string[];
+	title: string;
+	options: { name: string; value: string }[];
 	register?: UseFormRegisterReturn;
 };
 
 const Select: NextPage<SelectProps> = ({title, options, register }) => {
     return (
 		<select className='p-4 border rounded-lg border-oyster cursor-pointer' {...register}>
-			<option disabled selected>
+			<option value={undefined} disabled selected>
 				{title}
 			</option>
 			{options.map((item) => {
 				return (
-					<option value={item} key={uniqid(item)}>
-						{item}
+					<option value={item.value} key={uniqid(item.name)}>
+						{item.name}
 					</option>
 				);
 			})}

@@ -1,18 +1,19 @@
 /** @format */
 
+import axios from "axios";
 import { ICollection } from "../../common/types/collection";
-import { collectionsJSON } from "../data/collections";
 
-export const getCollections = async (
-	filter: string,
-	props?: (value: ICollection[]) => void
-): Promise<ICollection[]> => {
-	const collections: ICollection[] = await JSON.parse(collectionsJSON);
 
-	const filteredCollections: ICollection[] = collections.filter((item) => {
-		return filter === item.filter;
-	});
+export const getCollection = async (): Promise<ICollection | null> => {
+    try {
+        const URL = process.env.NEXT_PUBLIC_URL || 'http://localhost:3000';
 
-	if (props) props(filteredCollections);
-	return filteredCollections;
-};
+        const response = await axios.get(`${URL}/api/collection`);
+        return response.data;
+
+    } catch (error) {
+        console.log(error)
+        return null
+    }
+}
+	

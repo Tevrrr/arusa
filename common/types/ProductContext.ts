@@ -7,6 +7,7 @@ export interface IProductProvider {
 	productQuantity: number;
 	countProductsFound: number;
 	addNextProducts: () => void;
+	updateProducts: () => void;
 	setSearchQuery: (value: string) => void;
 	sortByToggle: (value: string) => void;
 	filterToggle: (value: string) => void;

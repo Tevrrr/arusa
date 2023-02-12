@@ -17,6 +17,26 @@ class productPageController {
 			}
 
             const productPage = await productPageService.getProductPage(pageID);
+            if (!productPage) {
+                return res.status(400).send('Page not found!');
+            }
+            res.status(200).json(productPage);
+		} catch (error) {
+			console.log(error);
+			res.status(400).send('get productPage error');
+		}
+	}
+	async deleteProductPage(req: Request, res: Response) {
+		try {
+			const { pageID } = req.query;
+			if (!pageID || typeof pageID !== 'string') {
+				return res.status(400).send('You need to specify the page ID!');
+			}
+
+            const productPage = await productPageService.deleteProductPage(pageID);
+            if (!productPage) {
+				return res.status(400).send('Page not found!');
+			}
 			res.status(200).json(productPage);
 		} catch (error) {
 			console.log(error);
@@ -27,9 +47,9 @@ class productPageController {
 		try {
 			const params = req.query;
 
-            const result = await productPageService.getProducts(params);
+			const result = await productPageService.getProducts(params);
 
-            res.status(200).json(result);
+			res.status(200).json(result);
 		} catch (error) {
 			console.log(error);
 			res.status(400).send('get product error');
@@ -43,9 +63,7 @@ class productPageController {
 				images,
 				title,
 				price,
-				sellability,
 				collectionCode,
-				collectionName,
 				material,
 				description,
 				fullDescription,
@@ -53,22 +71,22 @@ class productPageController {
 				model,
 				fabricOrigin,
 			} = req.body;
-			const page = await productPageService.addProductPage({
-				filter,
-				mainImage,
-				images,
-				title,
-				price,
-				sellability,
-				collectionCode,
-				collectionName,
-				material,
-				description,
-				fullDescription,
-				dimensions,
-				model,
-				fabricOrigin,
-			});
+			const page = await productPageService.addProductPage(
+				{
+					filter,
+					mainImage,
+					images,
+					title,
+					price,
+					material,
+					description,
+					fullDescription,
+					dimensions,
+					model,
+					fabricOrigin,
+				},
+				collectionCode || ''
+			);
 			res.status(200).json(page);
 		} catch (error) {
 			console.log(error);
@@ -77,12 +95,16 @@ class productPageController {
 	}
 	async updateProductPage(req: Request, res: Response) {
 		try {
-			const { page } = req.body;
+			const {page}  = req.body;
 			if (!page) {
 				return res.status(400).send('You must specify the order form!');
-			}
-			const result = await productPageService.updateProductPage(page.id, page);
-            if (!result) {
+            }
+            console.log(page);
+			const result = await productPageService.updateProductPage(
+				page._id,
+				page
+			);
+			if (!result) {
 				return res.status(400).send('Page not found!');
 			}
 			res.status(200).json(result);
