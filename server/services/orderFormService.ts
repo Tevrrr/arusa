@@ -14,7 +14,7 @@ class orderFormService {
 	}
 	async addOrderForm(
 		clientData: IClientData,
-		products: IProduct,
+		products: {id:string, count:number},
 		finished: boolean
 	): Promise<IOrderForm> {
 		const newOrderForm = await OrderForm.create({

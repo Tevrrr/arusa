@@ -33,7 +33,7 @@ export const OrderFormType = {
 	products: {
 		type: [
 			{
-				id: { type: String, required: true },
+				_id: { type: String, required: true },
 				count: { type: Number, required: true },
 			},
 		],

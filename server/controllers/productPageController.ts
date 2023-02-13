@@ -6,111 +6,105 @@ import { IProduct } from '../../common/types/product';
 import { SortBy } from '../../common/helpers/sortBy';
 import productPageService from '../services/productPageService';
 
-
-
 class productPageController {
 	async getProductPage(req: Request, res: Response) {
 		try {
 			const { pageID } = req.query;
 			if (!pageID || typeof pageID !== 'string') {
-				return res.status(400).send('You need to specify the page ID!');
+				return res
+					.status(400)
+					.json({ message: 'You need to specify the page ID!' });
 			}
 
-            const productPage = await productPageService.getProductPage(pageID);
-            if (!productPage) {
-                return res.status(400).send('Page not found!');
-            }
-            res.status(200).json(productPage);
+			const { productPage, errorMessage } =
+				await productPageService.getProductPage(pageID);
+			if (errorMessage) {
+				return res.status(400).json({ message: errorMessage });
+			}
+
+			res.status(200).json(productPage);
 		} catch (error) {
 			console.log(error);
-			res.status(400).send('get productPage error');
+			res.status(400).json({ message: 'get productPage error' });
 		}
 	}
 	async deleteProductPage(req: Request, res: Response) {
 		try {
 			const { pageID } = req.query;
 			if (!pageID || typeof pageID !== 'string') {
-				return res.status(400).send('You need to specify the page ID!');
+				return res
+					.status(400)
+					.json({ message: 'You need to specify the page ID!' });
 			}
 
-            const productPage = await productPageService.deleteProductPage(pageID);
-            if (!productPage) {
-				return res.status(400).send('Page not found!');
+			const { productPage, errorMessage } =
+				await productPageService.deleteProductPage(pageID);
+
+			if (errorMessage) {
+				return res.status(400).json({ message: errorMessage });
 			}
+
 			res.status(200).json(productPage);
 		} catch (error) {
 			console.log(error);
-			res.status(400).send('get productPage error');
+            res.status(400).json({ message: 'get productPage error' });
 		}
 	}
 	async getProducts(req: Request, res: Response) {
 		try {
 			const params = req.query;
 
-			const result = await productPageService.getProducts(params);
-
-			res.status(200).json(result);
+			const { products,countProductsFound, errorMessage } =
+				await productPageService.getProducts(params);
+			if (errorMessage) {
+				return res.status(400).json({ message: errorMessage });
+			}
+			res.status(200).json({ products, countProductsFound });
 		} catch (error) {
 			console.log(error);
-			res.status(400).send('get product error');
+            res.status(400).json({ message: 'get product error' });
 		}
 	}
 	async addProductPage(req: Request, res: Response) {
 		try {
-			const {
-				filter,
-				mainImage,
-				images,
-				title,
-				price,
-				collectionCode,
-				material,
-				description,
-				fullDescription,
-				dimensions,
-				model,
-				fabricOrigin,
-			} = req.body;
-			const page = await productPageService.addProductPage(
-				{
-					filter,
-					mainImage,
-					images,
-					title,
-					price,
-					material,
-					description,
-					fullDescription,
-					dimensions,
-					model,
-					fabricOrigin,
-				},
-				collectionCode || ''
-			);
-			res.status(200).json(page);
+			const { page: JSONpage } = req.body;
+			const page = JSON.parse(JSONpage);
+			const {productPage, errorMessage} = await productPageService.addProductPage(
+				page,
+				req.files || null,
+				page?.collectionCode
+            );
+            if (errorMessage) {
+				return res.status(400).json({ message: errorMessage });
+			}
+			res.status(200).json(productPage);
 		} catch (error) {
 			console.log(error);
-			res.status(400).send('add productPage error');
+            res.status(400).json({ message: 'add productPage error' });
 		}
 	}
 	async updateProductPage(req: Request, res: Response) {
 		try {
-			const {page}  = req.body;
-			if (!page) {
-				return res.status(400).send('You must specify the order form!');
+			const { page: JSONpage } = req.body;
+			if (!JSONpage) {
+				return res
+					.status(400)
+					.json({ message: 'You must specify the order form!' });
             }
-            console.log(page);
-			const result = await productPageService.updateProductPage(
-				page._id,
-				page
-			);
-			if (!result) {
-				return res.status(400).send('Page not found!');
+			const page = JSON.parse(JSONpage);
+			const { productPage, errorMessage } =
+				await productPageService.updateProductPage(
+					page._id,
+					page,
+					req.files
+				);
+			if (errorMessage) {
+				return res.status(400).json({ message: errorMessage });
 			}
-			res.status(200).json(result);
+			res.status(200).json(productPage);
 		} catch (error) {
 			console.log(error);
-			res.status(400).send('put order forms error');
+			res.status(400).json({ message: 'put order forms error' });
 		}
 	}
 }

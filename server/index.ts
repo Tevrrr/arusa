@@ -9,6 +9,7 @@ import orderFormRouter from './routers/orderFormRouter';
 import productPageRouter from './routers/productPageRouter';
 import filterRouter from './routers/filterRouter';
 import collectionRouter from './routers/collectionRouter';
+import fileUpload from 'express-fileupload';
 
 dotenv.config();
 
@@ -31,6 +32,7 @@ const handle   = app.getRequestHandler();
 app.prepare().then(async () => {
 	const server = express();
     server.use(express.json());
+    server.use(fileUpload({}));
     server.use('/api',      productPageRouter);
     server.use('/api',      collectionRouter);
     server.use('/api',      filterRouter);

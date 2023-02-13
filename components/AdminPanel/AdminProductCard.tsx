@@ -19,13 +19,13 @@ const AdminProductCard: NextPage<AdminProductCardProps> = ({
     imageClassName = '',
     data
 }) => {
-    const { title, price, id, mainImage, sellability, collectionName, collectionCode, filter } = data;
+    const { title, price, _id, mainImage, sellability, collectionName, collectionCode, filter } = data;
     const { updateProducts } = useContext(ProductContext);
     const { token } = useContext(UserContext);
 
     const deletePage = async () => {
         if( !token) return
-        const page = await deleteProductPage(id, token);
+        const page = await deleteProductPage(_id, token);
         updateProducts();
         if (page) {
             updateProducts();
@@ -47,7 +47,7 @@ const AdminProductCard: NextPage<AdminProductCardProps> = ({
 			<div className='flex flex-col justify-between'>
 				<div className='flex flex-col gap-2'>
 					<p className='TextRegular uppercase'>{title}</p>
-					<p className='TextRegular'>ID: {id}</p>
+					<p className='TextRegular'>ID: {_id}</p>
 					<p className='TextRegular'>${price}</p>
 					<p className='TextRegular'>Sellability: {sellability}</p>
 					<p className='TextRegular'>
@@ -59,7 +59,7 @@ const AdminProductCard: NextPage<AdminProductCardProps> = ({
 					<Link
 						href={{
 							pathname: '/shop/[id]',
-							query: { id },
+							query: { id: _id },
 						}}>
 						<button className='OutlinedBtn normal-case'>
 							Open <AiFillFileText size={25} />
@@ -68,7 +68,7 @@ const AdminProductCard: NextPage<AdminProductCardProps> = ({
 					<Link
 						href={{
 							pathname: '/adminPanel/productPages/[id]',
-							query: { id },
+							query: { id: _id },
 						}}>
 						<button className='PrimaryBtn normal-case'>
 							Edit <AiFillEdit size={25} />

@@ -2,7 +2,7 @@
 
 import type { NextPage, NextPageContext } from 'next';
 import { IProductPage } from '../../../common/types/product';
-import { useForm } from 'react-hook-form';
+import { FormProvider, useForm } from 'react-hook-form';
 import MainAdminContainer from '../../../components/AdminPanel/MainAdminContainer';
 import ProductPageForm from '../../../components/AdminPanel/ProductPageForm';
 import { getProductPage } from '../../../service';
@@ -11,6 +11,8 @@ import { UserContext } from '../../../common/UserProvider';
 import { getFilters } from '../../../service/getters/filter';
 import { ICollection } from '../../../common/types/collection';
 import { putProductPage } from '../../../service/put/productPage';
+import { register } from 'ts-node';
+import { IProductPageForm } from '../../../common/types/IProductPageForm';
 
 interface UpdatePageProps {
 	data: IProductPage;
@@ -19,24 +21,28 @@ interface UpdatePageProps {
 }
 
 const UpdatePage: NextPage<UpdatePageProps> = ({ data, filters }) => {
-	const { register, handleSubmit } = useForm<IProductPage>({
-		defaultValues: data,
-	});
+        const methods = useForm<IProductPageForm>({
+			defaultValues: data,
+		});
+		const { handleSubmit, setValue } = methods;
 	const { token } = useContext(UserContext);
 
 	const onSubmit = handleSubmit(async (data) => {
 		if (!token) return;
-		const newProductPage = await putProductPage({ ...data }, token);
+		const newProductPage = await putProductPage({ ...data }, token, data.mainImageFile[0], data.imageFiles);
 		console.log(newProductPage);
 	});
 
 	return (
-		<MainAdminContainer title='update product page'>
-			<ProductPageForm
+        <MainAdminContainer title='update product page'>
+            <FormProvider {...methods}>
+                <ProductPageForm
+                requiredImages={false}
 				filters={filters}
 				onSubmit={onSubmit}
-				register={register}
 			/>
+            </FormProvider>
+			
 		</MainAdminContainer>
 	);
 };

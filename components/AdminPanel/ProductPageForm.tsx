@@ -1,29 +1,30 @@
 /** @format */
 
 import type { NextPage } from 'next';
-import { UseFormRegister } from 'react-hook-form';
-import { IProductPage } from '../../common/types/product';
+import { useFormContext } from 'react-hook-form';
 import Input from '../Input';
 import Select from '../Select';
 import Textarea from '../Textarea';
 import { BaseSyntheticEvent } from 'react';
 import { ICollection } from '../../common/types/collection';
 
+
 interface ProductPageFormProps {
 	filters?: string[];
 	collections?: ICollection[];
-	register: UseFormRegister<IProductPage>;
+	requiredImages?: boolean;
 	onSubmit: (
 		e?: BaseSyntheticEvent<object, any, any> | undefined
 	) => Promise<void>;
 }
 
 const ProductPageForm: NextPage<ProductPageFormProps> = ({
-	register,
 	onSubmit,
 	filters = [],
 	collections = [],
+	requiredImages = true,
 }) => {
+	const { register } = useFormContext();
 	return (
 		<form
 			className=' mt-20 mb-6 mx-auto max-w-3xl w-full flex flex-wrap gap-4 p-4 border border-oyster rounded-lg'
@@ -106,12 +107,27 @@ const ProductPageForm: NextPage<ProductPageFormProps> = ({
 				<Select
 					title='Collection Name'
 					options={[
-						{ name: 'null', value: '' },
+						{ name: 'none', value: '' },
 						...collections.map((item) => {
 							return { name: item.name, value: item._id };
 						}),
 					]}
 					register={register('collectionCode')}
+				/>
+				<input
+					type='file'
+					accept='image/png, image/jpeg'
+					{...register('mainImageFile', {
+						required: requiredImages,
+					})}
+				/>
+				<input
+					type='file'
+					accept='image/png, image/jpeg'
+					multiple
+					{...register('imageFiles', {
+						required: requiredImages,
+					})}
 				/>
 				<div className='grow'></div>
 			</div>
@@ -130,6 +146,9 @@ const ProductPageForm: NextPage<ProductPageFormProps> = ({
 					className=' w-full p-4 border border-oyster rounded-lg '
 					register={register('fullDescription')}
 				/>
+				<div className='flex w-full'>
+					
+				</div>
 			</div>
 			<button type='submit' className='SecondaryBtn w-full'>
 				Add page

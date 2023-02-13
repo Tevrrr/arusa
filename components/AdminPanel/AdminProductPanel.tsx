@@ -8,17 +8,14 @@ import { AiOutlineCloudDownload } from 'react-icons/ai';
 import AdminProductCard from './AdminProductCard';
 
 
-interface AdminProductPanelProps {
-	data?: IProduct[];
-}
 
-const AdminProductPanel: NextPage<AdminProductPanelProps> = ({ data }) => {
+const AdminProductPanel: NextPage = () => {
 	const { products, addNextProducts, countProductsFound, productQuantity } =
 		useContext(ProductContext);
     return (
 		<div className=' max-w-screen-xl w-full flex flex-wrap justify-between'>
 			<div className='w-full flex flex-wrap justify-between'>
-				{(data || products).map((item) => {
+				{products.map((item) => {
 					return (
 						<AdminProductCard
 							className=' '

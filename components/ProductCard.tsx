@@ -16,7 +16,7 @@ const ProductCard: NextPage<ProductCardProps> = ({
     imageClassName = '',
     data
 }) => {
-    const { title, price, id, mainImage, sellability } = data;
+    const { title, price, _id, mainImage, sellability } = data;
 
 
 
@@ -26,7 +26,7 @@ const ProductCard: NextPage<ProductCardProps> = ({
 		<Link
 			href={{
 				pathname: '/shop/[id]',
-				query: { id },
+				query: { id:_id },
 			}}
 			className={`cursor-pointer flex flex-col grow p-2 box-border
                         border-b odd:border-r border-oyster
