@@ -10,9 +10,9 @@ const initialState: IBagContext = {
 	count: 0,
 	totalPrice: 0,
 	addProduct: (product: IProduct) => {},
-	removeProduct: (id: number) => {},
-	incrementProductCount: (id: number) => {},
-	decrementProductCount: (id: number) => {},
+	removeProduct: (id: string) => {},
+	incrementProductCount: (id: string) => {},
+	decrementProductCount: (id: string) => {},
 	emptyBag: () => {},
 };
 
@@ -37,31 +37,31 @@ const BagProvider: NextPage<BagProviderProps> = ({ children }) => {
 	}, [products]);
 
 	const addProduct = (product: IProduct) => {
-		if (products.find((item) => product.id === item.id)) return;
+		if (products.find((item) => product._id === item._id)) return;
 		setProducts([...products, { ...product, count: 1 }]);
 	};
 
-	const removeProduct = (id: number) => {
-		setProducts(products.filter((item) => item.id !== id));
+	const removeProduct = (id: string) => {
+		setProducts(products.filter((item) => item._id !== id));
 	};
 
-	const incrementProductCount = (id: number) => {
+	const incrementProductCount = (id: string) => {
 		setProducts(
 			products.map((item) => {
-				if (item.id !== id) return item;
+				if (item._id !== id) return item;
 				return { ...item, count: item.count + 1 };
 			})
 		);
 	};
 
-	const decrementProductCount = (id: number) => {
+	const decrementProductCount = (id: string) => {
 		setProducts(
 			products.map((item) => {
-				if (item.id !== id) return item;
+				if (item._id !== id) return item;
 				return { ...item, count: item.count - 1 };
 			})
 		);
-    };
+	};
     const emptyBag = () => {
         setProducts([])
     }

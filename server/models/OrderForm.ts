@@ -18,6 +18,7 @@ export interface IOrderForm {
 	clientData: IClientData;
 	products: IProduct[];
 	finished: boolean;
+	date: Date;
 }
 
 export const OrderFormType = {
@@ -39,7 +40,8 @@ export const OrderFormType = {
 		],
 		required: true,
 	},
-	finished: { type: Boolean, required: true },
+    finished: { type: Boolean, required: true },
+    date: {type: Date, require:true}
 };
 
 const OrderFormSchema = new mongoose.Schema<IOrderForm>(OrderFormType);

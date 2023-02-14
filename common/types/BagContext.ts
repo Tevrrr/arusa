@@ -4,10 +4,10 @@ export interface IBagContext {
 	count: number;
 	totalPrice: number;
 	addProduct: (product: IProduct) => void;
-	removeProduct: (id: number) => void;
-	incrementProductCount: (id: number) => void;
-    decrementProductCount: (id: number) => void;
-    emptyBag: () => void;
+	removeProduct: (id: string) => void;
+	incrementProductCount: (id: string) => void;
+	decrementProductCount: (id: string) => void;
+	emptyBag: () => void;
 }
 export interface IBagItem extends IProduct {
     count: number;

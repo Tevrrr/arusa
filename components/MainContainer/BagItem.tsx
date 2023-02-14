@@ -16,13 +16,13 @@ interface BagItemProps {
 const BagItem: NextPage<BagItemProps> = ({ product }) => {
 	const { incrementProductCount, decrementProductCount, removeProduct } =
 		useContext(BagContext);
-	const { title, price, count, id, mainImage } = product;
+	const { title, price, count, _id, mainImage } = product;
 
 	const handlerCount = (
-		handlerFunction: (id: number) => void
+		handlerFunction: (id: string) => void
 	): (() => void) => {
 		return () => {
-			handlerFunction(id);
+			handlerFunction(_id);
 		};
 	};
 	return (
@@ -30,7 +30,7 @@ const BagItem: NextPage<BagItemProps> = ({ product }) => {
 			<div className=' absolute top-0 right-0 z-10 border border-oyster rounded-full p-1 transition-all duration-75 hover:bg-oyster cursor-pointer'>
 				<AiOutlineClose
 					className=' text-xl cursor-pointer'
-					onClick={() => removeProduct(id)}
+					onClick={() => removeProduct(_id)}
 				/>
 			</div>
 			<div className=' relative w-32 h-32 border border-oyster overflow-hidden rounded-xl'>

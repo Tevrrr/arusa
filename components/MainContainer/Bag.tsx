@@ -18,7 +18,7 @@ const Bag: NextPage<BagProps> = () => {
 
 			<div className=' grow flex flex-col gap-2 overflow-y-auto my-3'>
 				{products.map((item) => {
-					return <BagItem product={item} key={item.id} />;
+					return <BagItem product={item} key={item._id} />;
 				})}
 			</div>
 			<div className='flex justify-between items-center border-y border-oyster py-3'>
