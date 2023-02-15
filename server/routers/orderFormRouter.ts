@@ -8,9 +8,14 @@ const orderFormRouter = Router();
 
 orderFormRouter.post('/orderForm', orderFormController.addOrderForm);
 orderFormRouter.get(
-	'/orderForm',
+	'/orderForms',
 	authMiddleware(['ADMIN']),
 	orderFormController.getOrderForms
+);
+orderFormRouter.get(
+	'/orderForm',
+	authMiddleware(['ADMIN']),
+	orderFormController.getOrderForm
 );
 orderFormRouter.put(
 	'/orderForm',

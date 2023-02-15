@@ -47,14 +47,14 @@ class productPageController {
 			res.status(200).json(productPage);
 		} catch (error) {
 			console.log(error);
-            res.status(400).json({ message: 'get productPage error' });
+			res.status(400).json({ message: 'get productPage error' });
 		}
 	}
 	async getProducts(req: Request, res: Response) {
 		try {
 			const params = req.query;
 
-			const { products,countProductsFound, errorMessage } =
+			const { products, countProductsFound, errorMessage } =
 				await productPageService.getProducts(params);
 			if (errorMessage) {
 				return res.status(400).json({ message: errorMessage });
@@ -62,25 +62,43 @@ class productPageController {
 			res.status(200).json({ products, countProductsFound });
 		} catch (error) {
 			console.log(error);
-            res.status(400).json({ message: 'get product error' });
+			res.status(400).json({ message: 'get product error' });
+		}
+	}
+	async getProductsByIDs(req: Request, res: Response) {
+		try {
+			const { bag } = req.query;
+
+			const { products, countProductsFound, errorMessage } =
+				await productPageService.getProductsByIDs(
+					JSON.parse(bag?.toString() || '[]')
+				);
+			if (errorMessage) {
+				return res.status(400).json({ message: errorMessage });
+			}
+			res.status(200).json({ products, countProductsFound });
+		} catch (error) {
+			console.log(error);
+			res.status(400).json({ message: 'get product error' });
 		}
 	}
 	async addProductPage(req: Request, res: Response) {
 		try {
 			const { page: JSONpage } = req.body;
 			const page = JSON.parse(JSONpage);
-			const {productPage, errorMessage} = await productPageService.addProductPage(
-				page,
-				req.files || null,
-				page?.collectionCode
-            );
-            if (errorMessage) {
+			const { productPage, errorMessage } =
+				await productPageService.addProductPage(
+					page,
+					req.files || null,
+					page?.collectionCode
+				);
+			if (errorMessage) {
 				return res.status(400).json({ message: errorMessage });
 			}
 			res.status(200).json(productPage);
 		} catch (error) {
 			console.log(error);
-            res.status(400).json({ message: 'add productPage error' });
+			res.status(400).json({ message: 'add productPage error' });
 		}
 	}
 	async updateProductPage(req: Request, res: Response) {
@@ -90,7 +108,7 @@ class productPageController {
 				return res
 					.status(400)
 					.json({ message: 'You must specify the order form!' });
-            }
+			}
 			const page = JSON.parse(JSONpage);
 			const { productPage, errorMessage } =
 				await productPageService.updateProductPage(

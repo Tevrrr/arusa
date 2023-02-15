@@ -1,25 +1,9 @@
 /** @format */
 
 import mongoose from 'mongoose';
+import { IOrderForm } from '../../common/types/orderForm';
 
-export interface IClientData {
-	firstName: string;
-	lastName: string;
-	address: string;
-	phone: string;
-}
 
-export interface IProduct {
-	id: string;
-	count: number;
-}
-
-export interface IOrderForm {
-	clientData: IClientData;
-	products: IProduct[];
-	finished: boolean;
-	date: Date;
-}
 
 export const OrderFormType = {
 	clientData: {
@@ -41,7 +25,7 @@ export const OrderFormType = {
 		required: true,
 	},
     finished: { type: Boolean, required: true },
-    date: {type: Date, require:true}
+    date: {type: String, require:true}
 };
 
 const OrderFormSchema = new mongoose.Schema<IOrderForm>(OrderFormType);

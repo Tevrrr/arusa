@@ -1,8 +1,29 @@
-/** @format */
-
+import { IProductForm } from './../../common/types/orderForm';
+import { IBagItem } from './../../common/types/BagContext';
 import axios from 'axios';
 import { IProduct } from '../../common/types/product';
 import { productsJSON } from '../data/products';
+// /productsByIDs
+
+export const getProductsByIDs = async (
+	bag: IProductForm[],
+	props?: (value: IBagItem[]) => void
+): Promise<IBagItem[] | null> => {
+	try {
+		const URL = process.env.NEXT_PUBLIC_URL || 'http://localhost:3000';
+
+		const response = await axios.get(`${URL}/api/productsByIDs`, {
+			params: {
+				bag: JSON.stringify(bag),
+			},
+		});
+		if (props) props(response.data.products);
+		return response.data.products;
+	} catch (error) {
+		console.log(error);
+		return null;
+	}
+};
 
 export const getProductsByCollection = async (
 	code: string,
@@ -36,7 +57,8 @@ export const getProductsByFilter = async (
 				skip,
 			},
 		});
-		if (props) props(response.data.products, response.data.countProductsFound);
+		if (props)
+			props(response.data.products, response.data.countProductsFound);
 		return response.data.products;
 	} catch (error) {
 		console.log(error);
@@ -81,7 +103,7 @@ export const getTopProducts = async (
 		'Best selling',
 		props,
 		count
-    );
+	);
 
 	return products;
 };

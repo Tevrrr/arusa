@@ -1,5 +1,8 @@
 /** @format */
 
+import { IBagItem } from './../../common/types/BagContext';
+/** @format */
+
 import { IProductPage } from './../../common/types/product';
 import ProductPage from '../models/ProductPage';
 import { IProduct } from '../../common/types/product';
@@ -17,7 +20,7 @@ interface IQuery {
 }
 
 interface IProductPageResult {
-	products?: IProduct[];
+	products?: IProduct[] | IBagItem[] | (IBagItem | undefined)[];
 	productPage?: IProductPage;
 	countProductsFound?: number;
 	errorMessage?: string;
@@ -42,6 +45,47 @@ class productPageService {
 		});
 
 		return { productPage };
+	}
+	async getProductsByIDs(
+		params: { _id: string; count: number }[]
+	): Promise<IProductPageResult> {
+		try {
+			const productPages = await ProductPage.find({
+				_id: { $in: params.map((item) => item._id) },
+			});
+			console.log(params);
+			console.log(productPages);
+
+			let products: IBagItem[] = [];
+
+			params.forEach((item) => {
+				const productPage = productPages.find(
+                    (page) => {
+                        return page._id.toString() === item._id;
+                    }
+				);
+				if (productPage)
+				products.push({
+					_id: productPage._id,
+					filter: productPage.filter,
+					mainImage: productPage.mainImage,
+					title: productPage.title,
+					price: productPage.price,
+					sellability: productPage.sellability,
+					collectionCode: productPage.collectionCode,
+					collectionName: productPage.collectionName,
+					count: item.count,
+				});
+			});
+			//@ts-ignore
+			console.log(products);
+
+			//@ts-ignore
+			return { products };
+		} catch (error) {
+			console.log(error);
+			return { errorMessage: 'Get products error!' };
+		}
 	}
 	async getProducts(params: IQuery): Promise<IProductPageResult> {
 		const searchOptions = (): {} => {
@@ -199,7 +243,7 @@ class productPageService {
 				new: true,
 			}
 		);
-        if (!updateProductPage) {
+		if (!updateProductPage) {
 			return { errorMessage: 'Page not found!' };
 		}
 		return { productPage: updateProductPage };
