@@ -5,7 +5,7 @@ import { IProduct } from '../../common/types/product';
 import { productsJSON } from '../data/products';
 // /productsByIDs
 
-export const getProductsByIDs = async (
+export const getProductsBag = async (
 	bag: IProductForm[],
 	props?: (value: IBagItem[]) => void
 ): Promise<IBagItem[] | null> => {
@@ -25,19 +25,27 @@ export const getProductsByIDs = async (
 	}
 };
 
-export const getProductsByCollection = async (
-	code: string,
-	props?: (value: IProduct[]) => void
-): Promise<IProduct[]> => {
-	const products: IProduct[] = await JSON.parse(productsJSON);
+export const getProductsByIDs = async (
+	productIDs: string[],
+	props?: (value: IBagItem[]) => void
+): Promise<IProduct[] | null> => {
+	try {
+		const URL = process.env.NEXT_PUBLIC_URL || 'http://localhost:3000';
 
-	const collectionProducts: IProduct[] = products.filter((item) => {
-		return code === item.collectionCode;
-	});
-
-	if (props) props(collectionProducts);
-	return collectionProducts;
+		const response = await axios.get(`${URL}/api/productsByIDs`, {
+			params: {
+				productIDs: JSON.stringify(productIDs),
+			},
+		});
+		if (props) props(response.data.products);
+		return response.data.products;
+	} catch (error) {
+		console.log(error);
+		return null;
+	}
 };
+
+
 
 export const getProductsByFilter = async (
 	filters: string[],

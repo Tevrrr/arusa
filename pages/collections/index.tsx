@@ -15,8 +15,8 @@ const Collections: NextPage = () => {
 							<CollectionCard
 								key={i}
 								href={{
-									pathname: '/collections/[collectionName]',
-									query: { collectionName: item },
+									pathname: '/collections/[collectionFilter]',
+									query: { collectionFilter: item },
 								}}
 								title={item}
 								image={`/collectionGroupsPNG/${item}.png`}

@@ -24,6 +24,7 @@ productPageRouter.delete(
 
 productPageRouter.get('/productPage', productPageController.getProductPage);
 productPageRouter.get('/products', productPageController.getProducts);
+productPageRouter.get('/productsBag', productPageController.getProductsBag);
 productPageRouter.get('/productsByIDs', productPageController.getProductsByIDs);
 
 export default productPageRouter;

@@ -65,17 +65,36 @@ class productPageController {
 			res.status(400).json({ message: 'get product error' });
 		}
 	}
-	async getProductsByIDs(req: Request, res: Response) {
+	async getProductsBag(req: Request, res: Response) {
 		try {
 			const { bag } = req.query;
 
 			const { products, countProductsFound, errorMessage } =
-				await productPageService.getProductsByIDs(
+				await productPageService.getProductsBag(
 					JSON.parse(bag?.toString() || '[]')
 				);
 			if (errorMessage) {
 				return res.status(400).json({ message: errorMessage });
 			}
+
+			res.status(200).json({ products, countProductsFound });
+		} catch (error) {
+			console.log(error);
+			res.status(400).json({ message: 'get product error' });
+		}
+	}
+	async getProductsByIDs(req: Request, res: Response) {
+		try {
+			const { productIDs } = req.query;
+
+			const { products, countProductsFound, errorMessage } =
+				await productPageService.getProductsByIDs(
+					JSON.parse(productIDs?.toString() || '[]')
+				);
+			if (errorMessage) {
+				return res.status(400).json({ message: errorMessage });
+			}
+
 			res.status(200).json({ products, countProductsFound });
 		} catch (error) {
 			console.log(error);
@@ -89,8 +108,7 @@ class productPageController {
 			const { productPage, errorMessage } =
 				await productPageService.addProductPage(
 					page,
-					req.files || null,
-					page?.collectionCode
+					req.files || null
 				);
 			if (errorMessage) {
 				return res.status(400).json({ message: errorMessage });

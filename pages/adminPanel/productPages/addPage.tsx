@@ -31,7 +31,6 @@ const AddPage: NextPage<AddPageProps> = ({filters, collections}) => {
 
 		setValue('dimensions', page.dimensions);
 		setValue('fabricOrigin', page.fabricOrigin);
-		setValue('collectionCode', page.collectionCode);
 		setValue('filter', page.filter);
 		setValue('material', page.material);
 		setValue('description', page.description);
@@ -48,7 +47,8 @@ const AddPage: NextPage<AddPageProps> = ({filters, collections}) => {
 			{ ...data },
             token || '',
             data.mainImageFile[0],
-            data.imageFiles
+            data.imageFiles,
+            data.collectionCode
 		);
 		console.log(newProductPage);
 	});

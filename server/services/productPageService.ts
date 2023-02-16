@@ -46,41 +46,67 @@ class productPageService {
 
 		return { productPage };
 	}
-	async getProductsByIDs(
+	async getProductsBag(
 		params: { _id: string; count: number }[]
 	): Promise<IProductPageResult> {
 		try {
 			const productPages = await ProductPage.find({
 				_id: { $in: params.map((item) => item._id) },
 			});
-			console.log(params);
 			console.log(productPages);
-
+			console.log(params);
 			let products: IBagItem[] = [];
 
 			params.forEach((item) => {
-				const productPage = productPages.find(
-                    (page) => {
-                        return page._id.toString() === item._id;
-                    }
-				);
-				if (productPage)
-				products.push({
-					_id: productPage._id,
-					filter: productPage.filter,
-					mainImage: productPage.mainImage,
-					title: productPage.title,
-					price: productPage.price,
-					sellability: productPage.sellability,
-					collectionCode: productPage.collectionCode,
-					collectionName: productPage.collectionName,
-					count: item.count,
+				const productPage = productPages.find((page) => {
+					return page._id.toString() === item._id;
 				});
+				if (productPage)
+					products.push({
+						_id: productPage._id,
+						filter: productPage.filter,
+						mainImage: productPage.mainImage,
+						title: productPage.title,
+						price: productPage.price,
+						sellability: productPage.sellability,
+						count: item.count,
+					});
 			});
-			//@ts-ignore
-			console.log(products);
 
-			//@ts-ignore
+			console.log(products);
+			return { products };
+		} catch (error) {
+			console.log(error);
+			return { errorMessage: 'Get products error!' };
+		}
+	}
+	async getProductsByIDs(
+		params: string[]
+	): Promise<IProductPageResult> {
+		try {
+			const productPages = await ProductPage.find({
+				_id: { $in: params },
+			});
+			console.log('------------------------------------------');
+			console.log(params);
+			let products: IProduct[] = [];
+
+			params.forEach((item) => {
+				const productPage = productPages.find((page) => {
+					return page._id.toString() === item;
+				});
+				if (productPage)
+					products.push({
+						_id: productPage._id,
+						filter: productPage.filter,
+						mainImage: productPage.mainImage,
+						title: productPage.title,
+						price: productPage.price,
+						sellability: productPage.sellability
+					});
+			});
+
+			console.log(products);
 			return { products };
 		} catch (error) {
 			console.log(error);
@@ -115,8 +141,6 @@ class productPageService {
 					title: item.title,
 					price: item.price,
 					sellability: item.sellability,
-					collectionCode: item.collectionCode,
-					collectionName: item.collectionName,
 				};
 			});
 
@@ -131,8 +155,7 @@ class productPageService {
 	}
 	async addProductPage(
 		newPage: any,
-		pictures: FileArray | null,
-		collectionCode?: string
+		pictures: FileArray | null
 	): Promise<IProductPageResult> {
 		try {
 			let mainImage: string = '';
@@ -167,25 +190,12 @@ class productPageService {
 			}
 			images = filePath;
 
-			let page: IProductPage;
-			if (collectionCode) {
-				const collection = await Collection.findById(collectionCode);
-				page = await ProductPage.create({
-					...newPage,
-					mainImage,
-					images,
-					sellability: 0,
-					collectionCode,
-					collectionName: collection?.name,
-				});
-			} else {
-				page = await ProductPage.create({
-					...newPage,
-					mainImage,
-					images,
-					sellability: 0,
-				});
-			}
+			const page = await ProductPage.create({
+				...newPage,
+				mainImage,
+				images,
+				sellability: 0,
+			});
 
 			return { productPage: page };
 		} catch (error) {

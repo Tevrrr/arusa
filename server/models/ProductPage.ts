@@ -27,8 +27,6 @@ export const ProductPageType = {
 	},
 
 	fullDescription: String,
-	collectionCode: String,
-	collectionName: String,
 };
 
 const ProductPageSchema = new mongoose.Schema<IProductPage>(ProductPageType);

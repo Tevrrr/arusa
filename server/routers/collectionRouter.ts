@@ -16,9 +16,16 @@ collectionRouter.put(
 	authMiddleware(['ADMIN']),
 	collectionController.updateCollection
 );
+collectionRouter.put(
+	'/productInCollection',
+	authMiddleware(['ADMIN']),
+	collectionController.addProductInCollection
+);
+
 collectionRouter.get(
-	'/collection',
+	'/collections',
 	collectionController.getCollections
 );
+collectionRouter.get('/collection', collectionController.getCollection);
 
 export default collectionRouter;

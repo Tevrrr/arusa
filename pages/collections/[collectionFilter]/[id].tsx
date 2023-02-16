@@ -5,6 +5,8 @@ import MainContainer from '../../../components/MainContainer/MainContainer';
 import { getProductsByCollection } from '../../../service';
 import { IProduct } from '../../../common/types/product';
 import ProductCard from '../../../components/ProductCard';
+import { getCollectionByID } from '../../../service/getters/collection';
+import { getProductsByIDs } from '../../../service/getters/product';
 
 interface CollectionPageProps {
 	products: IProduct[] | undefined;
@@ -17,7 +19,7 @@ const CollectionPage: NextPage<CollectionPageProps> = ({ products }) => {
 				{products ? (
 					products.map((item) => (
 						<ProductCard
-							key={item.id}
+							key={item._id}
 							data={item}
 							className=' lg:!border-0 max-w-[50%] lg:max-w-[33.33%] xl:max-w-[25%] '
 						/>
@@ -38,7 +40,8 @@ interface PostNextPageContext extends NextPageContext {
 }
 
 export const getServerSideProps = async ({ query }: PostNextPageContext) => {
-	const products = await getProductsByCollection(query.id);
+	const collection = await getCollectionByID(query.id);
+	const products = await getProductsByIDs(collection?.products || []);
 	return {
 		props: { products },
 	};

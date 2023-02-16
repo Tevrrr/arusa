@@ -6,8 +6,6 @@ export interface IProduct {
 	title: string;
 	price: number;
 	sellability: number;
-	collectionCode?: string;
-	collectionName?: string;
 }
 
 export interface IProductPage extends IProduct {

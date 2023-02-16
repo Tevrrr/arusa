@@ -1,31 +1,75 @@
 /** @format */
 
 import { Request, Response } from 'express';
-import Collection from '../models/Collection';
+import collectionService from '../services/collectionService';
 
 class CollectionController {
 	async getCollections(req: Request, res: Response) {
-		try {
-			const collections = await Collection.find({});
-			res.status(200).json( collections );
+        try {
+            const { filter } = req.query;
+			const { collections, errorMessage } =
+                await collectionService.getCollections(filter?.toString());
+            console.log()
+
+			if (errorMessage) {
+				res.status(400).json({ error: errorMessage });
+			}
+
+			res.status(200).json(collections);
 		} catch (error) {
 			console.log(error);
 			res.status(400).json({ message: 'get collections error' });
 		}
 	}
-	async addCollection(req: Request, res: Response) {
-		try {
-            const { name, filter, image } = req.body;
+	async getCollection(req: Request, res: Response) {
+        try {
+            const { id } = req.query;
+			const { collection, errorMessage } =
+				await collectionService.getCollection(id?.toString()||'');
 
-			const newCollection = await Collection.create({
-				name,
-				filter,
-				image,
-			});
-			res.status(200).json(newCollection);
+			if (errorMessage) {
+				res.status(400).json({ error: errorMessage });
+			}
+
+			res.status(200).json(collection);
 		} catch (error) {
 			console.log(error);
-            res.status(400).json({ message: 'add collection error' });
+			res.status(400).json({ message: 'get collections error' });
+		}
+	}
+	async addProductInCollection(req: Request, res: Response) {
+		try {
+			const { collectionID, productID } = req.body;
+			const { collection, errorMessage } =
+				await collectionService.addProductInCollection(
+					collectionID,
+					productID
+				);
+
+			if (errorMessage) {
+				res.status(400).json({ error: errorMessage });
+			}
+
+			res.status(200).json(collection);
+		} catch (error) {
+			console.log(error);
+			res.status(400).json({ message: 'add collection error' });
+		}
+	}
+	async addCollection(req: Request, res: Response) {
+		try {
+			const { name, filter } = req.body;
+			const { collection, errorMessage } =
+				await collectionService.addCollection(name, filter);
+
+			if (errorMessage) {
+				res.status(400).json({ error: errorMessage });
+			}
+
+			res.status(200).json(collection);
+		} catch (error) {
+			console.log(error);
+			res.status(400).json({ message: 'add collection error' });
 		}
 	}
 	async updateCollection(req: Request, res: Response) {
@@ -34,15 +78,17 @@ class CollectionController {
 			if (!collection) {
 				return res.status(400).send('You must specify the collection!');
 			}
-			const updatedOrderForm = await Collection.findByIdAndUpdate(
-				collection.id,
-				collection,
-				{ new: true }
-			);
-			res.status(200).json(updatedOrderForm);
+			const { collection: updatedCollection, errorMessage } =
+				await collectionService.updateCollection(collection);
+
+			if (errorMessage) {
+				res.status(400).json({ error: errorMessage });
+			}
+
+			res.status(200).json(updatedCollection);
 		} catch (error) {
 			console.log(error);
-            res.status(400).json({ message: 'update collection error' });
+			res.status(400).json({ message: 'update collection error' });
 		}
 	}
 }

@@ -5,10 +5,11 @@ import MainContainer from '../../../components/MainContainer/MainContainer';
 import { ICollection } from '../../../common/types/collection';
 import { getCollections } from '../../../service';
 import CollectionCard from '../../../components/Collection/CollectionCard';
+import { getCollectionsByFilter } from '../../../service/getters/collection';
 
 interface ProductProps {
-	collectionName: string | undefined;
-    collections: ICollection[] | undefined;
+	collectionName: string | null;
+    collections: ICollection[] | null;
 }
 
 const CollectionGroupsPage: NextPage<ProductProps> = ({
@@ -25,7 +26,7 @@ const CollectionGroupsPage: NextPage<ProductProps> = ({
 								key={i}
 								href={{
 									pathname: `/collections/${collectionName}/[id]`,
-									query: { id: item.code },
+									query: { id: item._id },
 								}}
 								title={item.name}
 								image={`/collectionGroupsPNG/${item.filter}.png`}
@@ -40,15 +41,15 @@ const CollectionGroupsPage: NextPage<ProductProps> = ({
 
 interface PostNextPageContext extends NextPageContext {
 	query: {
-		collectionName: string;
-
+		collectionFilter: string;
 	};
 }
 
 export const getServerSideProps = async ({ query }: PostNextPageContext) => {
-    const collections = await getCollections(query.collectionName);
+    
+    const collections = await getCollectionsByFilter(query.collectionFilter);
 	return {
-		props: { collectionName: query.collectionName, collections },
+		props: { collections },
 	};
 };
 

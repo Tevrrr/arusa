@@ -3,21 +3,18 @@
 import axios from 'axios';
 import { IProductPage } from './../../common/types/product';
 
-interface GenericObject extends IProductPage {
-	[key: string]: any;
-}
-
 export const postProductPage = async (
-	productPage: GenericObject,
+	productPage: IProductPage,
 	token: string,
 	mainImage: File,
-	images: FileList
+    images: FileList,
+    collectionID?: string
 ) => {
 	try {
 		const URL = process.env.NEXT_PUBLIC_URL || 'http://localhost:3000';
 		const formData = new FormData();
-        formData.append('mainImage', mainImage);
-        
+		formData.append('mainImage', mainImage);
+
 		for (let i = 0; i < images.length; i++) {
 			formData.append('images', images[i]);
 		}
@@ -28,7 +25,20 @@ export const postProductPage = async (
 			headers: {
 				Authorization: `Bearer ${token}`,
 			},
-		});
+        });
+        if (response.data._id && collectionID) {
+			console.log(response.data, collectionID);
+			const collectionsResponse = await axios.put(
+				`${URL}/api/productInCollection`,
+				{ collectionID, productID: response.data._id },
+				{
+					headers: {
+						Authorization: `Bearer ${token}`,
+					},
+				}
+			);
+			console.log(collectionsResponse);
+		}
 		console.log(response);
 	} catch (error) {
 		console.log(error);

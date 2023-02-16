@@ -128,7 +128,7 @@ const Home: NextPage<HomeProps> = ({ products }) => {
 						products.slice(0, 4).map((item) => {
 							return (
 								<ProductCard
-									key={item.id}
+									key={item._id}
 									data={item}
 									className=' lg:!border-0 max-w-[50%] lg:max-w-[33.33%] xl:max-w-[25%] group'
 									imageClassName=' group-hover:scale-110 transition-transform duration-700'
@@ -190,23 +190,27 @@ const Home: NextPage<HomeProps> = ({ products }) => {
 						/>
 					</div>
 					<div className=' hidden md:flex '>
-						{!products || (
+						{products.length ? (
 							<ProductCard
 								className=' !min-w-max !max-w-[250px] bg-white !p-5 text-opal group'
 								imageClassName=' group-hover:scale-110 transition-transform duration-700'
 								data={products[products.length - 1]}
 							/>
+						) : (
+							<></>
 						)}
 					</div>
 
 					<div className=' hidden md:flex '>
 						<div className=' grow'></div>
-						{!products || (
+						{products.length ? (
 							<ProductCard
 								className=' !min-w-max !max-w-[250px] bg-white !p-5 text-opal group'
 								imageClassName=' group-hover:scale-110 transition-transform duration-700'
 								data={products[products.length - 2]}
 							/>
+						) : (
+							<></>
 						)}
 					</div>
 				</div>
@@ -284,7 +288,7 @@ const Home: NextPage<HomeProps> = ({ products }) => {
 								products.map((item) => {
 									return (
 										<ProductCard
-											key={item.id}
+											key={item._id}
 											data={item}
 											className=' lg:!border-0 max-w-[50%] lg:max-w-[33.33%] xl:max-w-[25%] group '
 											imageClassName=' group-hover:scale-110 transition-transform duration-700'
@@ -380,7 +384,8 @@ export default Home;
 
 export const getServerSideProps: GetServerSideProps =
     async () => {
-		const products: IProduct[] = await getTopProducts(8) || [];
+        const products: IProduct[] = await getTopProducts(8) || [];
+        console.log(products);
 		return {
 			props: {products},
 		};
