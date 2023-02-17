@@ -2,13 +2,13 @@
 
 import axios from 'axios';
 import { IProductPage } from './../../common/types/product';
+import { addProductInCollection } from '../put/collection';
 
 export const postProductPage = async (
 	productPage: IProductPage,
 	token: string,
 	mainImage: File,
-    images: FileList,
-    collectionID?: string
+    images: FileList
 ) => {
 	try {
 		const URL = process.env.NEXT_PUBLIC_URL || 'http://localhost:3000';
@@ -26,19 +26,6 @@ export const postProductPage = async (
 				Authorization: `Bearer ${token}`,
 			},
         });
-        if (response.data._id && collectionID) {
-			console.log(response.data, collectionID);
-			const collectionsResponse = await axios.put(
-				`${URL}/api/productInCollection`,
-				{ collectionID, productID: response.data._id },
-				{
-					headers: {
-						Authorization: `Bearer ${token}`,
-					},
-				}
-			);
-			console.log(collectionsResponse);
-		}
 		console.log(response);
 	} catch (error) {
 		console.log(error);

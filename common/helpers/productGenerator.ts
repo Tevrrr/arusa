@@ -15,7 +15,7 @@ export const productGenerator = (
 		let name = NAMES[getRandomInt(NAMES.length)];
 
 		let nextItem: IProduct = {
-			id: i,
+			_id: ''+i,
 			filter,
 			title: `${name} ${filter}`,
 			price: getRandomInt(50) * 10,
@@ -23,14 +23,6 @@ export const productGenerator = (
 			mainImage: '/mockups/' + filter + (getRandomInt(3) + 1) + '.png',
 		};
 
-		if (collections) {
-			const CollectionIndex = getRandomInt(collections.length);
-			nextItem = {
-				...nextItem,
-				collectionCode: collections[CollectionIndex].code,
-				collectionName: collections[CollectionIndex].name,
-			};
-		}
 		products.push(nextItem);
 	}
 	return products;

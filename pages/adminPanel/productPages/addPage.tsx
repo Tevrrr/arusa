@@ -9,20 +9,17 @@ import { productPageGenerator, productGenerator } from '../../../common/helpers/
 import { useContext } from 'react';
 import { UserContext } from '../../../common/UserProvider';
 import { postProductPage } from '../../../service/posts/productPage';
-import { ICollection } from '../../../common/types/collection';
 import { getFilters } from '../../../service/getters/filter';
-import { getCollection } from '../../../service/getters/collection';
 import { IProductPageForm } from '../../../common/types/IProductPageForm';
 
 
 interface AddPageProps {
 	filters: string[];
-	collections: ICollection[];
 }
 
 
 
-const AddPage: NextPage<AddPageProps> = ({filters, collections}) => {
+const AddPage: NextPage<AddPageProps> = ({filters}) => {
     const methods = useForm<IProductPageForm>();
     const {  handleSubmit, setValue } = methods;
 	const { token } = useContext(UserContext);
@@ -47,8 +44,7 @@ const AddPage: NextPage<AddPageProps> = ({filters, collections}) => {
 			{ ...data },
             token || '',
             data.mainImageFile[0],
-            data.imageFiles,
-            data.collectionCode
+            data.imageFiles
 		);
 		console.log(newProductPage);
 	});
@@ -61,7 +57,6 @@ const AddPage: NextPage<AddPageProps> = ({filters, collections}) => {
 			<FormProvider {...methods}>
 				<ProductPageForm
 					filters={filters}
-					collections={collections}
 					onSubmit={onSubmit}
 				/>
 			</FormProvider>
@@ -73,8 +68,8 @@ export default AddPage;
 
 export const getServerSideProps = async () => {
 	const filters = await getFilters();
-	const collections = await getCollection();
+
 	return {
-		props: { filters, collections },
+		props: { filters},
 	};
 };

@@ -2,7 +2,7 @@
 
 import type { NextPage, NextPageContext } from 'next';
 import MainContainer from '../../../components/MainContainer/MainContainer';
-import { getProductsByCollection } from '../../../service';
+// import { getProductsByCollection } from '../../../service';
 import { IProduct } from '../../../common/types/product';
 import ProductCard from '../../../components/ProductCard';
 import { getCollectionByID } from '../../../service/getters/collection';

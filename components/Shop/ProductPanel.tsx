@@ -22,7 +22,7 @@ const ProductPanel: NextPage<ProductPanelProps> = ({ data }) => {
 					return (
 						<ProductCard
 							className=' !p-4 odd:last:border-b-0 last:!max-w-[50%]  lg:!min-h-[620px]'
-							key={item.id}
+							key={item._id}
 							data={item}
 						/>
 					);

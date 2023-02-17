@@ -8,7 +8,8 @@ import Link from 'next/link';
 interface ProductCardProps {
 	data: IProduct;
 	className?: string;
-	imageClassName?: string;
+    imageClassName?: string;
+    
 };
 //  
 const ProductCard: NextPage<ProductCardProps> = ({
@@ -17,10 +18,6 @@ const ProductCard: NextPage<ProductCardProps> = ({
     data
 }) => {
     const { title, price, _id, mainImage, sellability } = data;
-
-
-
-
 
     return (
 		<Link
@@ -41,7 +38,7 @@ const ProductCard: NextPage<ProductCardProps> = ({
 			</div>
 			<div className='flex flex-col md:flex-row gap-6 md:gap-0 justify-between py-3 '>
 				<p className='TextSmall uppercase'>
-					{title} {sellability}
+					{title}
 				</p>
 				<p className='TextSmall'>${price}</p>
 			</div>

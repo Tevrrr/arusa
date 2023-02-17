@@ -53,8 +53,6 @@ class productPageService {
 			const productPages = await ProductPage.find({
 				_id: { $in: params.map((item) => item._id) },
 			});
-			console.log(productPages);
-			console.log(params);
 			let products: IBagItem[] = [];
 
 			params.forEach((item) => {
@@ -73,7 +71,6 @@ class productPageService {
 					});
 			});
 
-			console.log(products);
 			return { products };
 		} catch (error) {
 			console.log(error);
@@ -87,8 +84,6 @@ class productPageService {
 			const productPages = await ProductPage.find({
 				_id: { $in: params },
 			});
-			console.log('------------------------------------------');
-			console.log(params);
 			let products: IProduct[] = [];
 
 			params.forEach((item) => {
@@ -105,8 +100,6 @@ class productPageService {
 						sellability: productPage.sellability
 					});
 			});
-
-			console.log(products);
 			return { products };
 		} catch (error) {
 			console.log(error);

@@ -1,9 +1,6 @@
 /** @format */
 
 import { IFilter } from './../models/Filter';
-/** @format */
-
-import { Request, Response } from 'express';
 import Filter from '../models/Filter';
 
 class filterService {

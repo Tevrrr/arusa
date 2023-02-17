@@ -5,11 +5,11 @@ import collectionService from '../services/collectionService';
 
 class CollectionController {
 	async getCollections(req: Request, res: Response) {
-        try {
-            const { filter } = req.query;
+		try {
+			const { filter } = req.query;
 			const { collections, errorMessage } =
-                await collectionService.getCollections(filter?.toString());
-            console.log()
+				await collectionService.getCollections(filter?.toString());
+			console.log();
 
 			if (errorMessage) {
 				res.status(400).json({ error: errorMessage });
@@ -22,10 +22,10 @@ class CollectionController {
 		}
 	}
 	async getCollection(req: Request, res: Response) {
-        try {
-            const { id } = req.query;
+		try {
+			const { id } = req.query;
 			const { collection, errorMessage } =
-				await collectionService.getCollection(id?.toString()||'');
+				await collectionService.getCollection(id?.toString() || '');
 
 			if (errorMessage) {
 				res.status(400).json({ error: errorMessage });
@@ -42,6 +42,25 @@ class CollectionController {
 			const { collectionID, productID } = req.body;
 			const { collection, errorMessage } =
 				await collectionService.addProductInCollection(
+					collectionID,
+					productID
+				);
+
+			if (errorMessage) {
+				res.status(400).json({ error: errorMessage });
+			}
+
+			res.status(200).json(collection);
+		} catch (error) {
+			console.log(error);
+			res.status(400).json({ message: 'add collection error' });
+		}
+	}
+	async deleteProductFromCollection(req: Request, res: Response) {
+		try {
+			const { collectionID, productID } = req.body;
+			const { collection, errorMessage } =
+				await collectionService.deleteProductFromCollection(
 					collectionID,
 					productID
 				);

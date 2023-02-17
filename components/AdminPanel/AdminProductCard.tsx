@@ -19,7 +19,7 @@ const AdminProductCard: NextPage<AdminProductCardProps> = ({
     imageClassName = '',
     data
 }) => {
-    const { title, price, _id, mainImage, sellability, collectionName, collectionCode, filter } = data;
+    const { title, price, _id, mainImage, sellability, filter } = data;
     const { updateProducts } = useContext(ProductContext);
     const { token } = useContext(UserContext);
 
@@ -50,9 +50,6 @@ const AdminProductCard: NextPage<AdminProductCardProps> = ({
 					<p className='TextRegular'>ID: {_id}</p>
 					<p className='TextRegular'>${price}</p>
 					<p className='TextRegular'>Sellability: {sellability}</p>
-					<p className='TextRegular'>
-						Collection: {collectionName || 'None'} {collectionCode}
-					</p>
 					<p className='TextRegular'>Filter: {filter}</p>
 				</div>
 				<div className='flex items-baseline flex-wrap gap-4'>

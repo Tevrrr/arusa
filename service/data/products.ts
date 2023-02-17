@@ -1,8 +1,8 @@
 
 
 /** @format */
-import { collectionsJSON } from './collections';
-import { productGenerator, productPageGenerator } from '../../common/helpers/productGenerator';
+// import { collectionsJSON } from './collections';
+// import { productGenerator, productPageGenerator } from '../../common/helpers/productGenerator';
 
 
 // const products = productGenerator(75, JSON.parse(collectionsJSON));

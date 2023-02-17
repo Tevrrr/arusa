@@ -1,4 +1,4 @@
-import { collectionGenerator } from './../../common/helpers/collectionGenerator';
+// import { collectionGenerator } from './../../common/helpers/collectionGenerator';
 // export const collections = collectionGenerator(10);
 // export const collectionsJSON = JSON.stringify(collections);
 // console.log(collectionsJSON);

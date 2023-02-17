@@ -21,6 +21,11 @@ collectionRouter.put(
 	authMiddleware(['ADMIN']),
 	collectionController.addProductInCollection
 );
+collectionRouter.put(
+	'/deleteProduct',
+	authMiddleware(['ADMIN']),
+	collectionController.deleteProductFromCollection
+);
 
 collectionRouter.get(
 	'/collections',

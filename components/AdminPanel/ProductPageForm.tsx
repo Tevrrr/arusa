@@ -21,7 +21,6 @@ interface ProductPageFormProps {
 const ProductPageForm: NextPage<ProductPageFormProps> = ({
 	onSubmit,
 	filters = [],
-	collections = [],
 	requiredImages = true,
 }) => {
 	const { register } = useFormContext();
@@ -103,16 +102,6 @@ const ProductPageForm: NextPage<ProductPageFormProps> = ({
 					register={register('dimensions.width', {
 						required: true,
 					})}
-				/>
-				<Select
-					title='Collection Name'
-					options={[
-						{ name: 'none', value: '' },
-						...collections.map((item) => {
-							return { name: item.name, value: item._id };
-						}),
-					]}
-					register={register('collectionCode')}
 				/>
 				<input
 					type='file'

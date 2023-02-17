@@ -10,19 +10,19 @@ interface ICollectionResult {
 }
 
 class CollectionService {
-	async getCollections(filter?:string): Promise<ICollectionResult> {
+	async getCollections(filter: string = ''): Promise<ICollectionResult> {
 		try {
-			const collections = await Collection.find({ filter });
+			const collections = await Collection.find(filter ? { filter } : {});
 			return { collections };
 		} catch (error) {
 			console.log(error);
 			return { errorMessage: 'Get collections error' };
 		}
 	}
-	async getCollection(id:string): Promise<ICollectionResult> {
+	async getCollection(id: string): Promise<ICollectionResult> {
 		try {
-            const collection = await Collection.findById(id);
-            if (!collection) {
+			const collection = await Collection.findById(id);
+			if (!collection) {
 				return { errorMessage: 'Collection not found' };
 			}
 			return { collection };
@@ -67,6 +67,36 @@ class CollectionService {
 				collectionID,
 				{
 					products: [...collection.products, productID],
+				},
+				{ new: true }
+			);
+			if (!updatedCollection) {
+				return { errorMessage: 'Update collection error' };
+			}
+			return { collection: updatedCollection };
+		} catch (error) {
+			console.log(error);
+			return { errorMessage: 'Update collection error' };
+		}
+	}
+	async deleteProductFromCollection(
+		collectionID: string,
+		productID: string
+	): Promise<ICollectionResult> {
+		try {
+			const collection = await Collection.findById(collectionID);
+			if (!collection) {
+				return { errorMessage: 'Collection not found' };
+			}
+			if (!collection.products.find((value) => value === productID)) {
+				return {
+					errorMessage: 'This product is not in the collection',
+				};
+			}
+			const updatedCollection = await Collection.findByIdAndUpdate(
+				collectionID,
+				{
+					products: collection.products.filter(item => item !== productID),
 				},
 				{ new: true }
 			);

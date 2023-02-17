@@ -19,7 +19,7 @@ const AdminProductPanel: NextPage = () => {
 					return (
 						<AdminProductCard
 							className=' '
-							key={item.id}
+							key={item._id}
 							data={item}
 						/>
 					);

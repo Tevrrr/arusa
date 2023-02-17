@@ -385,7 +385,6 @@ export default Home;
 export const getServerSideProps: GetServerSideProps =
     async () => {
         const products: IProduct[] = await getTopProducts(8) || [];
-        console.log(products);
 		return {
 			props: {products},
 		};

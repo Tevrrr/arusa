@@ -3,8 +3,8 @@
   "compilerOptions": {
     "module": "commonjs",
     "outDir": "dist",
-    "lib": ["es2019"],
-    "target": "es2019",
+    "lib": ["es2021"],
+    "target": "ES2021",
     "isolatedModules": false,
     "noEmit": false
   },
