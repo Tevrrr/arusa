@@ -8,7 +8,7 @@ import AdminNavbar from './AdminNavbar';
 
 interface MainAdminContainerProps {
 	title: string;
-	children: ReactNode;
+	children?: ReactNode;
 }
 
 const MainAdminContainer: NextPage<MainAdminContainerProps> = ({

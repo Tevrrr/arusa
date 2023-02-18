@@ -16,6 +16,11 @@ collectionRouter.put(
 	authMiddleware(['ADMIN']),
 	collectionController.updateCollection
 );
+collectionRouter.delete(
+	'/collection',
+	authMiddleware(['ADMIN']),
+	collectionController.deleteCollection
+);
 collectionRouter.put(
 	'/productInCollection',
 	authMiddleware(['ADMIN']),

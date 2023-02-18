@@ -37,6 +37,22 @@ class CollectionController {
 			res.status(400).json({ message: 'get collections error' });
 		}
 	}
+	async deleteCollection(req: Request, res: Response) {
+		try {
+			const { id } = req.query;
+			const { collection, errorMessage } =
+				await collectionService.deleteCollection(id?.toString() || '');
+
+			if (errorMessage) {
+				res.status(400).json({ error: errorMessage });
+			}
+            
+			res.status(200).json(collection);
+		} catch (error) {
+			console.log(error);
+			res.status(400).json({ message: 'get collections error' });
+		}
+	}
 	async addProductInCollection(req: Request, res: Response) {
 		try {
 			const { collectionID, productID } = req.body;
@@ -79,7 +95,11 @@ class CollectionController {
 		try {
 			const { name, filter } = req.body;
 			const { collection, errorMessage } =
-				await collectionService.addCollection(name, filter);
+				await collectionService.addCollection(
+					name,
+					filter,
+					req.files || null
+				);
 
 			if (errorMessage) {
 				res.status(400).json({ error: errorMessage });

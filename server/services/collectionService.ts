@@ -2,6 +2,8 @@
 
 import { Request, Response } from 'express';
 import Collection, { ICollection } from '../models/Collection';
+import { FileArray } from 'express-fileupload';
+import FileService from './fileService';
 
 interface ICollectionResult {
 	collection?: ICollection;
@@ -31,15 +33,42 @@ class CollectionService {
 			return { errorMessage: 'Get collections error' };
 		}
 	}
+	async deleteCollection(id: string): Promise<ICollectionResult> {
+		try {
+			const collection = await Collection.findByIdAndDelete(id);
+			if (!collection) {
+				return { errorMessage: 'Collection not found' };
+            }
+            await FileService.removeFile(collection.image);
+			return { collection };
+		} catch (error) {
+			console.log(error);
+			return { errorMessage: 'Get collections error' };
+		}
+	}
 	async addCollection(
 		name: string,
-		filter: string
+		filter: string,
+		images: FileArray | null
 	): Promise<ICollectionResult> {
 		try {
+			if (!images?.image) {
+				return {
+					errorMessage:
+						'You must specify the main image at least one additional image!',
+				};
+			}
+			let filePath = await FileService.saveFile(images.image, name || '');
+			if (!filePath) {
+				return {
+					errorMessage: 'Image save error!',
+				};
+			}
+			const image = filePath[0];
 			const newCollection = await Collection.create({
 				name,
 				filter,
-				image: '/',
+				image,
 				products: [],
 			});
 
@@ -96,7 +125,9 @@ class CollectionService {
 			const updatedCollection = await Collection.findByIdAndUpdate(
 				collectionID,
 				{
-					products: collection.products.filter(item => item !== productID),
+					products: collection.products.filter(
+						(item) => item !== productID
+					),
 				},
 				{ new: true }
 			);

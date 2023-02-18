@@ -151,8 +151,7 @@ class productPageService {
 		pictures: FileArray | null
 	): Promise<IProductPageResult> {
 		try {
-			let mainImage: string = '';
-			let images: string[] = [];
+
 
 			if (!pictures?.mainImage || !pictures?.images) {
 				return {
@@ -170,7 +169,7 @@ class productPageService {
 					errorMessage: 'image save error!',
 				};
 			}
-			mainImage = filePath[0];
+			const mainImage = filePath[0];
 			//save additional image
 			filePath = await FileService.saveFile(
 				pictures.images,
@@ -181,7 +180,7 @@ class productPageService {
 					errorMessage: 'image save error!',
 				};
 			}
-			images = filePath;
+			const images = filePath;
 
 			const page = await ProductPage.create({
 				...newPage,
