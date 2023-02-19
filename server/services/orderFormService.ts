@@ -1,9 +1,9 @@
 /** @format */
 
-
 import { IClientData } from '../../common/types/clientData';
 import { IOrderForm } from '../../common/types/orderForm';
-import OrderForm  from '../models/OrderForm';
+import OrderForm from '../models/OrderForm';
+import ProductPage from '../models/ProductPage';
 
 interface IOrderFormResult {
 	forms?: IOrderForm[];
@@ -21,20 +21,21 @@ class orderFormService {
 		try {
 			const forms = await OrderForm.find({ finished })
 				.skip(skip)
-                .limit(limit).sort({ date: 1 });
-            const countForms = await OrderForm.find({ finished }).countDocuments();
+				.limit(limit)
+				.sort({ date: 1 });
+			const countForms = await OrderForm.find({
+				finished,
+			}).countDocuments();
 			return { forms, countForms };
 		} catch (error) {
 			console.log(error);
 			return { errorMessage: 'Get order forms error' };
 		}
 	}
-	async getOrderForm(
-		id:string
-	): Promise<IOrderFormResult> {
+	async getOrderForm(id: string): Promise<IOrderFormResult> {
 		try {
-            const form = await OrderForm.findById(id);
-            if (!form) {
+			const form = await OrderForm.findById(id);
+			if (!form) {
 				return { errorMessage: 'Order form not found!' };
 			}
 			return { form };
@@ -42,8 +43,8 @@ class orderFormService {
 			console.log(error);
 			return { errorMessage: 'Get order forms error' };
 		}
-    }
-    
+	}
+
 	async addOrderForm(
 		clientData: IClientData,
 		products: { id: string; count: number },
@@ -66,6 +67,18 @@ class orderFormService {
 				finished,
 				date: dateNow,
 			});
+			newOrderForm.products.forEach(async (item) => {
+				const productPage = await ProductPage.findById(item.id);
+				if (!productPage) return;
+				await ProductPage.findByIdAndUpdate(
+					productPage._id,
+					{
+						sellability: productPage.sellability + 1,
+					},
+					{ new: true }
+				);
+
+			});
 			return { form: newOrderForm };
 		} catch (error) {
 			console.log(error);
@@ -85,10 +98,11 @@ class orderFormService {
 			if (!updatedOrderForm) {
 				return { errorMessage: 'Order form not found!' };
 			}
+
 			return { form: updatedOrderForm };
 		} catch (error) {
 			console.log(error);
-			return { errorMessage: 'Get order forms error' };
+			return { errorMessage: 'Update order forms error' };
 		}
 	}
 }

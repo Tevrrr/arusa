@@ -68,12 +68,12 @@ const CollectionPage: NextPage<CollectionPageProps> = ({
 			<div className=' mt-20 w-full max-w-screen-xl mx-auto'>
 				<div className=' flex flex-col gap-0 p-2 items-center '>
 					<div className=' w-full flex flex-col md:flex-row gap-4 '>
-						<div className=' w-full max-w-xl h-80 bg-smoke relative text-white flex items-center justify-center flex-col'>
+						<div className=' w-full max-w-xl h-80 bg-stormy bg-opacity-80 relative text-white flex items-center justify-center flex-col'>
 							<Image
 								alt=''
 								src={image}
 								fill
-								className='object-cover absolute'
+								className='object-cover absolute -z-10'
 							/>
 							<h3>{name}</h3>
 							<p className='TextLarge'>{filter}</p>
@@ -83,8 +83,8 @@ const CollectionPage: NextPage<CollectionPageProps> = ({
 							onSubmit={onSubmit}
 							className=' flex gap-4 items-center justify-center grow'>
 							<div className='flex flex-col gap-4 '>
-                                <Input
-                                    className=' text-black'
+								<Input
+									className=' text-black'
 									placeholder='Products ID'
 									register={register('id', {
 										required: true,

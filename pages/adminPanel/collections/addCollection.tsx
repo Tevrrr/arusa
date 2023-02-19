@@ -9,6 +9,7 @@ import { useForm } from 'react-hook-form';
 import { postCollection } from '../../../service/posts/collection';
 import { UserContext } from '../../../common/UserProvider';
 import { useContext } from 'react';
+import { useRouter } from 'next/router';
 
 interface AddCollectionProps {
 	filters: string[];
@@ -16,20 +17,23 @@ interface AddCollectionProps {
 
 interface ICollectionForm {
 	title: string;
-    filter: string;
-    image: FileList
+	filter: string;
+	image: FileList;
 }
 
 const AddCollection: NextPage<AddCollectionProps> = ({ filters }) => {
-    const { token} = useContext(UserContext)
-    const { register, handleSubmit } = useForm<ICollectionForm>();
-    const onSubmit = handleSubmit((data) => {
-        const { title, filter, image } = data
-        if (token) {
-            postCollection(title, filter, image[0], token);
-        }
-        
-    })
+	const { token } = useContext(UserContext);
+	const { register, handleSubmit } = useForm<ICollectionForm>();
+	const router = useRouter();
+	const onSubmit = handleSubmit(async (data) => {
+		const { title, filter, image } = data;
+		if (token) {
+			const result = await postCollection(title, filter, image[0], token);
+			if (result) {
+				router.push(`/adminPanel/collections/${result._id}`);
+			}
+		}
+	});
 	return (
 		<MainAdminContainer title='Add collection'>
 			<form
@@ -38,7 +42,7 @@ const AddCollection: NextPage<AddCollectionProps> = ({ filters }) => {
 				<Input
 					placeholder='Title'
 					className=' !w-full !text-stormy'
-					register={register('filter', { required: true })}
+					register={register('title', { required: true })}
 				/>
 				{!filters || (
 					<Select
@@ -46,7 +50,7 @@ const AddCollection: NextPage<AddCollectionProps> = ({ filters }) => {
 							return { name: item, value: item };
 						})}
 						title='Filters'
-						register={register('title', { required: true })}
+						register={register('filter', { required: true })}
 					/>
 				)}
 				<input

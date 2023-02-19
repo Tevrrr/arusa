@@ -7,9 +7,10 @@ import MainAdminContainer from '../../../components/AdminPanel/MainAdminContaine
 import { IOrderForm } from '../../../common/types/orderForm';
 import { getOrder } from '../../../service/getters/order';
 import { IBagItem } from '../../../common/types/BagContext';
-import { getProductsBag} from '../../../service/getters/product';
-import BagItem from '../../../components/MainContainer/BagItem';
+import { getProductsBag } from '../../../service/getters/product';
 import Link from 'next/link';
+import Image from 'next/image';
+import { putOrderForm } from '../../../service/put/orderForm';
 
 interface OrderPageProps {
 	id: string;
@@ -17,33 +18,44 @@ interface OrderPageProps {
 
 const OrderPage: NextPage<OrderPageProps> = ({ id }) => {
 	const { token } = useContext(UserContext);
-    const [data, setData] = useState<IOrderForm | null>(null);
-    const [bag, setBag] = useState<IBagItem[]>([])
+	const [data, setData] = useState<IOrderForm | null>(null);
+	const [bag, setBag] = useState<IBagItem[]>([]);
     const [totalPrice, setTotalPrice] = useState<number>(0);
 
-    useEffect(() => {
-        if (token) getOrder(token, id, (data) => {
-            setData(data)
-            getProductsBag(data.products, (value) => {
-				setBag(value);
+	useEffect(() => {
+		if (token)
+			getOrder(token, id, (data) => {
+				setData(data);
+				getProductsBag(data.products, (value) => {
+					setBag(value);
+				});
 			});
-        })
-    }, [token]);
-    useEffect(() => {
-        let totalPrice = 0;
-        bag.forEach(item => {
-            const { count, price} = item
-            totalPrice = count * price + totalPrice;
-        })
-        setTotalPrice(totalPrice);
-	}, [bag]);
+	}, [token]);
+	useEffect(() => {
+		let totalPrice = 0;
+		bag.forEach((item) => {
+			const { count, price } = item;
+			totalPrice = count * price + totalPrice;
+		});
+		setTotalPrice(totalPrice);
+    }, [bag]);
+    
+    const finishedToggle = async () => {
+        if (data && token) {
+            const result = await putOrderForm({ ...data, finished: !data.finished }, token);
+            if (result) {
+                setData(result);
+            }
+		}
+        
+    }
 
 	return (
 		<MainAdminContainer title='Order'>
 			{data ? (
-				<div className=' mt-16 w-full max-w-screen-xl mx-auto flex flex-col md:flex-row gap-4 '>
+				<div className=' mt-16 p-4 w-full max-w-screen-xl mx-auto flex flex-col md:flex-row gap-4 '>
 					<div className='flex flex-col gap-2'>
-						<p className='TextLarge'>ID: {id}</p>
+						<p className='TextRegular'>ID: {id}</p>
 						<p className='TextRegular'>
 							Name: {data.clientData.firstName}{' '}
 							{data.clientData.lastName}
@@ -56,6 +68,15 @@ const OrderPage: NextPage<OrderPageProps> = ({ id }) => {
 						</p>
 						<p className='TextRegular'>Date: {data.date}</p>
 						<p className='TextLarge'>Total prise: ${totalPrice}</p>
+						<button
+							className={
+								data.finished ? 'PrimaryBtn' : 'SecondaryBtn'
+							}
+							onClick={finishedToggle}>
+							{data.finished
+								? 'Activate order'
+								: 'Complete order'}
+						</button>
 					</div>
 					<div className='flex flex-wrap gap-4 grow'>
 						{bag?.map((item) => {
@@ -65,18 +86,25 @@ const OrderPage: NextPage<OrderPageProps> = ({ id }) => {
 										pathname: '/shop/[id]',
 										query: { id: item._id },
 									}}
-									className=' flex gap-4'
+									className=' max-w-[250px] flex flex-col gap-1'
 									key={item._id}>
-									<div className=' flex flex-col '>
-										<h5>{item.title}</h5>
-										<p className='TextRegular'>
-											{item._id}
-										</p>
-										<p className='TextRegular'>
-											${item.price} x {item.count} = $
-											{item.price * item.count}
-										</p>
+									<div className=' relative w-full h-40'>
+										<Image
+											alt=''
+											src={item.mainImage}
+											fill
+											className='object-cover absolute -z-10 rounded-md'
+										/>
 									</div>
+
+									<h5>Name: {item.title}</h5>
+									<p className='TextRegular'>
+										ID: {item._id}
+									</p>
+									<p className='TextRegular'>
+										Prise: ${item.price} x {item.count} = $
+										{item.price * item.count}
+									</p>
 								</Link>
 							);
 						})}

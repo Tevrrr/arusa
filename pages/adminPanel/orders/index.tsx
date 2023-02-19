@@ -9,6 +9,7 @@ import { getOrders } from '../../../service/getters/orders';
 import uniqid from 'uniqid';
 import { UserContext } from '../../../common/UserProvider';
 import PageNav from '../../../components/AdminPanel/PageNav';
+import Select from '../../../components/Select';
 
 interface OrdersProps {}
 
@@ -17,33 +18,56 @@ const Orders: NextPage<OrdersProps> = () => {
 	const [forms, setForms] = useState<IOrderForm[]>([]);
 	const [page, setPage] = useState<number>(1);
 	const [pageCount, setPageCount] = useState<number>(1);
-
+	const [orderStatus, setOrderStatus] = useState(false);
+	const orderStatuses = [
+		{ name: 'Active', value: 'false' },
+		{ name: 'Finished', value: 'true' },
+	];
 	useEffect(() => {
-		const pageSize = 5;
+		const pageSize = 6;
 		if (token) {
 			getOrders(
 				token,
 				pageSize,
 				pageSize * (page - 1),
-				false,
-                (forms, countForms) => {
-                    console.log(countForms);
+				orderStatus,
+				(forms, countForms) => {
+					console.log(countForms);
 					setForms(forms);
 					setPageCount(Math.ceil(countForms / pageSize));
 				}
 			);
 		}
-	}, [page, token]);
+	}, [page, token, orderStatus]);
 
 	return (
 		<MainAdminContainer title='Orders'>
-			<div className='mt-16 w-full mx-auto max-w-screen-xl'>
+			<h2 className=' py-4 mt-14 text-center text-opal border-b border-oyster '>
+				Orders
+			</h2>
+			<div className='flex justify-center w-full py-4'>
+                <div className=' max-w-xs w-full flex gap-4 items-baseline'>
+                    <p className='TextRegular w-max whitespace-nowrap'>
+                        Order status
+                    </p>
+					
+					<Select
+						value={'' + orderStatus}
+						setValue={(value) => {
+							setOrderStatus(value === 'true');
+						}}
+						options={orderStatuses}
+					/>
+				</div>
+			</div>
+
+			<div className='mt-2 w-full mx-auto max-w-screen-xl'>
 				<div className=' flex flex-wrap justify-between'>
 					{!forms ||
 						forms.map((item) => {
 							return (
-                                <OrderFormCard
-                                    className=' max-w-lg w-full'
+								<OrderFormCard
+									className=' max-w-lg w-full'
 									key={uniqid(item.clientData.phone)}
 									id={item._id}
 									name={`${item.clientData.firstName} ${item.clientData.lastName}`}

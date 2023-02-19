@@ -1,20 +1,44 @@
-import type { NextPage } from 'next'
+/** @format */
+
+import type { NextPage } from 'next';
+import { ChangeEvent } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
 import uniqid from 'uniqid';
 
-
 interface SelectProps {
-	title: string;
+	title?: string;
 	options: { name: string; value: string }[];
 	register?: UseFormRegisterReturn;
-};
+	value?: string;
+	setValue?: (value: string) => void;
+}
 
-const Select: NextPage<SelectProps> = ({title, options, register }) => {
-    return (
-		<select className='p-4 border rounded-lg border-oyster cursor-pointer' {...register}>
-			<option value={undefined} disabled selected>
-				{title}
-			</option>
+const Select: NextPage<SelectProps> = ({
+	title,
+	options,
+	register,
+	value = undefined,
+	setValue,
+}) => {
+	const onSelect = (e: ChangeEvent<HTMLSelectElement>) => {
+		if (setValue) {
+			setValue(e.target.value);
+		}
+	};
+	return (
+		<select
+			onChange={onSelect}
+			value={value}
+			className='p-4 w-full border rounded-lg border-oyster cursor-pointer'
+			{...register}>
+			{title ? (
+				<option value={undefined} disabled selected>
+					{title}
+				</option>
+			) : (
+				<></>
+			)}
+
 			{options.map((item) => {
 				return (
 					<option value={item.value} key={uniqid(item.name)}>

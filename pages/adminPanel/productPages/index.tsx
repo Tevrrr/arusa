@@ -14,15 +14,17 @@ import AdminProductPanel from '../../../components/AdminPanel/AdminProductPanel'
 import Link from 'next/link';
 
 const ProductPage: NextPage = () => {
-	const [newProductPage, setNewProductPage] = useState<IProductPage>();
-	const { token } = useContext(UserContext);
+
 
 
 
 	return (
 		<MainAdminContainer title='Product pages'>
+			<h2 className=' py-4 mt-14 text-center text-opal border-b border-oyster '>
+				Products
+			</h2>
 			<ProductProvider limit={20}>
-				<div className='flex justify-center border-b border-oyster mt-10'>
+				<div className='flex justify-center border-b border-oyster'>
 					<SearchPanel />
 				</div>
 
@@ -38,8 +40,8 @@ const ProductPage: NextPage = () => {
 							<div className='flex justify-center items-center grow text-center'>
 								<h5>Create a new product page</h5>
 							</div>
-                        </Link>
-                        <div className='grow'></div>
+						</Link>
+						<div className='grow'></div>
 						<AdminProductPanel />
 					</div>
 				</div>

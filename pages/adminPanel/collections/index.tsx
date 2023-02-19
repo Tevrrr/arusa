@@ -2,7 +2,6 @@ import type { NextPage } from 'next'
 import MainAdminContainer from '../../../components/AdminPanel/MainAdminContainer';
 import { getCollections } from '../../../service/getters/collection';
 import { ICollection } from '../../../common/types/collection';
-import uniqid from 'uniqid';
 import Link from 'next/link';
 import Image from 'next/image';
 import { AiFillFileAdd, AiOutlineClose } from 'react-icons/ai';
@@ -33,7 +32,10 @@ const Collections: NextPage<CollectionsProps> = ({ data }) => {
 	};
 	return (
 		<MainAdminContainer title='Collections'>
-			<div className=' max-w-screen-xl mx-auto w-full mt-14 flex flex-wrap justify-between gap-4 p-4'>
+			<h2 className=' py-4 mt-14 text-center text-opal border-b border-oyster '>
+				Collections
+			</h2>
+			<div className=' max-w-screen-xl mx-auto w-full flex flex-wrap justify-between gap-4 p-4'>
 				<Link
 					href={'collections/addCollection'}
 					className=' w-full max-w-sm h-60 rounded-md overflow-hidden bg-smoke relative text-white flex gap-4 items-center justify-center flex-col'>
@@ -63,12 +65,13 @@ const Collections: NextPage<CollectionsProps> = ({ data }) => {
 									alt=''
 									src={item.image}
 									fill
-									className='object-cover absolute -z-10'
+									className='object-cover absolute -z-10 rounded-md'
 								/>
 							</Link>
 						</div>
 					);
 				})}
+				<div className=' grow'></div>
 			</div>
 		</MainAdminContainer>
 	);

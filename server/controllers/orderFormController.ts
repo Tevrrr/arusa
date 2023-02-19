@@ -71,7 +71,7 @@ class orderFormController {
 				return res.status(400).send('You must specify the order form!');
 			}
 			const { form, errorMessage } =
-				await orderFormService.updateOrderForm(orderForm.id, orderForm);
+				await orderFormService.updateOrderForm(orderForm._id, orderForm);
 			if (errorMessage) {
 				return res.status(400).send(errorMessage);
 			}
