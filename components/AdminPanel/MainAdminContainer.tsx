@@ -9,18 +9,20 @@ import AdminNavbar from './AdminNavbar';
 interface MainAdminContainerProps {
 	title: string;
 	children?: ReactNode;
+	roles?:string[];
 }
 
 const MainAdminContainer: NextPage<MainAdminContainerProps> = ({
 	children,
 	title,
+	roles,
 }) => {
 	return (
 		<div>
 			<Head>
 				<title>{title}</title>
 			</Head>
-			<AuthController>
+			<AuthController roles={roles}>
 				<AdminNavbar dark={false} />
 				{children}
 			</AuthController>

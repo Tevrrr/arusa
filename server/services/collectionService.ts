@@ -38,8 +38,8 @@ class CollectionService {
 			const collection = await Collection.findByIdAndDelete(id);
 			if (!collection) {
 				return { errorMessage: 'Collection not found' };
-            }
-            await FileService.removeFile(collection.image);
+			}
+			await FileService.removeFile(collection.image);
 			return { collection };
 		} catch (error) {
 			console.log(error);
@@ -58,13 +58,19 @@ class CollectionService {
 						'You must specify the main image at least one additional image!',
 				};
 			}
-			let filePath = await FileService.saveFile(images.image, name || '');
-			if (!filePath) {
+			let { filePaths, errorMessage } = await FileService.saveFile(
+				images.image,
+				name || ''
+			);
+			if (errorMessage) {
 				return {
-					errorMessage: 'Image save error!',
+					errorMessage,
 				};
 			}
-			const image = filePath[0];
+			if (!filePaths) {
+				return { errorMessage: 'Add collection error' };
+			}
+			const image = filePaths[0];
 			const newCollection = await Collection.create({
 				name,
 				filter,

@@ -8,12 +8,12 @@ const filterRouter = Router();
 
 filterRouter.post(
 	'/filter',
-	authMiddleware(['ADMIN']),
+	authMiddleware(['ADMIN', 'MAIN_ADMIN']),
 	filterController.addFilter
 );
 filterRouter.put(
 	'/filter',
-	authMiddleware(['ADMIN']),
+	authMiddleware(['ADMIN', 'MAIN_ADMIN']),
 	filterController.updateFilter
 );
 filterRouter.get(

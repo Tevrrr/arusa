@@ -5,7 +5,6 @@ import { hashSync, compareSync } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
 import Role from '../models/Role';
 import User from '../models/User';
-
 import findSecretKey from '../../common/helpers/findSecretKey';
 
 const generationAccessToken = (id: string, roles: string[]) => {
@@ -15,21 +14,27 @@ const generationAccessToken = (id: string, roles: string[]) => {
 	return sign(payload, secretKey, { expiresIn: '24h' });
 };
 
+interface IFilterResult {
+	user?: IUser;
+	token?: string;
+	errorMessage?: string;
+}
+
 class authService {
 	async registration(
 		username: string,
 		password: string,
 		role: string
-	): Promise<string | IUser> {
-		const userFind = await User.findOne({ username });
+    ): Promise<IFilterResult> {
+        try {const userFind = await User.findOne({ username });
 		if (userFind) {
-			return 'Such a user already exists';
+			return {errorMessage:'Such a user already exists'};
 		}
 
 		const hashPassword = hashSync(password, 5);
 		const userRole = await Role.findOne({ value: role });
 		if (!userRole) {
-			return 'There is no such role';
+			return {errorMessage:'There is no such role'};
 		}
 
 		const user = await User.create({
@@ -37,20 +42,32 @@ class authService {
 			password: hashPassword,
 			roles: [userRole.value],
 		});
-		return user;
+		return {user};
+            
+        } catch (error) {
+            console.log(error)
+            return { errorMessage: 'Registration error' };
+        }
+		
 	}
-	async login(username: string, password: string): Promise<string | {user:IUser, token: string}> {
-		const user = await User.findOne({ username });
+    async login(username: string, password: string): Promise<IFilterResult> {
+        try {
+            const user = await User.findOne({ username });
 		if (!user) {
-			return 'User not found';
+			return {errorMessage:'User not found'};
 		}
 
 		const validPassword = compareSync(password, user.password);
 		if (!validPassword) {
-			return 'Wrong password';
+			return {errorMessage:'Wrong password'};
 		}
-        const token = generationAccessToken(user.id, user.roles);
-        return {user, token}
+		const token = generationAccessToken(user.id, user.roles);
+		return { user, token };
+        } catch (error) {
+            console.log(error);
+			return { errorMessage: 'Login error' };
+        }
+		
 	}
 }
 

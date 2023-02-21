@@ -1,13 +1,15 @@
 /** @format */
 
 import { Request, Response } from 'express';
-import Filter from '../models/Filter';
 import filterService from '../services/filterService';
 
 class filterController {
 	async getFilters(req: Request, res: Response) {
 		try {
-			const filters = await filterService.getFilters();
+            const { filters, errorMessage } = await filterService.getFilters();
+            if (errorMessage) {
+				return res.status(400).json({ message: errorMessage });
+			}
 			res.status(200).json( filters );
 		} catch (error) {
 			console.log(error);
@@ -23,8 +25,11 @@ class filterController {
 					.send('You must specify a filter value!');
             }
             
-			const newFilter = await filterService.addFilter(value);
-			res.status(200).json(newFilter);
+            const {errorMessage, filter} = await filterService.addFilter(value);
+            if (errorMessage) {
+				return res.status(400).json({ message: errorMessage });
+			}
+			res.status(200).json(filter);
 		} catch (error) {
 			console.log(error);
 			res.status(400).send('add filter error');
@@ -37,12 +42,10 @@ class filterController {
 				return res.status(400).send('You must specify the filter!');
             }
             
-            const updatedFilter = await filterService.updateFilter(
-				filter.id,
-				filter
-            );
-            if (!updatedFilter) {
-				return res.status(400).send('Filter not found!');
+            const { errorMessage, filter: updatedFilter } =
+				await filterService.updateFilter(filter.id, filter);
+            if (errorMessage) {
+				return res.status(400).json({ message: errorMessage });
 			}
 
 			res.status(200).json(updatedFilter);

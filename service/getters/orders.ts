@@ -6,7 +6,7 @@ export const getOrders = async (
 	token: string,
 	limit: number = 0,
 	skip: number = 0,
-	finished: boolean = false,
+	finished: boolean | string = false,
 	props?: (value: IOrderForm[], countForms: number) => void
 ): Promise<IOrderForm[] | null> => {
 	try {

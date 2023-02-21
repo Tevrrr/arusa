@@ -8,17 +8,17 @@ const productPageRouter = Router();
 
 productPageRouter.post(
 	'/productPage',
-	authMiddleware(['ADMIN']),
+	authMiddleware(['ADMIN', 'MAIN_ADMIN']),
 	productPageController.addProductPage
 );
 productPageRouter.put(
 	'/productPage',
-	authMiddleware(['ADMIN']),
+	authMiddleware(['ADMIN', 'MAIN_ADMIN']),
 	productPageController.updateProductPage
 );
 productPageRouter.delete(
 	'/productPage',
-	authMiddleware(['ADMIN']),
+	authMiddleware(['ADMIN', 'MAIN_ADMIN']),
 	productPageController.deleteProductPage
 );
 

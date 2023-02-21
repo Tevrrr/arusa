@@ -77,9 +77,7 @@ class productPageService {
 			return { errorMessage: 'Get products error!' };
 		}
 	}
-	async getProductsByIDs(
-		params: string[]
-	): Promise<IProductPageResult> {
+	async getProductsByIDs(params: string[]): Promise<IProductPageResult> {
 		try {
 			const productPages = await ProductPage.find({
 				_id: { $in: params },
@@ -97,7 +95,7 @@ class productPageService {
 						mainImage: productPage.mainImage,
 						title: productPage.title,
 						price: productPage.price,
-						sellability: productPage.sellability
+						sellability: productPage.sellability,
 					});
 			});
 			return { products };
@@ -151,36 +149,47 @@ class productPageService {
 		pictures: FileArray | null
 	): Promise<IProductPageResult> {
 		try {
+			let mainImage: string | null = null;
+			let images: string[] | null = null;
 
-
-			if (!pictures?.mainImage || !pictures?.images) {
-				return {
+			//save main image
+			if (pictures?.mainImage) {
+				const { filePaths, errorMessage } = await FileService.saveFile(
+					pictures.mainImage,
+					newPage?.title || ''
+				);
+				if (errorMessage) {
+					return {
+						errorMessage,
+					};
+				}
+				if (!filePaths) {
+					return { errorMessage: 'Add collection error' };
+				}
+				mainImage = filePaths[0];
+			}
+			//save additional image
+			if (pictures?.images) {
+				const { filePaths, errorMessage } = await FileService.saveFile(
+					pictures.images,
+					newPage?.title || ''
+				);
+				if (errorMessage) {
+					return {
+						errorMessage,
+					};
+				}
+				if (!filePaths) {
+					return { errorMessage: 'Add collection error' };
+				}
+				images = filePaths;
+            }
+            if (!mainImage || !images) {
+                return {
 					errorMessage:
 						'You must specify the main image at least one additional image!',
 				};
-			}
-			//save main image
-			let filePath = await FileService.saveFile(
-				pictures.mainImage,
-				newPage?.title || ''
-			);
-			if (!filePath) {
-				return {
-					errorMessage: 'image save error!',
-				};
-			}
-			const mainImage = filePath[0];
-			//save additional image
-			filePath = await FileService.saveFile(
-				pictures.images,
-				newPage?.title || ''
-			);
-			if (!filePath) {
-				return {
-					errorMessage: 'image save error!',
-				};
-			}
-			const images = filePath;
+            }
 
 			const page = await ProductPage.create({
 				...newPage,
@@ -210,32 +219,38 @@ class productPageService {
 			//update main image
 			if (pictures?.mainImage) {
 				await FileService.removeFile(productPage.mainImage);
-				let filePath = await FileService.saveFile(
+				let {filePaths, errorMessage} = await FileService.saveFile(
 					pictures.mainImage,
 					productPage.title
 				);
-				if (!filePath) {
+				if (errorMessage) {
 					return {
-						errorMessage: 'image save error!',
+						errorMessage,
 					};
 				}
-				mainImage = filePath[0];
+				if (!filePaths) {
+					return { errorMessage: 'Add collection error' };
+				}
+				mainImage = filePaths[0];
 			}
 			//update additional image
 			if (pictures?.images) {
 				productPage.images.forEach(async (item) => {
 					await FileService.removeFile(item);
 				});
-				let filePath = await FileService.saveFile(
+				let {filePaths, errorMessage} = await FileService.saveFile(
 					pictures.images,
 					productPage.title
 				);
-				if (!filePath) {
+				if (errorMessage) {
 					return {
-						errorMessage: 'image save error!',
+						errorMessage,
 					};
 				}
-				images = filePath;
+				if (!filePaths) {
+					return { errorMessage: 'Add collection error' };
+				}
+				images = filePaths;
 			}
 		}
 		const updateProductPage = await ProductPage.findByIdAndUpdate(

@@ -6,10 +6,11 @@ import orderFormService from '../services/orderFormService';
 class orderFormController {
 	async getOrderForms(req: Request, res: Response) {
 		try {
-			const { finished, skip, limit } = req.query;
+            const { finished, skip, limit } = req.query;
+            console.log(finished ? finished === 'true' : undefined);
 			const { forms, errorMessage, countForms } =
 				await orderFormService.getOrderForms(
-					finished === 'true',
+					finished ? finished === 'true' : undefined,
 					Number.parseInt(skip?.toString() || '0'),
 					Number.parseInt(limit?.toString() || '0')
 				);

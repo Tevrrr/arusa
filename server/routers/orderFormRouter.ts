@@ -9,17 +9,17 @@ const orderFormRouter = Router();
 orderFormRouter.post('/orderForm', orderFormController.addOrderForm);
 orderFormRouter.get(
 	'/orderForms',
-	authMiddleware(['ADMIN']),
+	authMiddleware(['ADMIN', 'MAIN_ADMIN']),
 	orderFormController.getOrderForms
 );
 orderFormRouter.get(
 	'/orderForm',
-	authMiddleware(['ADMIN']),
+	authMiddleware(['ADMIN', 'MAIN_ADMIN']),
 	orderFormController.getOrderForm
 );
 orderFormRouter.put(
 	'/orderForm',
-	authMiddleware(['ADMIN']),
+	authMiddleware(['ADMIN', 'MAIN_ADMIN']),
 	orderFormController.updateOrderForm
 );
 export default orderFormRouter;

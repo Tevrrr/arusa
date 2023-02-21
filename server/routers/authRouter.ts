@@ -9,6 +9,7 @@ const authRouter = Router();
 
 authRouter.post(
 	'/registration',
+	[authMiddleware(['MAIN_ADMIN'])],
 	[check('username', 'Username cannot be empty').notEmpty()],
 	[
 		check(
@@ -19,6 +20,6 @@ authRouter.post(
 	authController.registration
 );
 authRouter.post('/login', authController.login);
-authRouter.get('/login',authMiddleware(), authController.loginByToken);
+authRouter.get('/login', authMiddleware(), authController.loginByToken);
 
 export default authRouter;

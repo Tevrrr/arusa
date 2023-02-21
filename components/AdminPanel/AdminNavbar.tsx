@@ -6,6 +6,7 @@ import { VscMenu } from 'react-icons/vsc';
 import Link from 'next/link';
 import { BagContext } from '../../common/BagProvider';
 import Image from 'next/image';
+import { UserContext } from '../../common/UserProvider';
 
 interface AdminNavbarProps {
 	className?: string;
@@ -13,6 +14,7 @@ interface AdminNavbarProps {
 }
 
 const AdminNavbar: NextPage<AdminNavbarProps> = ({ className = '', dark }) => {
+    const { user} = useContext(UserContext)
 	const [scroll, setScroll] = useState(0);
 
 	const handleScroll = (): void => {
@@ -54,9 +56,21 @@ const AdminNavbar: NextPage<AdminNavbarProps> = ({ className = '', dark }) => {
 							/>
 						</Link>
 						<div className='flex gap-4'>
-							<Link href='/adminPanel/productPages'>Products</Link>
+							{user && user.roles?.includes('MAIN_ADMIN') ? (
+								<Link href='/adminPanel/admins'>
+									Admins
+								</Link>
+							) : (
+								<></>
+							)}
+
+							<Link href='/adminPanel/productPages'>
+								Products
+							</Link>
 							<Link href='/adminPanel/orders'>Orders</Link>
-							<Link href='/adminPanel/collections'>Collections</Link>
+							<Link href='/adminPanel/collections'>
+								Collections
+							</Link>
 						</div>
 					</div>
 				</div>

@@ -23,10 +23,10 @@ const OrderForm: NextPage = () => {
 
 	useEffect(() => {
 		if (user) {
-			router.push('/adminPanel/orders');
+			// router.push('/adminPanel/orders');
 		} else {
 			checkLocalToken((user) => {
-				if (user) router.push('/adminPanel/orders');
+				// if (user) router.push('/adminPanel/orders');
 			});
 		}
 	}, []);
@@ -67,6 +67,14 @@ const OrderForm: NextPage = () => {
 						<button type='submit' className='SecondaryBtn'>
 							Login
 						</button>
+						{!user || (
+							<Link href='/adminPanel/orders'>
+								<button type='button' className='PrimaryBtn w-full'>
+									Login using token
+								</button>
+							</Link>
+						)}
+
 						{!error || <p className='TextSmall'>{error}</p>}
 					</form>
 				</div>

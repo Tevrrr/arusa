@@ -8,22 +8,31 @@ import uniqid from 'uniqid';
 const FILE_DIRECTORY = '/productServerPNG';
 const PATH_SAVE_FILE = 'public';
 
+interface IFileResult {
+	filePaths?: string[];
+	errorMessage?: string;
+}
+
 class FileService {
 	async saveFile(
 		file: UploadedFile[] | UploadedFile,
 		title: string
-	): Promise<string[] | null> {
+	): Promise<IFileResult> {
 		try {
-			if (Array.isArray(file)) {
-				return file.map((item) => {
+            if (Array.isArray(file)) {
+                const filePaths = file.map((item) => {
 					const fileName = (uniqid(title) + '.png').replaceAll(
 						' ',
 						''
 					);
-					const filePath = path.resolve(PATH_SAVE_FILE + FILE_DIRECTORY, fileName);
+					const filePath = path.resolve(
+						PATH_SAVE_FILE + FILE_DIRECTORY,
+						fileName
+					);
 					item.mv(filePath);
-					return  `${FILE_DIRECTORY}/${fileName}`;
+					return `${FILE_DIRECTORY}/${fileName}`;
 				});
+				return { filePaths };
 			}
 			const fileName = (uniqid(title) + '.png').replaceAll(' ', '');
 			const filePath = path.resolve(
@@ -31,21 +40,21 @@ class FileService {
 				fileName
 			);
 			file.mv(filePath);
-			return [`${FILE_DIRECTORY}/${fileName}`];
+			return {filePaths:[`${FILE_DIRECTORY}/${fileName}`]};
 		} catch (error) {
 			console.log(error);
-			return null;
+			return { errorMessage: 'Save file error' };
 		}
 	}
-	async removeFile(fileName: string): Promise<boolean> {
+	async removeFile(fileName: string): Promise<IFileResult> {
 		try {
 			await unlink(`${PATH_SAVE_FILE}/${fileName}`, (err) => {
 				if (err) throw err;
 			});
-			return true;
+			return {};
 		} catch (error) {
 			console.log(error);
-			return false;
+			return { errorMessage: 'Remove file error' };
 		}
 	}
 }

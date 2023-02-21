@@ -14,18 +14,17 @@ interface IOrderFormResult {
 
 class orderFormService {
 	async getOrderForms(
-		finished: boolean = false,
+		finished?: boolean,
 		skip: number = 0,
 		limit: number = 0
 	): Promise<IOrderFormResult> {
 		try {
-			const forms = await OrderForm.find({ finished })
+			const query = typeof finished === 'undefined' ? {} : { finished };
+			const forms = await OrderForm.find(query)
 				.skip(skip)
 				.limit(limit)
 				.sort({ date: 1 });
-			const countForms = await OrderForm.find({
-				finished,
-			}).countDocuments();
+			const countForms = await OrderForm.find(query).countDocuments();
 			return { forms, countForms };
 		} catch (error) {
 			console.log(error);
@@ -77,7 +76,6 @@ class orderFormService {
 					},
 					{ new: true }
 				);
-
 			});
 			return { form: newOrderForm };
 		} catch (error) {

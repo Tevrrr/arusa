@@ -8,27 +8,27 @@ const collectionRouter = Router();
 
 collectionRouter.post(
 	'/collection',
-	authMiddleware(['ADMIN']),
+	authMiddleware(['ADMIN', 'MAIN_ADMIN']),
 	collectionController.addCollection
 );
 collectionRouter.put(
 	'/collection',
-	authMiddleware(['ADMIN']),
+	authMiddleware(['ADMIN', 'MAIN_ADMIN']),
 	collectionController.updateCollection
 );
 collectionRouter.delete(
 	'/collection',
-	authMiddleware(['ADMIN']),
+	authMiddleware(['ADMIN', 'MAIN_ADMIN']),
 	collectionController.deleteCollection
 );
 collectionRouter.put(
 	'/productInCollection',
-	authMiddleware(['ADMIN']),
+	authMiddleware(['ADMIN', 'MAIN_ADMIN']),
 	collectionController.addProductInCollection
 );
 collectionRouter.put(
 	'/deleteProduct',
-	authMiddleware(['ADMIN']),
+	authMiddleware(['ADMIN', 'MAIN_ADMIN']),
 	collectionController.deleteProductFromCollection
 );
 
