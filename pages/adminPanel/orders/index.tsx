@@ -5,7 +5,7 @@ import MainAdminContainer from '../../../components/AdminPanel/MainAdminContaine
 import OrderFormCard from '../../../components/AdminPanel/OrderFormCard';
 import { IOrderForm } from '../../../common/types/orderForm';
 import { useContext, useEffect, useState } from 'react';
-import { getOrders } from '../../../service/getters/orders';
+import { getOrders } from '../../../service/getters/order';
 import uniqid from 'uniqid';
 import { UserContext } from '../../../common/UserProvider';
 import PageNav from '../../../components/AdminPanel/PageNav';

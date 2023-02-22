@@ -2,9 +2,7 @@
 
 import type { NextPage } from 'next';
 import { useEffect, useState, useContext } from 'react';
-import { VscMenu } from 'react-icons/vsc';
 import Link from 'next/link';
-import { BagContext } from '../../common/BagProvider';
 import Image from 'next/image';
 import { UserContext } from '../../common/UserProvider';
 
@@ -15,11 +13,14 @@ interface AdminNavbarProps {
 
 const AdminNavbar: NextPage<AdminNavbarProps> = ({ className = '', dark }) => {
     const { user} = useContext(UserContext)
-	const [scroll, setScroll] = useState(0);
+    const [scroll, setScroll] = useState(0);
 
 	const handleScroll = (): void => {
 		setScroll(window.scrollY);
-	};
+    };
+    
+    useEffect(() => {
+	}, [user]);
 
 	useEffect(() => {
 		window.addEventListener('scroll', handleScroll);
@@ -54,7 +55,7 @@ const AdminNavbar: NextPage<AdminNavbarProps> = ({ className = '', dark }) => {
 								height={100}
 								className=' object-cover'
 							/>
-						</Link>
+                        </Link>
 						<div className='flex gap-4'>
 							{user && user.roles?.includes('MAIN_ADMIN') ? (
 								<Link href='/adminPanel/admins'>

@@ -2,19 +2,19 @@
 
 import type { NextPage } from 'next';
 import { ReactNode, createContext, useEffect, useState } from 'react';
-import { IUserCrontext, IUserResponse } from './types/UserContext';
+import { IUserContext, IUserResponse } from './types/UserContext';
 import { IUser } from './types/User';
 import { loginUser } from '../service/posts/login';
 import { loginUserByToken } from '../service/getters/loginByToken';
 
-const initialState: IUserCrontext = {
+const initialState: IUserContext = {
 	user: null,
 	token: null,
 	login: () => {},
 	checkLocalToken: () => {},
 };
 
-export const UserContext = createContext<IUserCrontext>(initialState);
+export const UserContext = createContext<IUserContext>(initialState);
 
 interface UserProviderProps {
 	children: ReactNode;
@@ -55,10 +55,10 @@ const UserProvider: NextPage<UserProviderProps> = ({ children }) => {
 		props?: (result: IUserResponse | null) => void
 	) => {
 		const result = await loginUser(username, password);
-		if (result) {
+		if (result?.user && result?.token) {
 			setUser(result.user);
             setToken(result.token);
-            localStorage.setItem('token', result.token || '');
+            localStorage.setItem('token', result.token);
 		}
 		if (props) props(result);
 	};

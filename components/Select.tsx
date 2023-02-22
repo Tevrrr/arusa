@@ -7,7 +7,7 @@ import uniqid from 'uniqid';
 
 interface SelectProps {
 	title?: string;
-	options: { name: string; value: string }[];
+	options: { name: string; value: string }[] | string[];
 	register?: UseFormRegisterReturn;
 	value?: string;
 	setValue?: (value: string) => void;
@@ -40,6 +40,13 @@ const Select: NextPage<SelectProps> = ({
 			)}
 
 			{options.map((item) => {
+				if (typeof item === 'string') {
+					return (
+						<option value={item} key={uniqid(item)}>
+							{item}
+						</option>
+					);
+				}
 				return (
 					<option value={item.value} key={uniqid(item.name)}>
 						{item.name}

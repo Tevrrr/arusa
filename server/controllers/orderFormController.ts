@@ -7,7 +7,6 @@ class orderFormController {
 	async getOrderForms(req: Request, res: Response) {
 		try {
             const { finished, skip, limit } = req.query;
-            console.log(finished ? finished === 'true' : undefined);
 			const { forms, errorMessage, countForms } =
 				await orderFormService.getOrderForms(
 					finished ? finished === 'true' : undefined,

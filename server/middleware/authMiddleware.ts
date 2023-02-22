@@ -36,7 +36,7 @@ const authMiddleware = (roles: string[]=[]): ((
 						.status(403)
 						.json({ message: 'You do not have access' });
                 }
-			}
+            }
             req.body = { ...req.body, user: decodedData };
 			next();
 		} catch (error) {

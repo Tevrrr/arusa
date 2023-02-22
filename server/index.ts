@@ -10,6 +10,10 @@ import productPageRouter from './routers/productPageRouter';
 import filterRouter from './routers/filterRouter';
 import collectionRouter from './routers/collectionRouter';
 import fileUpload from 'express-fileupload';
+import roleRouter from './routers/roleRouter';
+import userRouter from './routers/userRouter';
+
+
 
 dotenv.config();
 
@@ -34,12 +38,12 @@ app.prepare().then(async () => {
     server.use(express.json());
     server.use(fileUpload({}));
     server.use('/api',      productPageRouter);
+    server.use('/api',      roleRouter);
+    server.use('/api',      userRouter);
     server.use('/api',      collectionRouter);
     server.use('/api',      filterRouter);
     server.use('/api',      orderFormRouter);
     server.use('/api/auth', authRouter);
-
-
 
 	server.get('*', async (req: Request, res: Response) => {
 		return handle(req, res);
