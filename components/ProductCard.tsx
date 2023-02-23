@@ -1,7 +1,5 @@
 import type { NextPage } from 'next'
 import Image from 'next/image';
-import { useContext } from 'react';
-import { BagContext } from '../common/BagProvider';
 import { IProduct } from '../common/types/product';
 import Link from 'next/link';
 
@@ -29,7 +27,7 @@ const ProductCard: NextPage<ProductCardProps> = ({
                         border-b odd:border-r border-oyster
                         w-[50%]  min-h-[360px] md:min-h-[460px] ${className}`}>
 			<div className=' relative grow  overflow-hidden'>
-				<Image
+                <Image
 					alt=''
 					src={mainImage}
 					fill

@@ -19,7 +19,7 @@ const CollectionCard: NextPage<CollectionCardProps> = ({
 				href={href}
 				className=' group w-full h-full flex items-center justify-center border border-oyster bg-stormy bg-opacity-80 rounded-lg overflow-hidden relative '>
 				<h4 className=' text-oyster'>{title}</h4>
-				{!image||<Image
+                {!image || <Image
 					alt=''
 					src={image}
 					fill

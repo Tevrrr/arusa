@@ -54,7 +54,7 @@ const Slider: NextPage<SliderProps> = ({ images }) => {
 											' opacity-70'
 										}`}
 							onClick={clickOnSlide(i)}>
-							<Image
+                            <Image
 								alt=''
 								src={item}
 								fill
@@ -65,7 +65,7 @@ const Slider: NextPage<SliderProps> = ({ images }) => {
 				})}
 			</div>
 			<div className=' grow relative'>
-				<Image
+                <Image
 					alt=''
 					src={images[activeSlide]}
 					fill

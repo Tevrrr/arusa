@@ -49,6 +49,7 @@ const AdminProductCard: NextPage<AdminProductCardProps> = ({
 		updateProducts();
 	};
 
+
 	return (
 		<div className={` w-full flex p-4 gap-4 ${className}`}>
 			<div className=' w-56 h-56 relative shrink-0 overflow-hidden'>

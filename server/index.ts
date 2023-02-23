@@ -36,6 +36,7 @@ const handle   = app.getRequestHandler();
 app.prepare().then(async () => {
 	const server = express();
     server.use(express.json());
+    server.use(express.static('public'));
     server.use(fileUpload({}));
     server.use('/api',      productPageRouter);
     server.use('/api',      roleRouter);
