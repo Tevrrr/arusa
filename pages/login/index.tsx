@@ -43,7 +43,7 @@ const OrderForm: NextPage = () => {
 	return (
 		<MainContainer title='Login' emailForm={false}>
 			<div className='mx-auto w-full max-w-screen-xl pt-14 min-h-screen flex'>
-				<div className='grow flex justify-center items-center border-l border-oyster p-4'>
+				<div className='grow flex justify-center items-center p-4'>
 					<form
 						className=' max-w-lg w-full flex flex-col gap-4 p-4 border border-oyster rounded-lg'
 						onSubmit={onSubmit}>

@@ -26,7 +26,6 @@ interface ICollectionForm {
 const AddCollection: NextPage<AddCollectionProps> = ({ filters }) => {
 	const { token } = useContext(UserContext);
 	const { register, handleSubmit } = useForm<ICollectionForm>();
-	const router = useRouter();
 	const onSubmit = handleSubmit(async (data) => {
 		const { title, filter, image } = data;
 		if (token) {

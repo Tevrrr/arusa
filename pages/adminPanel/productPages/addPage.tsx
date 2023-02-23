@@ -24,19 +24,6 @@ const AddPage: NextPage<AddPageProps> = ({filters}) => {
     const methods = useForm<IProductPageForm>();
     const {  handleSubmit, setValue } = methods;
 	const { token } = useContext(UserContext);
-	const generate = () => {
-		const page = productPageGenerator(productGenerator(1))[0];
-
-		setValue('dimensions', page.dimensions);
-		setValue('fabricOrigin', page.fabricOrigin);
-		setValue('filter', page.filter);
-		setValue('material', page.material);
-		setValue('description', page.description);
-		setValue('fullDescription', page.fullDescription);
-		setValue('model', page.model);
-		setValue('price', page.price);
-		setValue('title', page.title);
-	};
     const onSubmit = handleSubmit(async (data) => {
 
 
@@ -69,9 +56,6 @@ const AddPage: NextPage<AddPageProps> = ({filters}) => {
 
 	return (
 		<MainAdminContainer title='Add product page'>
-			<button className='PrimaryBtn mt-16' onClick={generate}>
-				Generate
-			</button>
 			<FormProvider {...methods}>
 				<ProductPageForm
 					filters={filters}
