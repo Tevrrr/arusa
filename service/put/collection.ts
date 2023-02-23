@@ -1,10 +1,13 @@
+/** @format */
+
 import { ICollection } from './../../common/types/collection';
 import axios from 'axios';
 
 export const addProductInCollection = async (
 	collectionID: string,
 	productID: string,
-	token: string
+	token: string,
+	props?: (value: ICollection | null, errorMessage?: string) => void
 ): Promise<ICollection | null> => {
 	try {
 		const URL = process.env.NEXT_PUBLIC_URL || 'http://localhost:3000';
@@ -18,9 +21,11 @@ export const addProductInCollection = async (
 				},
 			}
 		);
+		if (props) props(response.data);
 		return response.data;
-	} catch (error) {
+	} catch (error: any) {
 		console.log(error);
+		if (props) props(null, error.response.data.message);
 		return null;
 	}
 };
@@ -28,7 +33,8 @@ export const addProductInCollection = async (
 export const deleteProductFromCollection = async (
 	collectionID: string,
 	productID: string,
-	token: string
+	token: string,
+	props?: (value: ICollection | null, errorMessage?: string) => void
 ): Promise<ICollection | null> => {
 	try {
 		const URL = process.env.NEXT_PUBLIC_URL || 'http://localhost:3000';
@@ -42,9 +48,11 @@ export const deleteProductFromCollection = async (
 				},
 			}
 		);
+		if (props) props(response.data);
 		return response.data;
-	} catch (error) {
+	} catch (error: any) {
 		console.log(error);
+		if (props) props(null, error.response.data.message);
 		return null;
 	}
 };

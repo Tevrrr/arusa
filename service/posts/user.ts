@@ -7,9 +7,8 @@ export const registerUser = async (
 	username: string,
 	password: string,
 	role: string,
-
 	token: string,
-	props?: (value: IUser) => void
+	props?: (value: IUser | null, errorMessage?:string) => void
 ): Promise<IUser | null> => {
 	try {
 		const URL = process.env.NEXT_PUBLIC_URL || 'http://localhost:3000';
@@ -25,8 +24,9 @@ export const registerUser = async (
 		);
 		if (props) props(response.data);
 		return response.data;
-	} catch (error) {
-		console.log(error);
+	} catch (error:any) {
+        console.log(error);
+        if (props) props(null, error.response.data.message);
 		return null;
 	}
 };

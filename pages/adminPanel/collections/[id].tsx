@@ -17,6 +17,8 @@ import { UserContext } from '../../../common/UserProvider';
 import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Input from '../../../components/Input';
+import toast from 'react-hot-toast';
+import { useRouter } from 'next/router';
 
 interface CollectionPageProps {
 	collection: ICollection;
@@ -35,32 +37,61 @@ const CollectionPage: NextPage<CollectionPageProps> = ({
 	const { register, handleSubmit } = useForm<IProductForm>();
 	const { token } = useContext(UserContext);
 	const [products, setProducts] = useState(data);
-
+    const router = useRouter()
 	const deleteProduct = (productID: string): (() => void) => {
 		return async () => {
-			if (token) {
-				const result = await deleteProductFromCollection(
-					_id,
-					productID,
-					token
-				);
-				if (result) {
-					setProducts(
-						products.filter((item) => item._id !== productID)
-					);
+			if (!token) return;
+
+			deleteProductFromCollection(
+				_id,
+				productID,
+				token,
+				(collection, error) => {
+					if (collection) {
+						toast.success('Collection updated!', {
+							position: 'bottom-center',
+						});
+						setProducts(
+							products.filter((item) => item._id !== productID)
+						);
+						return;
+					}
+
+					if (error) {
+						toast.error(error, {
+							position: 'bottom-center',
+						});
+					} else {
+						toast.error('Collection update error!', {
+							position: 'bottom-center',
+						});
+					}
 				}
-			}
+			);
 		};
 	};
 
 	const onSubmit = handleSubmit(async (data) => {
 		if (!token) return;
-		const newProductPage = await addProductInCollection(
-			_id,
-			data.id,
-			token
-		);
-		console.log(newProductPage);
+		addProductInCollection(_id, data.id, token, (collection, error) => {
+            if (collection) {
+                router.reload();
+				toast.success('Collection updated!', {
+					position: 'bottom-center',
+                });
+				return;
+			}
+
+			if (error) {
+				toast.error(error, {
+					position: 'bottom-center',
+				});
+			} else {
+				toast.error('Collection update error!', {
+					position: 'bottom-center',
+				});
+			}
+		});
 	});
 
 	return (

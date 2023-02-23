@@ -24,8 +24,7 @@ const About: NextPage = () => {
 			</header>
 			<div className='flex justify-center bg-opal'>
 				<div className=' md:min-h-screen max-w-screen-xl w-full flex text-oyster '>
-					
-                    <SideHeader>About us</SideHeader>
+					<SideHeader>About us</SideHeader>
 					<div className=' grow px-4 py-8 md:pl-28 flex items-center'>
 						<div className=' max-w-5xl flex flex-col gap-2 TextRegular'>
 							<h4>Created based on the concept of exclusivity</h4>
@@ -118,8 +117,7 @@ const About: NextPage = () => {
 			</div>
 			<div className='flex justify-center bg-opal'>
 				<div className=' min-h-screen max-w-screen-xl w-full flex text-oyster '>
-					
-                    <SideHeader>Sections</SideHeader>
+					<SideHeader>Sections</SideHeader>
 					<div className=' grow lg:pl-28 flex flex-col justify-between py-10 px-4 lg:px-0 '>
 						<h3 className=' pb-12 md:pb-0'>
 							Furniture that offer <br />
@@ -196,8 +194,7 @@ const About: NextPage = () => {
 			</div>
 			<div className='flex justify-center border-b border-oyster'>
 				<div className=' max-w-screen-xl w-full flex'>
-					
-                    <SideHeader>Insights</SideHeader>
+					<SideHeader>Insights</SideHeader>
 					<div className=' grow flex flex-col lg:flex-row justify-between '>
 						<div className=' shrink-0 relative lg:w-[45%] min-h-[420px] lg:min-h-[670px]'>
 							<Image
@@ -207,7 +204,7 @@ const About: NextPage = () => {
 								className=' object-cover'
 							/>
 						</div>
-						<div className='flex flex-col justify-between gap-4 grow py-12 px-4 '>
+						<div className='flex flex-col justify-between gap-4 grow md:border-r border-oyster '>
 							<h3 className='md:pl-10 grow'>
 								Some notes from <br /> the creator
 							</h3>
@@ -226,7 +223,14 @@ const About: NextPage = () => {
 										voluptate velit esse cillum dolore eu
 										fugiat nulla pariatur.{' '}
 									</p>
-									<div className=' w-44 h-12 bg-opal'></div>
+									<div className=' w-32 h-12 relative '>
+										<Image
+											alt='signature.png'
+											src='/aboutPNG/signature.png'
+											fill
+											className=' object-cover'
+										/>
+									</div>
 								</div>
 							</div>
 						</div>

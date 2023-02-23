@@ -7,10 +7,11 @@ import SideHeader from '../../components/SideHeader';
 import Input from '../../components/Input';
 import { useForm } from 'react-hook-form';
 import { IClientData } from '../../common/types/clientData';
-import { submitForm } from '../../service';
 import { useContext } from 'react';
 import { BagContext } from '../../common/BagProvider';
 import { useRouter } from 'next/router';
+import toast from 'react-hot-toast';
+import { submitForm } from '../../service/posts/form';
 
 const OrderForm: NextPage = () => {
 	const { products, emptyBag } = useContext(BagContext);
@@ -18,12 +19,28 @@ const OrderForm: NextPage = () => {
 
 	const {
 		register,
-		setValue,
 		handleSubmit,
 		formState: { errors },
 	} = useForm<IClientData>();
 	const onSubmit = handleSubmit((data) => {
-		submitForm(products, data);
+        submitForm(products, data, (user, error) => {
+			if (user) {
+				toast.success('Order is processed!', {
+					position: 'bottom-center',
+				});
+				return;
+			}
+
+			if (error) {
+				toast.error(error, {
+					position: 'bottom-center',
+				});
+			} else {
+				toast.error('Ordering error!', {
+					position: 'bottom-center',
+				});
+			}
+		});
 		emptyBag();
 		router.push('/shop');
 	});

@@ -5,7 +5,7 @@ import '../styles/globals.css';
 import type { AppProps } from 'next/app';
 import BagProvider from '../common/BagProvider';
 import UserProvider from '../common/UserProvider';
-
+import { Toaster } from 'react-hot-toast';
 export default function App({ Component, pageProps }: AppProps) {
 	return (
 		<>
@@ -18,6 +18,7 @@ export default function App({ Component, pageProps }: AppProps) {
 			<UserProvider>
 				<BagProvider>
 					<Component {...pageProps} />
+					<Toaster />
 				</BagProvider>
 			</UserProvider>
 		</>

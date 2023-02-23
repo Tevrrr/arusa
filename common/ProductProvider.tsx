@@ -4,7 +4,8 @@ import type { NextPage } from 'next';
 import { ReactNode, createContext, useEffect, useMemo, useState } from 'react';
 import { IProductProvider } from './types/ProductContext';
 import { IProduct } from './types/product';
-import { getProductsByFilter, getProductsByQuery } from '../service';
+import { getProductsByQuery, getProductsByFilter } from '../service/getters/product';
+
 
 interface ProductProviderProps {
 	children: ReactNode;

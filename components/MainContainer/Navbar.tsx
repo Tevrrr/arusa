@@ -110,12 +110,6 @@ const Navbar: NextPage<NavbarProps> = ({ className = '', dark }) => {
 									About
 								</Link>
 								<Link
-									href='/blog'
-									className='TextSmall uppercase'
-									onClick={closeNavbar}>
-									Blog
-								</Link>
-								<Link
 									href='/contact'
 									className='TextSmall uppercase'
 									onClick={closeNavbar}>
@@ -130,18 +124,12 @@ const Navbar: NextPage<NavbarProps> = ({ className = '', dark }) => {
 									onClick={closeNavbar}>
 									All
 								</Link>
-								<p className='TextSmall uppercase opacity-50'>
-									Lookbook
-								</p>
 								<Link
 									href='/collections'
 									className='TextSmall uppercase'
 									onClick={closeNavbar}>
 									Collections
 								</Link>
-								<p className='TextSmall uppercase opacity-50'>
-									Featured
-								</p>
 							</div>
 							<div className='flex flex-col gap-3'>
 								<h4>Collections</h4>

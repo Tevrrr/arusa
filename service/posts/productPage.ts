@@ -2,14 +2,14 @@
 
 import axios from 'axios';
 import { IProductPage } from './../../common/types/product';
-import { addProductInCollection } from '../put/collection';
 
 export const postProductPage = async (
 	productPage: IProductPage,
 	token: string,
 	mainImage: File,
-    images: FileList
-) => {
+	images: FileList,
+	props?: (value: IProductPage | null, errorMessage?: string) => void
+): Promise<IProductPage | null> => {
 	try {
 		const URL = process.env.NEXT_PUBLIC_URL || 'http://localhost:3000';
 		const formData = new FormData();
@@ -25,9 +25,12 @@ export const postProductPage = async (
 			headers: {
 				Authorization: `Bearer ${token}`,
 			},
-        });
-		console.log(response);
-	} catch (error) {
+		});
+		if (props) props(response.data);
+		return response.data;
+	} catch (error: any) {
 		console.log(error);
+		if (props) props(null, error.response.data.message);
+		return null;
 	}
 };

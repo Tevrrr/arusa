@@ -1,11 +1,14 @@
+import { IEmail } from './../models/Email';
 /** @format */
 
+import Email from "../models/Email";
 import User from "../models/User";
 import { IUser } from './../models/User';
 
 interface IUserResult {
 	user?: IUser;
 	users?: IUser[];
+	email?: IEmail;
 	errorMessage?: string;
 }
 
@@ -20,6 +23,19 @@ class UserService {
 		} catch (error) {
 			console.log(error);
 			return { errorMessage: 'Save file error' };
+		}
+	}
+	async addEmail(email: string): Promise<IUserResult> {
+        try {
+			const findedEmail = await Email.find({ email });
+			if (findedEmail.length) {
+				return { errorMessage: 'This email is already subscribed' };
+            }
+            const newEmail = await Email.create({ email });
+			return { email: newEmail };
+		} catch (error) {
+			console.log(error);
+			return { errorMessage: 'Add email error' };
 		}
 	}
 	async getUsers(): Promise<IUserResult> {

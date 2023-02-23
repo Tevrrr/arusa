@@ -2,8 +2,6 @@ import { IProductForm } from './../../common/types/orderForm';
 import { IBagItem } from './../../common/types/BagContext';
 import axios from 'axios';
 import { IProduct } from '../../common/types/product';
-import { productsJSON } from '../data/products';
-// /productsByIDs
 
 export const getProductsBag = async (
 	bag: IProductForm[],

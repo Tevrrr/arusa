@@ -15,7 +15,7 @@ export const getCollections = async (): Promise<ICollection[] | null> => {
 	}
 };
 
-export const getCollectionsByFilter = async (filter:string): Promise<ICollection | null> => {
+export const getCollectionsByFilter = async (filter:string): Promise<ICollection[] | null> => {
 	try {
 		const URL = process.env.NEXT_PUBLIC_URL || 'http://localhost:3000';
 

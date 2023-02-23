@@ -2,9 +2,6 @@
 
 import type { NextPage } from 'next';
 import MainAdminContainer from '../../../components/AdminPanel/MainAdminContainer';
-import { IProductPage } from '../../../common/types/product';
-import { useContext, useState } from 'react';
-import { UserContext } from '../../../common/UserProvider';
 import { ProductProvider } from '../../../common/ProductProvider';
 import { FILTERS } from '../../../common/helpers/consts';
 import { AiFillFileAdd } from 'react-icons/ai';

@@ -64,7 +64,7 @@ const Orders: NextPage<OrdersProps> = () => {
 
 				<div className='mt-2 w-full mx-auto max-w-screen-xl grow flex flex-col justify-between'>
 					<div className=' flex flex-wrap justify-between'>
-						{!forms ||
+						{forms.length ? (
 							forms.map((item) => {
 								return (
 									<OrderFormCard
@@ -81,7 +81,10 @@ const Orders: NextPage<OrdersProps> = () => {
 										date={item.date}
 									/>
 								);
-							})}
+							})
+						) : (
+							<h3 className=' w-full text-center'>Orders not found!</h3>
+						)}
 					</div>
 					<div className=' flex justify-center p-2'>
 						{pageCount <= 1 || (

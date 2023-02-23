@@ -11,6 +11,7 @@ import { UserContext } from '../../../common/UserProvider';
 import { postProductPage } from '../../../service/posts/productPage';
 import { getFilters } from '../../../service/getters/filter';
 import { IProductPageForm } from '../../../common/types/IProductPageForm';
+import toast from 'react-hot-toast';
 
 
 interface AddPageProps {
@@ -37,16 +38,33 @@ const AddPage: NextPage<AddPageProps> = ({filters}) => {
 		setValue('title', page.title);
 	};
     const onSubmit = handleSubmit(async (data) => {
-        console.log(data);
 
 
-		const newProductPage = await postProductPage(
+		postProductPage(
 			{ ...data },
-            token || '',
-            data.mainImageFile[0],
-            data.imageFiles
+			token || '',
+			data.mainImageFile[0],
+			data.imageFiles,
+			(page, error) => {
+				if (page) {
+					toast.success('Page created!', {
+						position: 'bottom-center',
+					});
+					return;
+				}
+
+				if (error) {
+					toast.error(error, {
+						position: 'bottom-center',
+					});
+				} else {
+					toast.error('Error creating page!', {
+						position: 'bottom-center',
+					});
+				}
+			}
 		);
-		console.log(newProductPage);
+
 	});
 
 	return (

@@ -17,7 +17,6 @@ const Footer: NextPage = () => {
 					<Link href='/about'>
 						<p className='TextSmall cursor-pointer'>About</p>
 					</Link>
-					<p className='TextSmall opacity-50'>Journal</p>
 					<Link href='/contact'>
 						<p className='TextSmall cursor-pointer'>Contact</p>
 					</Link>
@@ -27,10 +26,9 @@ const Footer: NextPage = () => {
 					<Link href='/shop'>
 						<p className='TextSmall cursor-pointer'>All</p>
 					</Link>
-
-					<p className='TextSmall opacity-50'>Lookbook</p>
-					<p className='TextSmall opacity-50'>Collections</p>
-					<p className='TextSmall opacity-50'>Featured</p>
+					<Link href='/collections'>
+						<p className='TextSmall cursor-pointer'>Collections</p>
+					</Link>
 				</div>
 				<div className=' w-1/2 md:w-auto flex grow flex-col gap-4 p-4 md:py-6 md:pl-14 border-t md:border-t-0 border-r border-oyster '>
 					<p className='TextSmall uppercase'>Collections</p>
@@ -50,12 +48,12 @@ const Footer: NextPage = () => {
 				</div>
 				<div className=' w-1/2 md:w-auto flex grow flex-col gap-4 p-4 md:py-6 md:pl-14 border-t md:border-t-0 '>
 					<p className='TextSmall uppercase'>Help</p>
-					<p className='TextSmall opacity-50'>Contact</p>
+					<Link href='/contact'>
+						<p className='TextSmall cursor-pointer'>Contact</p>
+					</Link>
 					<Link href='/login'>
 						<p className='TextSmall cursor-pointer'>Login</p>
 					</Link>
-					<p className='TextSmall opacity-50'>Privacy Policy</p>
-					<p className='TextSmall opacity-50'>Refund Policy</p>
 				</div>
 			</div>
 			<div className=' flex items-center justify-center relative md:my-10 m-4 min-h-[33vh]  '>

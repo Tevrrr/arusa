@@ -4,8 +4,9 @@ import type { NextPage } from 'next';
 import Image from 'next/image';
 import Input from '../Input';
 import { useForm } from 'react-hook-form';
-import { submitEmail, submitForm } from '../../service';
 import { EMAIL_REGEXP } from '../../common/helpers/consts';
+import { postEmail } from '../../service/posts/email';
+import toast from 'react-hot-toast';
 
 type IEmailForm = {
 	email: string;
@@ -19,8 +20,26 @@ const EmailForm: NextPage = () => {
 		formState: { errors },
 	} = useForm<IEmailForm>();
     const onSubmit = handleSubmit((data) => {
-        submitEmail(data.email);
-        setValue('email', '')
+        postEmail(data.email, (email, error) => {
+			if (email) {
+				toast.success('Email added!', {
+					position: 'bottom-center',
+                });
+                setValue('email', '');
+				return;
+			}
+
+			if (error) {
+				toast.error(error, {
+					position: 'bottom-center',
+				});
+			} else {
+				toast.error('Error adding email!', {
+					position: 'bottom-center',
+				});
+			}
+		});
+        
     });
 
 	return (

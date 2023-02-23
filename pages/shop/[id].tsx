@@ -3,13 +3,13 @@
 import type { NextPage, NextPageContext } from 'next';
 import MainContainer from '../../components/MainContainer/MainContainer';
 import { IProductPage } from '../../common/types/product';
-import { getProductPage } from '../../service';
 import { useRouter } from 'next/router';
 import { useContext, useEffect } from 'react';
 import { BagContext } from '../../common/BagProvider';
 import { IProductPageToIProduct } from '../../common/helpers/IProductPageToIProduct';
 import Slider from '../../components/Shop/Slider';
 import Image from 'next/image';
+import { getProductPage } from '../../service/getters/productPage';
 
 interface ProductProps {
 	data: IProductPage | null;
@@ -100,7 +100,6 @@ export const getServerSideProps = async ({req, query }: PostNextPageContext) => 
 	const data: IProductPage | null = await getProductPage(
 		query.id
     );
-    console.log(data);
 	return {
 		props: { data },
 	};

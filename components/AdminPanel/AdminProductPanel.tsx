@@ -3,7 +3,6 @@
 import type { NextPage } from 'next';
 import { useContext } from 'react';
 import { ProductContext } from '../../common/ProductProvider';
-import { IProduct } from '../../common/types/product';
 import { AiOutlineCloudDownload } from 'react-icons/ai';
 import AdminProductCard from './AdminProductCard';
 

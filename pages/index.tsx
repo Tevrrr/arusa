@@ -1,17 +1,13 @@
 /** @format */
 
-import MainContainer, {
-	textColor,
-} from '../components/MainContainer/MainContainer';
+import MainContainer from '../components/MainContainer/MainContainer';
 import ProductCard from '../components/ProductCard';
-import ArticleCard from '../components/ArticleСard';
 import Image from 'next/image';
 import SideHeader from '../components/SideHeader';
-import { getTopProducts } from '../service';
 import { IProduct } from '../common/types/product';
-
 import Link from 'next/link';
 import { GetServerSideProps, NextPage } from 'next';
+import { getTopProducts } from '../service/getters/product';
 
 interface HomeProps {
 	products: IProduct[];
@@ -192,7 +188,7 @@ const Home: NextPage<HomeProps> = ({ products }) => {
 					<div className=' hidden md:flex '>
 						{products.length ? (
 							<ProductCard
-								className=' !min-w-max !max-w-[250px] bg-white !p-5 text-opal group'
+								className=' !min-w-max !max-w-[350px] bg-white !p-5 text-opal group'
 								imageClassName=' group-hover:scale-110 transition-transform duration-700'
 								data={products[products.length - 1]}
 							/>
@@ -205,7 +201,7 @@ const Home: NextPage<HomeProps> = ({ products }) => {
 						<div className=' grow'></div>
 						{products.length ? (
 							<ProductCard
-								className=' !min-w-max !max-w-[250px] bg-white !p-5 text-opal group'
+								className=' !min-w-max !max-w-[350px] bg-white !p-5 text-opal group'
 								imageClassName=' group-hover:scale-110 transition-transform duration-700'
 								data={products[products.length - 2]}
 							/>
@@ -215,7 +211,7 @@ const Home: NextPage<HomeProps> = ({ products }) => {
 					</div>
 				</div>
 
-				<div className='flex justify-center bg-opal '>
+				{/* <div className='flex justify-center bg-opal '>
 					<div className='w-full max-w-screen-xl overflow-hidden flex flex-col md:flex-row bg-opal text-cloudy lg:border-r'>
 						<SideHeader>Lookbook</SideHeader>
 						<div className='flex flex-col gap-14 justify-between items-center grow border-r p-4 md:pt-12 md:pb-32 '>
@@ -276,10 +272,10 @@ const Home: NextPage<HomeProps> = ({ products }) => {
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> */}
 
-				<div className='flex flex-col text-cloudy bg-opal border-white pb-14'>
-					<h4 className='text-center py-6 border-y'>
+				<div className='flex flex-col text-cloudy bg-opal pb-14'>
+					<h4 className='text-center py-6 border-b border-oyster'>
 						Enjoy our feature products
 					</h4>
 					<div className=' flex gap-0 justify-center'>

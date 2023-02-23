@@ -10,6 +10,8 @@ import { postCollection } from '../../../service/posts/collection';
 import { UserContext } from '../../../common/UserProvider';
 import { useContext } from 'react';
 import { useRouter } from 'next/router';
+import toast from 'react-hot-toast';
+import { register } from 'ts-node';
 
 interface AddCollectionProps {
 	filters: string[];
@@ -28,10 +30,26 @@ const AddCollection: NextPage<AddCollectionProps> = ({ filters }) => {
 	const onSubmit = handleSubmit(async (data) => {
 		const { title, filter, image } = data;
 		if (token) {
-			const result = await postCollection(title, filter, image[0], token);
-			if (result) {
-				router.push(`/adminPanel/collections/${result._id}`);
+            postCollection(title, filter, image[0], token,
+            (collection, error) => {
+				if (collection) {
+					toast.success('Collection created!', {
+						position: 'bottom-center',
+					});
+					return;
+				}
+
+				if (error) {
+					toast.error(error, {
+						position: 'bottom-center',
+					});
+				} else {
+					toast.error('Error creating collection!', {
+						position: 'bottom-center',
+					});
+				}
 			}
+		);
 		}
 	});
 	return (

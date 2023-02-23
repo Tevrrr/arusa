@@ -1,4 +1,6 @@
-import type { NextPage } from 'next'
+/** @format */
+
+import type { NextPage } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { IProduct } from '../../common/types/product';
@@ -7,34 +9,47 @@ import { deleteProductPage } from '../../service/delete/productPage';
 import { useContext } from 'react';
 import { UserContext } from '../../common/UserProvider';
 import { ProductContext } from '../../common/ProductProvider';
+import toast from 'react-hot-toast';
 
 interface AdminProductCardProps {
 	data: IProduct;
 	className?: string;
 	imageClassName?: string;
-};
-//  
+}
+//
 const AdminProductCard: NextPage<AdminProductCardProps> = ({
-    className = '',
-    imageClassName = '',
-    data
+	className = '',
+	imageClassName = '',
+	data,
 }) => {
-    const { title, price, _id, mainImage, sellability, filter } = data;
-    const { updateProducts } = useContext(ProductContext);
-    const { token } = useContext(UserContext);
+	const { title, price, _id, mainImage, sellability, filter } = data;
+	const { updateProducts } = useContext(ProductContext);
+	const { token } = useContext(UserContext);
 
-    const deletePage = async () => {
-        if( !token) return
-        const page = await deleteProductPage(_id, token);
-        updateProducts();
-        if (page) {
-            updateProducts();
-            return console.log(page)
-        }
-        console.log('Page not found')
-    }
+	const deletePage = async () => {
+		if (!token) return;
+		deleteProductPage(_id, token, (page, error) => {
+			if (page) {
+				toast.success('Page deleted!', {
+					position: 'bottom-center',
+				});
+				return;
+			}
 
-    return (
+			if (error) {
+				toast.error(error, {
+					position: 'bottom-center',
+				});
+			} else {
+				toast.error('Page deletion error!', {
+					position: 'bottom-center',
+				});
+			}
+		});
+		updateProducts();
+	};
+
+	return (
 		<div className={` w-full flex p-4 gap-4 ${className}`}>
 			<div className=' w-56 h-56 relative shrink-0 overflow-hidden'>
 				<Image

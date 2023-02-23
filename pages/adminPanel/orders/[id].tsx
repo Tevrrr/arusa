@@ -11,6 +11,7 @@ import { getProductsBag } from '../../../service/getters/product';
 import Link from 'next/link';
 import Image from 'next/image';
 import { putOrderForm } from '../../../service/put/orderForm';
+import toast from 'react-hot-toast';
 
 interface OrderPageProps {
 	id: string;
@@ -20,7 +21,7 @@ const OrderPage: NextPage<OrderPageProps> = ({ id }) => {
 	const { token } = useContext(UserContext);
 	const [data, setData] = useState<IOrderForm | null>(null);
 	const [bag, setBag] = useState<IBagItem[]>([]);
-    const [totalPrice, setTotalPrice] = useState<number>(0);
+	const [totalPrice, setTotalPrice] = useState<number>(0);
 
 	useEffect(() => {
 		if (token)
@@ -38,17 +39,35 @@ const OrderPage: NextPage<OrderPageProps> = ({ id }) => {
 			totalPrice = count * price + totalPrice;
 		});
 		setTotalPrice(totalPrice);
-    }, [bag]);
-    
-    const finishedToggle = async () => {
-        if (data && token) {
-            const result = await putOrderForm({ ...data, finished: !data.finished }, token);
-            if (result) {
-                setData(result);
-            }
+	}, [bag]);
+
+	const finishedToggle = async () => {
+		if (data && token) {
+			putOrderForm(
+				{ ...data, finished: !data.finished },
+				token,
+				(order, error) => {
+					if (order) {
+						toast.success('Order updated!', {
+							position: 'bottom-center',
+						});
+						setData(order);
+						return;
+					}
+
+					if (error) {
+						toast.error(error, {
+							position: 'bottom-center',
+						});
+					} else {
+						toast.error('Order update error!', {
+							position: 'bottom-center',
+						});
+					}
+				}
+			);
 		}
-        
-    }
+	};
 
 	return (
 		<MainAdminContainer title='Order'>

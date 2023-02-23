@@ -16,6 +16,7 @@ userRouter.put(
 	authMiddleware(['MAIN_ADMIN']),
 	userController.updateUser
 );
+userRouter.post('/email', userController.addEmail);
 userRouter.delete(
 	'/user',
 	authMiddleware(['MAIN_ADMIN']),

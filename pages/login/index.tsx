@@ -4,39 +4,37 @@ import type { NextPage } from 'next';
 import MainContainer from '../../components/MainContainer/MainContainer';
 import Input from '../../components/Input';
 import { useForm } from 'react-hook-form';
-
 import { useRouter } from 'next/router';
 import { UserContext } from '../../common/UserProvider';
 import { useContext, useEffect, useState } from 'react';
 import Link from 'next/link';
+import { toast } from 'react-hot-toast';
 
 interface ILoginForm {
 	username: string;
 	password: string;
 }
-// if (user) router.push('/adminPanel');
+
 const OrderForm: NextPage = () => {
 	const { login, checkLocalToken, user } = useContext(UserContext);
-	const [error, setError] = useState('');
 	const router = useRouter();
 	const { register, handleSubmit } = useForm<ILoginForm>();
 
 	useEffect(() => {
-		if (user) {
-			// router.push('/adminPanel/orders');
-		} else {
-			checkLocalToken((user) => {
-				// if (user) router.push('/adminPanel/orders');
-			});
+		if (!user) {
+            checkLocalToken();
 		}
 	}, []);
-
 	const onSubmit = handleSubmit((data) => {
 		login(data.username, data.password, (result) => {
 			if (!result) {
-				setError('Invalid username or password!');
+				toast.error('Invalid username or password!', {
+					position: 'bottom-center',
+				});
 			} else {
-				setError('Access');
+				toast.success('Access!', {
+					position: 'bottom-center',
+				});
 				router.push('/adminPanel/orders');
 			}
 		});
@@ -69,13 +67,13 @@ const OrderForm: NextPage = () => {
 						</button>
 						{!user || (
 							<Link href='/adminPanel/orders'>
-								<button type='button' className='PrimaryBtn w-full'>
+								<button
+									type='button'
+									className='PrimaryBtn w-full'>
 									Login using token
 								</button>
 							</Link>
 						)}
-
-						{!error || <p className='TextSmall'>{error}</p>}
 					</form>
 				</div>
 			</div>

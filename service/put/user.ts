@@ -4,7 +4,8 @@ import { IProductPage } from '../../common/types/product';
 
 export const putUser = async (
 	userUpdate: IUser,
-	token: string
+	token: string,
+	props?: (value: IUser | null, errorMessage?: string) => void
 ): Promise<IProductPage | null> => {
 	try {
 		const URL = process.env.NEXT_PUBLIC_URL || 'http://localhost:3000';
@@ -18,9 +19,11 @@ export const putUser = async (
 				},
 			}
 		);
+		if (props) props(response.data);
 		return response.data;
-	} catch (error) {
+	} catch (error: any) {
 		console.log(error);
+		if (props) props(null, error.response.data.message);
 		return null;
 	}
 };

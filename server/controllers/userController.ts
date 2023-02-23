@@ -18,11 +18,26 @@ class UserController {
 			return res.status(400).json({ message: 'Get users error' });
 		}
 	}
+	async addEmail(req: Request, res: Response) {
+        try {
+            const {email} = req.body
+			const { email:newEmail, errorMessage } = await userService.addEmail(email);
+
+			if (errorMessage) {
+				return res.status(400).json({ message: errorMessage });
+			}
+
+			return res.status(200).json(newEmail);
+		} catch (error) {
+			console.log(error);
+			return res.status(400).json({ message: 'Add email error' });
+		}
+	}
 	async deleteUser(req: Request, res: Response) {
 		try {
 			const { id } = req.query;
 			const { user: updatedUser, errorMessage } =
-				await userService.deleteUser(id?.toString()||'');
+				await userService.deleteUser(id?.toString() || '');
 
 			if (errorMessage) {
 				return res.status(400).json({ message: errorMessage });

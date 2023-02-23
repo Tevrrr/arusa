@@ -8,6 +8,7 @@ import { AiFillFileAdd, AiOutlineClose } from 'react-icons/ai';
 import { useContext, useState } from 'react';
 import { UserContext } from '../../../common/UserProvider';
 import { deleteCollection } from '../../../service/delete/deleteCollection';
+import toast from 'react-hot-toast';
 
 
 interface CollectionsProps {
@@ -20,7 +21,28 @@ const Collections: NextPage<CollectionsProps> = ({ data }) => {
 	const btnDeleteCollection = (collectionID: string): (() => void) => {
 		return async () => {
 			if (token) {
-                const result = await deleteCollection(collectionID, token);
+                const result = await deleteCollection(
+					collectionID,
+					token,
+					(collection, error) => {
+						if (collection) {
+							toast.success('Collection deleted!', {
+								position: 'bottom-center',
+							});
+							return;
+						}
+
+						if (error) {
+							toast.error(error, {
+								position: 'bottom-center',
+							});
+						} else {
+							toast.error('Collection deletion error!', {
+								position: 'bottom-center',
+							});
+						}
+					}
+				);
                 if (result && collections) {
 					setCollections(
 						collections.filter((item) => item._id !== collectionID)
@@ -71,7 +93,6 @@ const Collections: NextPage<CollectionsProps> = ({ data }) => {
 						</div>
 					);
 				})}
-				<div className=' grow'></div>
 			</div>
 		</MainAdminContainer>
 	);

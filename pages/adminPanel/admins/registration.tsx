@@ -9,6 +9,7 @@ import { useState, useContext, useEffect } from 'react';
 import { UserContext } from '../../../common/UserProvider';
 import { getRoles } from '../../../service/getters/role';
 import { registerUser } from '../../../service/posts/user';
+import { toast } from 'react-hot-toast';
 
 interface IUserForm {
 	username: string;
@@ -29,11 +30,34 @@ const Registration: NextPage = () => {
 		}
 	}, [token]);
 
-    const onSubmit = handleSubmit(async (data) => {
-        if (!token) return;
-        const {username,password,role} = data;
-        const result = await registerUser(username, password, role,token);
-    });
+	const onSubmit = handleSubmit(async (data) => {
+		if (!token) return;
+		const { username, password, role } = data;
+		registerUser(
+			username,
+			password,
+			role,
+			token,
+			(user, error) => {
+				if (user) {
+					toast.success('User created!', {
+						position: 'bottom-center',
+					});
+					return;
+				}
+
+				if (error) {
+					toast.error(error, {
+						position: 'bottom-center',
+					});
+				} else {
+					toast.error('Error creating user!', {
+						position: 'bottom-center',
+					});
+				}
+			}
+		);
+	});
 	return (
 		<MainAdminContainer title='Registration' roles={['MAIN_ADMIN']}>
 			<div className=' min-h-screen w-full flex items-center justify-center'>
