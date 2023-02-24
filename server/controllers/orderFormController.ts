@@ -14,7 +14,7 @@ class orderFormController {
 					Number.parseInt(limit?.toString() || '0')
 				);
 			if (errorMessage) {
-				res.status(400).json(errorMessage);
+				res.status(400).json({ message:errorMessage });
 			}
 			res.status(200).json({ forms, countForms });
 		} catch (error) {
@@ -30,7 +30,7 @@ class orderFormController {
 					id?.toString() || ''
 				);
 			if (errorMessage) {
-				res.status(400).json(errorMessage);
+				res.status(400).json({ message: errorMessage });
 			}
 			console.log(form);
 			res.status(200).json(form);
@@ -56,7 +56,7 @@ class orderFormController {
 					false
 				);
 			if (errorMessage) {
-				res.status(400).json(errorMessage);
+				res.status(400).json({ message: errorMessage });
 			}
 			res.status(200).json(newOrderForm);
 		} catch (error) {

@@ -12,7 +12,7 @@ class CollectionController {
 			console.log();
 
 			if (errorMessage) {
-				res.status(400).json({ error: errorMessage });
+				res.status(400).json({ message: errorMessage });
 			}
 
 			res.status(200).json(collections);
@@ -28,7 +28,7 @@ class CollectionController {
 				await collectionService.getCollection(id?.toString() || '');
 
 			if (errorMessage) {
-				res.status(400).json({ error: errorMessage });
+				res.status(400).json({ message: errorMessage });
 			}
 
 			res.status(200).json(collection);
@@ -44,7 +44,7 @@ class CollectionController {
 				await collectionService.deleteCollection(id?.toString() || '');
 
 			if (errorMessage) {
-				res.status(400).json({ error: errorMessage });
+				res.status(400).json({ message: errorMessage });
 			}
             
 			res.status(200).json(collection);
@@ -63,7 +63,7 @@ class CollectionController {
 				);
 
 			if (errorMessage) {
-				res.status(400).json({ error: errorMessage });
+				res.status(400).json({ message: errorMessage });
 			}
 
 			res.status(200).json(collection);
@@ -82,7 +82,7 @@ class CollectionController {
 				);
 
 			if (errorMessage) {
-				res.status(400).json({ error: errorMessage });
+				res.status(400).json({ message: errorMessage });
 			}
 
 			res.status(200).json(collection);
@@ -102,7 +102,7 @@ class CollectionController {
 				);
 
 			if (errorMessage) {
-				res.status(400).json({ error: errorMessage });
+				res.status(400).json({ message: errorMessage });
 			}
 
 			res.status(200).json(collection);
@@ -121,7 +121,7 @@ class CollectionController {
 				await collectionService.updateCollection(collection);
 
 			if (errorMessage) {
-				res.status(400).json({ error: errorMessage });
+				res.status(400).json({ message: errorMessage });
 			}
 
 			res.status(200).json(updatedCollection);

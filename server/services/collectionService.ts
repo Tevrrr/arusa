@@ -4,6 +4,7 @@ import { Request, Response } from 'express';
 import Collection, { ICollection } from '../models/Collection';
 import { FileArray } from 'express-fileupload';
 import FileService from './fileService';
+import ProductPage from '../models/ProductPage';
 
 interface ICollectionResult {
 	collection?: ICollection;
@@ -89,9 +90,13 @@ class CollectionService {
 		productID: string
 	): Promise<ICollectionResult> {
 		try {
-			const collection = await Collection.findById(collectionID);
+            const collection = await Collection.findById(collectionID);
 			if (!collection) {
 				return { errorMessage: 'Collection not found' };
+            }
+            const product = await ProductPage.findById(productID)
+            if (!product) {
+				return { errorMessage: 'Product not found' };
 			}
 			if (collection.products.find((value) => value === productID)) {
 				return {
