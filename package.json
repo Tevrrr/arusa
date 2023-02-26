@@ -8,7 +8,7 @@
 	"scripts": {
 		"dev": "nodemon ./server/index.ts",
 		"build": "next build && tsc --project tsconfig.server.json",
-		"start": "cross-env NODE_ENV=production node dist/server/index.js"
+		"start": "cross-env NODE_ENV=production node .next/express/server/index.js"
 	},
 	"dependencies": {
 		"@types/bcryptjs": "^2.4.2",

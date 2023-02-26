@@ -2,7 +2,7 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "module": "commonjs",
-    "outDir": "dist",
+    "outDir": ".next/express",
     "lib": ["es2021"],
     "target": "ES2021",
     "isolatedModules": false,

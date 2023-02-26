@@ -41,47 +41,47 @@ server.use('/api', orderFormRouter);
 server.use('/api/auth', authRouter);
 
 
-const serverStart = async () => {
-	try {
-		mongoose.set('strictQuery', false);
-		await mongoose.connect(DB_URL);
-		server.listen(PORT, () =>
-			console.log(`Server is running in port ${PORT}`)
-		);
-	} catch (error) {
-		console.log(error);
-	}
-};
-serverStart();
-
-
-// const app      = next({ dev, hostname: HOSTNAME, port: Number.parseInt(PORT) });
-// const handle   = app.getRequestHandler();
-
-// app.prepare().then(async () => {
-// 	const server = express();
-//     server.use(express.json());
-//     server.use(express.static('public'));
-//     server.use(fileUpload({}));
-//     server.use('/api',      productPageRouter);
-//     server.use('/api',      roleRouter);
-//     server.use('/api',      userRouter);
-//     server.use('/api',      collectionRouter);
-//     server.use('/api',      filterRouter);
-//     server.use('/api',      orderFormRouter);
-//     server.use('/api/auth', authRouter);
-
-// 	server.get('*', async (req: Request, res: Response) => {
-// 		return handle(req, res);
-// 	});
-
+// const serverStart = async () => {
 // 	try {
 // 		mongoose.set('strictQuery', false);
 // 		await mongoose.connect(DB_URL);
 // 		server.listen(PORT, () =>
-// 			console.log(`Server start http://${HOSTNAME}:${PORT}`)
+// 			console.log(`Server is running in port ${PORT}`)
 // 		);
 // 	} catch (error) {
 // 		console.log(error);
 // 	}
-// });
+// };
+// serverStart();
+
+
+const app      = next({ dev, hostname: HOSTNAME, port: Number.parseInt(PORT) });
+const handle   = app.getRequestHandler();
+
+app.prepare().then(async () => {
+	const server = express();
+    server.use(express.json());
+    server.use(express.static('public'));
+    server.use(fileUpload({}));
+    server.use('/api',      productPageRouter);
+    server.use('/api',      roleRouter);
+    server.use('/api',      userRouter);
+    server.use('/api',      collectionRouter);
+    server.use('/api',      filterRouter);
+    server.use('/api',      orderFormRouter);
+    server.use('/api/auth', authRouter);
+
+	server.get('*', async (req: Request, res: Response) => {
+		return handle(req, res);
+	});
+
+	try {
+		mongoose.set('strictQuery', false);
+		await mongoose.connect(DB_URL);
+		server.listen(PORT, () =>
+			console.log(`Server start http://${HOSTNAME}:${PORT}`)
+		);
+	} catch (error) {
+		console.log(error);
+	}
+});
