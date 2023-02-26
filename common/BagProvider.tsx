@@ -31,10 +31,26 @@ const BagProvider: NextPage<BagProviderProps> = ({ children }) => {
 		let totalPrice = 0;
 		products.map((item) => {
 			totalPrice = totalPrice + item.count * item.price;
-		});
+        });
+        if (products.length || count) {
+			localStorage.setItem('bag', JSON.stringify(products));            
+        }
 		setCount(products.length);
-		setTotalPrice(totalPrice);
+        setTotalPrice(totalPrice);
+
 	}, [products]);
+
+    useEffect(() => {
+        if (!products.length) {
+            const productsJSON = localStorage.getItem('bag');
+            if (productsJSON) {
+                setProducts(JSON.parse(productsJSON));
+            }
+        }
+		
+    }, []);
+    
+
 
 	const addProduct = (product: IProduct) => {
 		if (products.find((item) => product._id === item._id)) return;
@@ -62,9 +78,9 @@ const BagProvider: NextPage<BagProviderProps> = ({ children }) => {
 			})
 		);
 	};
-    const emptyBag = () => {
-        setProducts([])
-    }
+	const emptyBag = () => {
+		setProducts([]);
+	};
 
 	return (
 		<BagContext.Provider
