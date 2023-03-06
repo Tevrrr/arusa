@@ -2,6 +2,7 @@ import type { NextPage } from 'next'
 import Link from 'next/link';
 import Image from 'next/image';
 import { UrlObject } from 'url';
+import imageLoader from '../../common/loader';
 interface CollectionCardProps {
 	href: string | UrlObject;
 	title: string;
@@ -19,12 +20,15 @@ const CollectionCard: NextPage<CollectionCardProps> = ({
 				href={href}
 				className=' group w-full h-full flex items-center justify-center border border-oyster bg-stormy bg-opacity-80 rounded-lg overflow-hidden relative '>
 				<h4 className=' text-oyster'>{title}</h4>
-                {!image || <Image
-					alt=''
-					src={image}
-					fill
-					className=' object-cover -z-10 group-hover:scale-110 transition-transform duration-700'
-				/>}
+				{!image || (
+					<Image
+						loader={imageLoader}
+						alt=''
+						src={image}
+						fill
+						className=' object-cover -z-10 group-hover:scale-110 transition-transform duration-700'
+					/>
+				)}
 			</Link>
 		</div>
 	);

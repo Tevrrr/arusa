@@ -10,6 +10,7 @@ import { useContext } from 'react';
 import { UserContext } from '../../common/UserProvider';
 import { ProductContext } from '../../common/ProductProvider';
 import toast from 'react-hot-toast';
+import imageLoader from '../../common/loader';
 
 interface AdminProductCardProps {
 	data: IProduct;
@@ -54,6 +55,7 @@ const AdminProductCard: NextPage<AdminProductCardProps> = ({
 		<div className={` w-full flex p-4 gap-4 ${className}`}>
 			<div className=' w-56 h-56 relative shrink-0 overflow-hidden'>
 				<Image
+					loader={imageLoader}
 					alt=''
 					src={mainImage}
 					fill

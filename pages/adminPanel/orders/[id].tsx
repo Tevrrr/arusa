@@ -12,6 +12,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { putOrderForm } from '../../../service/put/orderForm';
 import toast from 'react-hot-toast';
+import imageLoader from '../../../common/loader';
 
 interface OrderPageProps {
 	id: string;
@@ -109,6 +110,7 @@ const OrderPage: NextPage<OrderPageProps> = ({ id }) => {
 									key={item._id}>
 									<div className=' relative w-full h-40'>
 										<Image
+											loader={imageLoader}
 											alt=''
 											src={item.mainImage}
 											fill

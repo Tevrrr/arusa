@@ -7,6 +7,7 @@ import { IBagItem } from '../../common/types/BagContext';
 import { AiOutlinePlus, AiOutlineMinus, AiOutlineClose } from 'react-icons/ai';
 
 import Image from 'next/image';
+import imageLoader from '../../common/loader';
 
 interface BagItemProps {
 	product: IBagItem;
@@ -34,12 +35,16 @@ const BagItem: NextPage<BagItemProps> = ({ product }) => {
 				/>
 			</div>
 			<div className=' relative w-32 h-32 border border-oyster overflow-hidden rounded-xl'>
-				<Image alt='' src={mainImage} fill className=' object-cover' />
+				<Image
+					loader={imageLoader}
+					alt=''
+					src={mainImage}
+					fill
+					className=' object-cover'
+				/>
 			</div>
 			<div className='grow flex flex-col justify-between'>
-				<h5 className='pr-7'>
-					{title}
-				</h5>
+				<h5 className='pr-7'>{title}</h5>
 				<div className='flex gap-2 justify-between items-center'>
 					<p className='Caption font-bold'>${price}</p>
 					<div className='flex justify-between items-center gap-2  overflow-hidden rounded-xl border border-oyster'>

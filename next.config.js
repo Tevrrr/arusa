@@ -9,8 +9,6 @@ const nextConfig = {
 		};
 	},
 	images: {
-		loader: 'custom',
-		loaderFile: './common/loader.ts',
 		remotePatterns: [
 			{
 				protocol: 'http',

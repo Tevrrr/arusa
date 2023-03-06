@@ -4,6 +4,7 @@ import type { NextPage } from 'next';
 import Image from 'next/image';
 import { useState } from 'react';
 import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
+import imageLoader from '../../common/loader';
 
 interface SliderProps {
 	images: string[];
@@ -54,7 +55,8 @@ const Slider: NextPage<SliderProps> = ({ images }) => {
 											' opacity-70'
 										}`}
 							onClick={clickOnSlide(i)}>
-                            <Image
+							<Image
+								loader={imageLoader}
 								alt=''
 								src={item}
 								fill
@@ -65,7 +67,8 @@ const Slider: NextPage<SliderProps> = ({ images }) => {
 				})}
 			</div>
 			<div className=' grow relative'>
-                <Image
+				<Image
+					loader={imageLoader}
 					alt=''
 					src={images[activeSlide]}
 					fill
