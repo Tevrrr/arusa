@@ -28,8 +28,8 @@ const OrderPage: NextPage<OrderPageProps> = ({ id }) => {
 		if (token)
 			getOrder(token, id, (data) => {
 				setData(data);
-				getProductsBag(data.products, (value) => {
-					setBag(value);
+                getProductsBag(data.products, (value) => {
+                    if (value) setBag(value);
 				});
 			});
 	}, [token]);

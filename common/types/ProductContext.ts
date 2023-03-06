@@ -1,6 +1,8 @@
+import { Loading } from './loading';
 import { IProduct } from './product';
 export interface IProductProvider {
 	products: IProduct[];
+	loading: Loading;
 	filters: string[];
 	sortBy: string;
 	searchQuery: string;

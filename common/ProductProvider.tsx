@@ -4,8 +4,11 @@ import type { NextPage } from 'next';
 import { ReactNode, createContext, useEffect, useMemo, useState } from 'react';
 import { IProductProvider } from './types/ProductContext';
 import { IProduct } from './types/product';
-import { getProductsByQuery, getProductsByFilter } from '../service/getters/product';
-
+import {
+	getProductsByQuery,
+	getProductsByFilter,
+} from '../service/getters/product';
+import { Loading } from './types/loading';
 
 interface ProductProviderProps {
 	children: ReactNode;
@@ -15,12 +18,13 @@ interface ProductProviderProps {
 const initialState: IProductProvider = {
 	products: [],
 	filters: [],
+	loading: 'loading',
 	sortBy: 'A-Z',
 	searchQuery: '',
-    productQuantity: 0,
-    countProductsFound: 0,
-    addNextProducts: () => { },
-    updateProducts: ()=> {},
+	productQuantity: 0,
+	countProductsFound: 0,
+	addNextProducts: () => {},
+	updateProducts: () => {},
 	setSearchQuery: (value: string) => {},
 	sortByToggle: (value: string) => {},
 	filterToggle: (value: string) => {},
@@ -29,33 +33,50 @@ const initialState: IProductProvider = {
 export const ProductContext = createContext<IProductProvider>(initialState);
 
 export const ProductProvider: NextPage<ProductProviderProps> = ({
-    children,
-    limit,
+	children,
+	limit,
 }) => {
 	const [products, setProducts] = useState<IProduct[]>([]);
 
 	const [filters, setFilters] = useState<string[]>([]);
 	const [activeSortBy, setActiveSortBy] = useState('A-Z');
 	const [searchQuery, setSearchQuery] = useState('');
+	const [loading, setLoading] = useState<Loading>('loading');
 	const [productQuantity, setProductQuantity] = useState(0);
 	const [countProductsFound, setCountProductsFound] = useState(0);
 
 	useEffect(() => {
 		if (searchQuery) {
+			setLoading('loading');
 			getProductsByQuery(
 				searchQuery,
 				activeSortBy,
 				(products, count) => {
+					if (!products || !count) {
+						setLoading('error');
+						setProducts([]);
+						setCountProductsFound(0);
+						return;
+					}
+					setLoading('success');
 					setProducts(products);
 					setCountProductsFound(count);
 				},
-				limit||5
+				limit || 5
 			);
 		} else {
+			setLoading('loading');
 			getProductsByFilter(
 				filters,
 				activeSortBy,
 				(products, count) => {
+					if (!products || !count) {
+						setLoading('error');
+						setProducts([]);
+						setCountProductsFound(0);
+						return;
+					}
+					setLoading('success');
 					setProducts(products);
 					setCountProductsFound(count);
 				},
@@ -73,7 +94,14 @@ export const ProductProvider: NextPage<ProductProviderProps> = ({
 			getProductsByQuery(
 				searchQuery,
 				activeSortBy,
-				(newProducts, count) => {
+                (newProducts, count) => {
+                    if (!newProducts || !count) {
+						setLoading('error');
+						setProducts([]);
+						setCountProductsFound(0);
+						return;
+					}
+					setLoading('success');
 					setProducts([...products, ...newProducts]);
 					setCountProductsFound(count);
 				},
@@ -84,7 +112,14 @@ export const ProductProvider: NextPage<ProductProviderProps> = ({
 			getProductsByFilter(
 				filters,
 				activeSortBy,
-				(newProducts, count) => {
+                (newProducts, count) => {
+                    if (!newProducts || !count) {
+						setLoading('error');
+						setProducts([]);
+						setCountProductsFound(0);
+						return;
+					}
+					setLoading('success');
 					setProducts([...products, ...newProducts]);
 					setCountProductsFound(count);
 				},
@@ -92,18 +127,25 @@ export const ProductProvider: NextPage<ProductProviderProps> = ({
 				productQuantity
 			);
 		}
-    };
-    const updateProducts = () => {
-        getProductsByQuery(
+	};
+	const updateProducts = () => {
+		getProductsByQuery(
 			searchQuery,
 			activeSortBy,
-			(products, count) => {
+            (products, count) => {
+                if (!products || !count) {
+					setLoading('error');
+					setProducts([]);
+					setCountProductsFound(0);
+					return;
+				}
+				setLoading('success');
 				setProducts(products);
 				setCountProductsFound(count);
 			},
 			productQuantity
 		);
-    }
+	};
 
 	const sortByToggle = (value: string) => {
 		if (activeSortBy === value) {
@@ -128,10 +170,12 @@ export const ProductProvider: NextPage<ProductProviderProps> = ({
 				products,
 				productQuantity,
 				filters,
-                searchQuery,
-                countProductsFound,
+				loading,
+				searchQuery,
+				countProductsFound,
 				addNextProducts,
-				setSearchQuery,updateProducts,
+				setSearchQuery,
+				updateProducts,
 				sortBy: activeSortBy,
 				sortByToggle,
 				filterToggle,

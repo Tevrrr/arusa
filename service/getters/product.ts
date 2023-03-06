@@ -5,7 +5,7 @@ import { IProduct } from '../../common/types/product';
 
 export const getProductsBag = async (
 	bag: IProductForm[],
-	props?: (value: IBagItem[]) => void
+	props?: (value: IBagItem[] | null) => void
 ): Promise<IBagItem[] | null> => {
 	try {
 		const URL = process.env.NEXT_PUBLIC_URL || 'http://localhost:3000';
@@ -25,7 +25,7 @@ export const getProductsBag = async (
 
 export const getProductsByIDs = async (
 	productIDs: string[],
-	props?: (value: IBagItem[]) => void
+	props?: (value: IBagItem[] | null) => void
 ): Promise<IBagItem[] | null> => {
 	try {
 		const URL = process.env.NEXT_PUBLIC_URL || 'http://localhost:3000';
@@ -48,7 +48,10 @@ export const getProductsByIDs = async (
 export const getProductsByFilter = async (
 	filters: string[],
 	sortBy: string,
-	props?: (value: IProduct[], countProductsFound: number) => void,
+	props?: (
+		value: IProduct[] | null,
+		countProductsFound: number | null
+	) => void,
 	limit: number = 0,
 	skip: number = 0
 ): Promise<IProduct[] | null> => {
@@ -75,7 +78,7 @@ export const getProductsByFilter = async (
 export const getProductsByQuery = async (
 	searchQuery: string,
 	sortBy: string,
-	props?: (value: IProduct[], countProductsFound: number) => void,
+	props?: (value: IProduct[] | null, countProductsFound: number| null) => void,
 	limit: number = 0,
 	skip: number = 0
 ): Promise<IProduct[] | null> => {
